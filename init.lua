@@ -13,7 +13,7 @@ local function load(pos)
 	local content = file:read("*a")
 	file:close()
 	os.remove(filename)
-	worldedit.deserialize(pos1, content)
+	print(worldedit.deserialize(pos1, content))
 end
 
 minetest.register_globalstep(function(dtime)

@@ -1,27 +1,73 @@
-1	default:stone				# TODO: Stone type
+1	default:stone				// TODO: Stone type
 2	default:dirt_with_grass
 3	default:dirt
 4	default:cobble
-5	default:wood				# TODO: Wood type
-6	default:sapling				# TODO: Sapling type
-7	default:cloud				# Bedrock
+
+#if MORETREES
+	5 0	default:wood
+	5 1	moretrees:spruce_planks
+	5 2	moretrees:birch_planks
+	5 3	moretrees:sequoia_planks
+	5 4	moretrees:fir_planks
+	5 5	moretrees:oak_planks
+
+	6 0	default:sapling
+	6 1	moretrees:spruce_sapling
+	6 2	moretrees:birch_sapling
+	6 3	moretrees:sequoia_sapling
+	6 4	moretrees:fir_sapling
+	6 5	moretrees:oak_sapling
+#else
+	5	default:wood
+	6	default:sapling
+#endif
+
+7	default:cloud				// Bedrock
 8	default:water_flowing
 9	default:water_source
 10	default:lava_flowing
 11	default:lava_source
-12	default:sand				# TODO: Sand type
+12 0	default:sand
+12 1	default:desert_sand
 13	default:gravel
 14	default:stone_with_gold
 15	default:stone_with_iron
 16	default:stone_with_coal
-17	default:tree				# TODO: Tree type
-18	default:leaves				# TODO: Leaves type
-19	default:nyan_cat_rainbow		# Sponge
+
+#if MORETREES
+	17 0	default:tree			// TODO: Trunk orientation
+	17 1	moretrees:spruce_trunk
+	17 2	moretrees:birch_trunk
+	17 3	moretrees:sequoia_trunk
+	18 0,8	default:leaves
+	18 4,12	default:leaves 1
+	18 1,9	moretrees:spruce_leaves
+	18 5,13	moretrees:spruce_leaves 1
+	18 2,10	moretrees:birch_leaves
+	18 6,14	moretrees:birch_leaves 1
+	18 3,11	moretrees:sequoia_leaves
+	18 7,15	moretrees:sequoia_leaves 1
+	161 0,8	moretrees:fir_leaves
+	161 4,12	moretrees:fir_leaves 1
+	161 1,9	moretrees:oak_leaves
+	161 5,13	moretrees:oak_leaves 1
+	162 0	moretrees:fir_trunk		// TODO: Trunk orientation
+	162 1	moretrees:oak_trunk
+#else
+	17	default:tree			// TODO: Trunk orientation
+	18 0,1,2,3,8,9,10,11	default:leaves
+	18 4,5,6,7,12,13,14,15	default:leaves 1
+	161 0,1,2,3,8,9,10,11	default:leaves
+	161 4,5,6,7,12,13,14,15	default:leaves 1
+	162	default:tree			// TODO: Trunk orientation
+#endif
+
+19	default:nyan_cat_rainbow		// Sponge
 20	default:glass
-24	default:sandstone			# TODO: Sandstone type
-27	default:rail				# Powered rail
-28	default:rail				# Detector rail
-31	default:grass_5				# Tall grass
+24	default:sandstone			// TODO: Sandstone type
+27	default:rail				// Powered rail
+28	default:rail				// Detector rail
+31	default:grass_5				// Tall grass
 32	default:dry_shrub
 
 35 0	wool:white
@@ -37,14 +83,31 @@
 35 10	wool:purple
 35 11	wool:blue
 35 12	wool:brown
-35 13	wool:darkgreen
+35 13	wool:dark_green
 35 14	wool:red
 35 15	wool:black
 
 37	flowers:dandelion_yellow
-38	flowers:rose				# TODO: Flower type
+38 0,4	flowers:rose
+38 1	flowers:geranium
+38 2	flowers:viola
+38 3,6	flowers:dandelion_white
+38 5,7	flowers:tulip
+
 41	default:goldblock
 42	default:steelblock
+
+43 0	default:stone				// Double slabs
+43 1	default:sandstone
+43 2 	default:wood
+43 3	default:cobble
+43 4	default:brick
+43 5	default:stonebrick
+43 6	nether:brick
+43 7	quartz:chiseled
+43 8	default:stone
+43 9	default:sandstone
+43 10	quartz:chiseled
 
 44 0	stairs:slab_stone
 44 8	stairs:slab_stone 20
@@ -58,31 +121,48 @@
 44 12	stairs:slab_brick 20
 44 5	stairs:slab_stonebrick
 44 13	stairs:slab_stonebrick 20
+#if NETHER
+	44 6	stairs:slab_nether_brick
+	44 14	stairs:slab_nether_brick 20
+#else
+	44 6	stairs:slab_stonebrick
+	44 14	stairs:slab_stonebrick 20
+#endif
 
-44 6	stairs:slab_stonebrick			# Nether brick
-44 14	stairs:slab_stonebrick 20		# Nether brick
-44 7	stairs:slab_stone      			# Quartz
-44 15	stairs:slab_stone 20			# Quartz
+#if QUARTZ
+	44 7	stairs:slab_quartzblock
+	44 15	stairs:slab_quartzblock 20
+#else
+	44 7	stairs:slab_stonebrick
+	44 15	stairs:slab_stonebrick 20
+#endif
 
 45	default:brick
 47	default:bookshelf
 48	default:mossycobble
 49	default:obsidian
 
-50 0	default:torch 1				# Floor
-50 1	default:torch 3				# Pointing east
-50 2	default:torch 2				# Pointing west
-50 3	default:torch 5				# Pointing south
-50 4	default:torch 4				# Pointing north
+50 0	default:torch 1
+50 1	default:torch 3
+50 2	default:torch 2
+50 3	default:torch 5
+50 4	default:torch 4
 
 51	fire:basic_flame
 
-53 0	stairs:stair_wood 1			# TODO: upside down stairs
+53 0	stairs:stair_wood 1
 53 1	stairs:stair_wood 3
 53 2	stairs:stair_wood 0
 53 3	stairs:stair_wood 2
+53 4	stairs:stair_wood 23
+53 5	stairs:stair_wood 21
+53 6	stairs:stair_wood 20
+53 7	stairs:stair_wood 22
 
-54	default:chest				# TODO: facedir + contents
+54 2	default:chest 0				// TODO: contents
+54 3	default:chest 2
+54 4	default:chest 1
+54 5	default:chest 3
 
 56	default:stone_with_diamond
 57	default:diamondblock
@@ -99,30 +179,42 @@
 60 0	farming:soil
 60	farming:soil_wet
 
-61	default:furnace
-62	default:furnace_active			# TODO: facedir + contents
+61 2	default:furnace	0			// TODO: contents
+61 3	default:furnace 2
+61 4	default:furnace 1
+61 5	default:furnace 3
+62 2	default:furnace_active 0
+62 3	default:furnace_active 2
+62 4	default:furnace_active 1
+62 5	default:furnace_active 3
 
-65 0	default:ladder 3
-65 1	default:ladder 2
+63	default:sign_wall 0
+
 65 2	default:ladder 4
 65 3	default:ladder 5
+65 4	default:ladder 2
+65 5	default:ladder 3
 
 66	default:rail
 
-67 0	stairs:stair_cobble 1			# TODO: upside-down stairs
+67 0	stairs:stair_cobble 1
 67 1	stairs:stair_cobble 3
 67 2	stairs:stair_cobble 0
 67 3	stairs:stair_cobble 2
+67 4	stairs:stair_cobble 23
+67 5	stairs:stair_cobble 21
+67 6	stairs:stair_cobble 20
+67 7	stairs:stair_cobble 22
 
-68 0	default:sign 3				# TODO: check facedir, sign text
-68 1	default:sign 2
-68 2	default:sign 4
-68 3	default:sign 5
+68 2	default:sign_wall 4
+68 3	default:sign_wall 5
+68 4	default:sign_wall 2
+68 5	default:sign_wall 3
 
-73	default:stone_with_mese			# Redstone ore
+73	default:stone_with_mese			// Redstone ore
 74	default:stone_with_mese
 
-78	default:snow				# TODO: snow height
+78	default:snow				// TODO: snow height
 
 79	default:ice
 80	default:snowblock
@@ -132,23 +224,72 @@
 
 85	default:fence_wood
 
-97 0	default:stone				# Silverfish
+#if NETHER
+	87	nether:rack
+	88	nether:sand
+	89	nether:glowstone
+	90	nether:portal
+#endif
+
+97 0	default:stone				// Silverfish
 97 1	default:cobble
 97 2	default:stonebrick
 
 98	default:stonebrick
 
-102	default:glass				# Glass pane
+102	default:glass				// Glass pane
 
-108 0	stairs:stair_brick 1			# TODO: upside-down stairs
+108 0	stairs:stair_brick 1
 108 1	stairs:stair_brick 3
 108 2	stairs:stair_brick 0
 108 3	stairs:stair_brick 2
+108 4	stairs:stair_brick 23
+108 5	stairs:stair_brick 21
+108 6	stairs:stair_brick 20
+108 7	stairs:stair_brick 22
 
-109 0	stairs:stair_stonebrick 1		# TODO: upside-down stairs
+109 0	stairs:stair_stonebrick 1
 109 1	stairs:stair_stonebrick 3
 109 2	stairs:stair_stonebrick 0
 109 3	stairs:stair_stonebrick 2
+109 4	stairs:stair_stonebrick 23
+109 5	stairs:stair_stonebrick 21
+109 6	stairs:stair_stonebrick 20
+109 7	stairs:stair_stonebrick 22
 
-110	default:dirt_with_grass			# Mycelium
+110	default:dirt_with_grass			// Mycelium
 
+#if NETHER
+	112	nether:brick
+	
+	114 0	stairs:stair_nether_brick 1
+	114 1	stairs:stair_nether_brick 3
+	114 2	stairs:stair_nether_brick 0
+	114 3	stairs:stair_nether_brick 2
+	114 4	stairs:stair_nether_brick 23
+	114 5	stairs:stair_nether_brick 21
+	114 6	stairs:stair_nether_brick 20
+	114 7	stairs:stair_nether_brick 22
+#endif
+
+146 2	default:chest 0				// Trapped chest
+146 3	default:chest 2
+146 4	default:chest 1
+146 5	default:chest 3
+
+#if QUARTZ
+	155 0	quartz:block
+	155 1	quartz:chiseled
+	155 2	quartz:pillar
+	155 3	quartz:pillar 4				// TODO: check that
+	155 4	quartz:pillar 8				// TODO: check that
+	
+	156 0	stairs:stair_quartzblock 1
+	156 1	stairs:stair_quartzblock 3
+	156 2	stairs:stair_quartzblock 0
+	156 3	stairs:stair_quartzblock 2
+	156 4	stairs:stair_quartzblock 23
+	156 5	stairs:stair_quartzblock 21
+	156 6	stairs:stair_quartzblock 20
+	156 7	stairs:stair_quartzblock 22
+#endif

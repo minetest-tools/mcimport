@@ -3,6 +3,7 @@ import struct
 import os
 import sys
 from io import StringIO
+from tile_entities import te_convert
 
 def nbt_read_tag(bytes, index, tag):
     if tag <= 6:
@@ -135,18 +136,35 @@ def read_dir(dirname):
                         blocks[(blockx, blockz)] = block
     return blocks
 
-def read_content():
+def read_content(enabled):
     f = open("map_content.txt", "r")
     lines = f.readlines()
     f.close()
 
-    lines.reverse()
-
     bd = {}
+    skip_level = 0
     for line in lines:
         if line[-1] == "\n":
             line = line[:-1]
-        line = line.split("#")[0] # Remove comment
+        line = line.strip().split("//")[0].strip() # Remove comment
+        if len(line) >= 1 and line[0] == "#":
+            if line.startswith("#if"):
+                cond = line[4:]
+                if skip_level > 0 or cond not in enabled:
+                    skip_level += 1
+            elif line.startswith("#else"):
+                if skip_level == 0:
+                    skip_level = 1
+                elif skip_level == 1:
+                    skip_level = 0
+            elif line.startswith("#endif"):
+                if skip_level > 0:
+                    skip_level -= 1
+            continue
+
+        if skip_level > 0:
+            continue
+                
         s = line.split("\t")
         if len(s) >= 2:
             r = s[1].split(" ")
@@ -161,10 +179,15 @@ def read_content():
                     break
             t = s[0].split(" ")
             if len(t) == 2:
-                bd[(int(t[0]), int(t[1]))] = (name, param2)
+                for data in t[1].split(","):
+                    key = (int(t[0]), int(data))
+                    if key not in bd:
+                        bd[key] = (name, param2)
             elif len(t) == 1:
                 for data in range(16):
-                    bd[(int(t[0]), data)] = (name, param2)
+                    key = (int(t[0]), data)
+                    if key not in bd:
+                        bd[key] = (name, param2)
 
     blocks_len = max([i[0] for i in bd.keys()])+1
     blocks = [[(None, 0),]*16 for i in range(blocks_len)]
@@ -172,7 +195,7 @@ def read_content():
         blocks[id][data] = value
     return blocks
 
-blocks_id = read_content()
+blocks_id = read_content(["MORETREES", "QUARTZ", "NETHER"])
 
 def get_name(id, data):
     if id >= len(blocks_id):
@@ -183,12 +206,29 @@ def convert_section(section, tileentities, yslice):
     n = len(section["Blocks"])
     blocksdata = section["Blocks"]
     data = section["Data"]
+    blocklight = section["BlockLight"]
+    skylight = section["SkyLight"]
     blocks = [None]*n
     param1 = [0]*n
     param2 = [0]*n
     metadata = [None]*n
     for i in range(n):
         blocks[i], param2[i] = get_name(blocksdata[i], data[i])
+        param1[i] = (max(blocklight[i], skylight[i])<<4)|blocklight[i]
+    for te in tileentities:
+        id = te["id"]
+        x, y, z = te["x"], te["y"], te["z"]
+        if y >> 4 != yslice:
+            continue
+        index = ((y&0xf)<<8)|((z&0xf)<<4)|(x&0xf)
+        f = te_convert.get(id.lower(), lambda arg: (None,None,None))
+        block, p2, meta = f(te)
+        if block != None:
+            blocks[index] = block
+        if p2 != None:
+            param2[index] = p2
+        if meta != None:
+            metadata[index] = meta
     return (blocks, param1, param2, metadata)
 
 def convert_block(block, yslice):
@@ -211,7 +251,12 @@ def export_we(b, f):
                 f.write(",")
             else:
                 write_comma = True
-            f.write("{x="+str(x)+",y="+str(y)+",z="+str(z)+',name="'+blocks[i]+'",param1='+str(param1[i])+",param2="+str(param2[i])+",meta={fields={},inventory={}}}")
+            f.write("{x="+str(x)+",y="+str(y)+",z="+str(z)+',name="'+blocks[i]+'",param1='+str(param1[i])+",param2="+str(param2[i])+",meta=")
+            if metadata[i] == None:
+                f.write("{fields={},inventory={}}")
+            else:
+                f.write(metadata[i])
+            f.write("}")
     f.write("}")
 
 inputdir = sys.argv[1] + "region/"
@@ -225,6 +270,8 @@ if not os.path.exists(outputdir):
 done = 0
 max_number = len(blocks)
 for key, value in blocks.items():
+#for key in [(i, j) for i in range(5, 9) for j in range(20, 35)]:
+#    value = blocks.get(key, None)
     done += 1
     if done%20 == 0:
         print("Exported {} blocks on {}".format(done, max_number))
