@@ -125,15 +125,12 @@ def read_dir(dirname):
     filenames = [i for i in os.listdir(dirname) if i.endswith(".mcr") or i.endswith(".mca")]
     blocks = {}
     for filename in filenames:
-    #for filename in ("r.0.0.mca", "r.0.-1.mca", "r.-1.0.mca", "r.-1.-1.mca"):
         s = filename.split(".")
         chkx, chkz = int(s[1])*32, int(s[2])*32
         with open(dirname+filename, "rb") as f:
             for blockx in range(chkx, chkx+32):
                 for blockz in range(chkz, chkz+32):
-                    #print("Reading block", blockx, blockz)
                     block = read_block(f, blockx, blockz)
-                    #print("Block read")
                     if block != None:
                         blocks[(blockx, blockz)] = block
     return blocks
