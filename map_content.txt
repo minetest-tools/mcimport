@@ -1,0 +1,154 @@
+1	default:stone				# TODO: Stone type
+2	default:dirt_with_grass
+3	default:dirt
+4	default:cobble
+5	default:wood				# TODO: Wood type
+6	default:sapling				# TODO: Sapling type
+7	default:cloud				# Bedrock
+8	default:water_flowing
+9	default:water_source
+10	default:lava_flowing
+11	default:lava_source
+12	default:sand				# TODO: Sand type
+13	default:gravel
+14	default:stone_with_gold
+15	default:stone_with_iron
+16	default:stone_with_coal
+17	default:tree				# TODO: Tree type
+18	default:leaves				# TODO: Leaves type
+19	default:nyan_cat_rainbow		# Sponge
+20	default:glass
+24	default:sandstone			# TODO: Sandstone type
+27	default:rail				# Powered rail
+28	default:rail				# Detector rail
+31	default:grass_5				# Tall grass
+32	default:dry_shrub
+
+35 0	wool:white
+35 1	wool:orange
+35 2	wool:magenta
+35 3	wool:blue
+35 4	wool:yellow
+35 5	wool:green
+35 6	wool:pink
+35 7	wool:dark_grey
+35 8	wool:grey
+35 9	wool:cyan
+35 10	wool:purple
+35 11	wool:blue
+35 12	wool:brown
+35 13	wool:darkgreen
+35 14	wool:red
+35 15	wool:black
+
+37	flowers:dandelion_yellow
+38	flowers:rose				# TODO: Flower type
+41	default:goldblock
+42	default:steelblock
+
+44 0	stairs:slab_stone
+44 8	stairs:slab_stone 20
+44 1	stairs:slab_sandstone
+44 9	stairs:slab_sandstone 20
+44 2	stairs:slab_wood
+44 10	stairs:slab_wood 20
+44 3	stairs:slab_cobble
+44 11	stairs:slab_cobble 20
+44 4	stairs:slab_brick
+44 12	stairs:slab_brick 20
+44 5	stairs:slab_stonebrick
+44 13	stairs:slab_stonebrick 20
+
+44 6	stairs:slab_stonebrick			# Nether brick
+44 14	stairs:slab_stonebrick 20		# Nether brick
+44 7	stairs:slab_stone      			# Quartz
+44 15	stairs:slab_stone 20			# Quartz
+
+45	default:brick
+47	default:bookshelf
+48	default:mossycobble
+49	default:obsidian
+
+50 0	default:torch 1				# Floor
+50 1	default:torch 3				# Pointing east
+50 2	default:torch 2				# Pointing west
+50 3	default:torch 5				# Pointing south
+50 4	default:torch 4				# Pointing north
+
+51	fire:basic_flame
+
+53 0	stairs:stair_wood 1			# TODO: upside down stairs
+53 1	stairs:stair_wood 3
+53 2	stairs:stair_wood 0
+53 3	stairs:stair_wood 2
+
+54	default:chest				# TODO: facedir + contents
+
+56	default:stone_with_diamond
+57	default:diamondblock
+
+59 0	farming:wheat_1
+59 1 	farming:wheat_2
+59 2 	farming:wheat_3
+59 3	farming:wheat_4
+59 4	farming:wheat_5
+59 5 	farming:wheat_6
+59 6 	farming:wheat_7
+59 7	farming:wheat_8
+
+60 0	farming:soil
+60	farming:soil_wet
+
+61	default:furnace
+62	default:furnace_active			# TODO: facedir + contents
+
+65 0	default:ladder 3
+65 1	default:ladder 2
+65 2	default:ladder 4
+65 3	default:ladder 5
+
+66	default:rail
+
+67 0	stairs:stair_cobble 1			# TODO: upside-down stairs
+67 1	stairs:stair_cobble 3
+67 2	stairs:stair_cobble 0
+67 3	stairs:stair_cobble 2
+
+68 0	default:sign 3				# TODO: check facedir, sign text
+68 1	default:sign 2
+68 2	default:sign 4
+68 3	default:sign 5
+
+73	default:stone_with_mese			# Redstone ore
+74	default:stone_with_mese
+
+78	default:snow				# TODO: snow height
+
+79	default:ice
+80	default:snowblock
+81	default:cactus
+82	default:clay
+83	default:papyrus
+
+85	default:fence_wood
+
+97 0	default:stone				# Silverfish
+97 1	default:cobble
+97 2	default:stonebrick
+
+98	default:stonebrick
+
+102	default:glass				# Glass pane
+
+108 0	stairs:stair_brick 1			# TODO: upside-down stairs
+108 1	stairs:stair_brick 3
+108 2	stairs:stair_brick 0
+108 3	stairs:stair_brick 2
+
+109 0	stairs:stair_stonebrick 1		# TODO: upside-down stairs
+109 1	stairs:stair_stonebrick 3
+109 2	stairs:stair_stonebrick 0
+109 3	stairs:stair_stonebrick 2
+
+110	default:dirt_with_grass			# Mycelium
+
