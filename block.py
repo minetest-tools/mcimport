@@ -225,7 +225,7 @@ class MTBlock:
         for z in range(16):
             for y in range(16):
                 for x in range(16):
-                    writeU8(cbuffer, content[k])
+                    writeU8(cbuffer, param2[k])
                     k += 1
                 k += (256-16)
             k += (16-16*256)
