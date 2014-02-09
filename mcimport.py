@@ -1,4 +1,15 @@
-import zlib, gzip
+import sys
+from block import *
+import content
+
+mcmap = MCMap(sys.argv[1])
+mtmap = MTMap(sys.argv[2])
+nimap, ct = content.read_content(["MORETREES", "NETHER", "QUARTZ"])
+mtmap.fromMCMap(mcmap, nimap, ct)
+mtmap.save()
+
+
+'''import zlib, gzip
 import struct
 import os
 import sys
@@ -236,7 +247,7 @@ def convert_block(block, yslice):
         if section["Y"] == yslice:
             return convert_section(section, block.get("TileEntities", []), yslice)
     return None
- 
+
 def export_we(b, f):
     blocks, param1, param2, metadata = b
     L = []
@@ -284,3 +295,4 @@ for key, value in blocks.items():
             continue
         with open(outputdir+str(key[0])+"."+str(yslice-4)+"."+str(key[1])+".we", "w") as f:
             export_we(b, f)
+'''

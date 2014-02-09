@@ -21,6 +21,24 @@ def escape(s):
             s2 += c
     return s2
 
+def convert_furnace(te):
+    src_time = 0
+    src_totaltime = 0
+    fuel_time = 0
+    fuel_totaltime = 0
+    infotext = "Furnace out of fuel"
+    meta = '''{fields={src_totaltime="'''+str(src_totaltime)+'''",\
+    src_time="'''+str(src_time)+'''",fuel_time="'''+str(fuel_time)+'''",\
+    fuel_totaltime="'''+str(fuel_totaltime)'''",\
+    formspec="size[8,9]image[2,2;1,1;default_furnace_fire_bg.png]\
+              list[current_name;fuel;2,3;1,1;]\
+              list[current_name;src;2,1;1,1;]\
+              list[current_name;dst;5,1;2,2;]\
+              list[current_player;main;0,5;8,4;]",\
+    infotext="'''+infotext+'''"},\
+    inventory={fuel={""},dst={"","","",""},src={""}}}'''
+    return None, None, meta
+
 def convert_sign(te):
     t = ""
     for i in range(1, 5):
@@ -36,4 +54,5 @@ def convert_sign(te):
     return None, None, meta
 
 te_convert = {"chest": convert_chest,
-              "sign": convert_sign}
+              "sign": convert_sign,
+              "furnace": convert_furnace}
