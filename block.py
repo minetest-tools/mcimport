@@ -188,12 +188,12 @@ class MTBlock:
         
         for i in range(4096):
             content[i], param2[i] = conversion_table[blocks[i]][data[i]]
-            param1[i] = (max(blocklight[i], skylight[i])<<4)|blocklight[i]
+            param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
 
     def save(self):
         os = BytesIO()
         writeU8(os, 25) # Version
-        flags = 0x04
+        flags = 0x00
         if self.pos[1] < -1:
             flags |= 0x01
         writeU8(os, flags)
