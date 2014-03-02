@@ -18,8 +18,9 @@ def writeU32(os, u32):
     os.write(bytes((u32&0xff,)))
 
 def writeString(os, s):
-    writeU16(os, len(s))
-    os.write(bytes(s, "utf-8"))
+    b = bytes(s, "utf-8")
+    writeU16(os, len(b))
+    os.write(b)
 
 def bytesToInt(b):
     s = 0
@@ -89,7 +90,7 @@ class MCBlock:
         self.pos = (chunkpos[0], yslice, chunkpos[1])
         if is_anvil:
             # Find the slice
-            for section in chuck["Sections"]:
+            for section in chunk["Sections"]:
                 if section["Y"] == yslice:
                     self.from_section(section)
                     break
