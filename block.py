@@ -282,7 +282,7 @@ class MTMap:
                 self.blocks.append(mtblock)
 
     def save(self):
-        conn = sqlite3.connect(self.world_path + "map.sqlite")
+        conn = sqlite3.connect(os.path.join(self.world_path, "map.sqlite"))
         cur = conn.cursor()
 
         cur.execute("CREATE TABLE IF NOT EXISTS `blocks` (\
