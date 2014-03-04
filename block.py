@@ -293,6 +293,7 @@ class MTMap:
         for block in self.blocks:
             if num_saved%50 == 0:
                 print("Saved", num_saved, "blocks")
+                conn.commit()
             num_saved += 1
             cur.execute("INSERT INTO blocks VALUES (?,?)",
                         (self.getBlockAsInteger(block.pos),
