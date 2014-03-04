@@ -3,30 +3,8 @@ import zlib
 import nbt
 from io import BytesIO
 import sqlite3
+from serialize import *
 
-def writeU8(os, u8):
-    os.write(bytes((u8&0xff,)))
-
-def writeU16(os, u16):
-    os.write(bytes(((u16>>8)&0xff,)))
-    os.write(bytes((u16&0xff,)))
-
-def writeU32(os, u32):
-    os.write(bytes(((u32>>24)&0xff,)))
-    os.write(bytes(((u32>>16)&0xff,)))
-    os.write(bytes(((u32>>8)&0xff,)))
-    os.write(bytes((u32&0xff,)))
-
-def writeString(os, s):
-    b = bytes(s, "utf-8")
-    writeU16(os, len(b))
-    os.write(b)
-
-def bytesToInt(b):
-    s = 0
-    for x in b:
-        s = (s<<8)+x
-    return s
 
 class MCMap:
     """A MC map"""
@@ -211,10 +189,21 @@ class MTBlock:
         # Bulk node data
         content = self.content
         k = 0
+        nimap = {}
+        rev_nimap = []
+        first_free_content = 0
         for z in range(16):
             for y in range(16):
                 for x in range(16):
-                    writeU16(cbuffer, content[k])
+                    #writeU16(cbuffer, content[k])
+                    c = content[k]
+                    if c in nimap:
+                        writeU16(cbuffer, nimap[k])
+                    else:
+                        nimap[c] = first_free_content
+                        writeU16(cbuffer, first_free_content)
+                        rev_nimap.append(c)
+                        first_free_content += 1
                     k += 1
                 k += (256-16)
             k += (16-16*256)
@@ -252,10 +241,10 @@ class MTBlock:
 
         # Name-ID mapping
         writeU8(os, 0) # Version
-        writeU16(os, len(self.name_id_mapping))
-        for i in range(len(self.name_id_mapping)):
+        writeU16(os, len(rev_nimap))
+        for i in range(len(rev_nimap)):
             writeU16(os, i)
-            writeString(os, self.name_id_mapping[i])
+            writeString(os, self.name_id_mapping[rev_nimap[i]])
 
         # Node timer
         writeU8(os, 2+4+4) # Timer data len
