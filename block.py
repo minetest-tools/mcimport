@@ -176,7 +176,7 @@ class MTBlock:
             content[i], param2[i] = conversion_table[blocks[i]][data[i]]
             param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
 
-        for te in mcblock.tile_entites:
+        for te in mcblock.tile_entities:
             id = te["id"]
             x, y, z = te["x"], te["y"], te["z"]
             index = ((y&0xf)<<8)|((z&0xf)<<4)|(x&0xf)
