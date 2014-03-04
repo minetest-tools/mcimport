@@ -1,11 +1,13 @@
+from itemstack import *
+
 def convert_chest(te):
-    meta = """{fields={infotext="Chest",\
-        formspec="size[8,9]\
-                  list[current_name;main;0,0;8,4;]\
-                  list[current_player;main;0,5;8,4;]"},\
-        inventory={main=\
-            {"","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""}}}"""
-    return None, None, meta
+    formspec = "size[8,9]\
+                list[current_name;main;0,0;8,4;]\
+                list[current_player;main;0,5;8,4;]"
+    fields = {"infotext": "Chest",
+              "formspec": formspec}
+    inventory = {"main": (0, [MTItemStack()]*32)}
+    return None, None, (fields, inventory)
 
 def escape(s):
     s2 = ""
@@ -27,17 +29,21 @@ def convert_furnace(te):
     fuel_time = 0
     fuel_totaltime = 0
     infotext = "Furnace out of fuel"
-    meta = '''{fields={src_totaltime="'''+str(src_totaltime)+'''",\
-    src_time="'''+str(src_time)+'''",fuel_time="'''+str(fuel_time)+'''",\
-    fuel_totaltime="'''+str(fuel_totaltime)'''",\
-    formspec="size[8,9]image[2,2;1,1;default_furnace_fire_bg.png]\
-              list[current_name;fuel;2,3;1,1;]\
-              list[current_name;src;2,1;1,1;]\
-              list[current_name;dst;5,1;2,2;]\
-              list[current_player;main;0,5;8,4;]",\
-    infotext="'''+infotext+'''"},\
-    inventory={fuel={""},dst={"","","",""},src={""}}}'''
-    return None, None, meta
+    formspec = "size[8,9]image[2,2;1,1;default_furnace_fire_bg.png]\
+                list[current_name;fuel;2,3;1,1;]\
+                list[current_name;src;2,1;1,1;]\
+                list[current_name;dst;5,1;2,2;]\
+                list[current_player;main;0,5;8,4;]"
+    fields = {"infotext": infotext,
+              "formspec": formspec,
+              "src_totaltime": src_totaltime,
+              "src_time": src_time,
+              "fuel_totaltime": fuel_totaltime,
+              "fuel_time": fuel_time}
+    inventory = {"fuel": (0, [MTItemStack()]),
+                 "src": (0, [MTItemStack()]),
+                 "dst": (0, [MTItemStack()]*4)}
+    return None, None, (fields, inventory)
 
 def convert_sign(te):
     t = ""
@@ -47,11 +53,10 @@ def convert_sign(te):
             t += line
             t += " "
     t = t.strip()
-    text = escape(t)
-    meta = '''{fields={infotext="\\"'''+text+'''\\"",text="'''+text+'''",\
-        formspec="field[text;;${text}]"},\
-        inventory={}}'''
-    return None, None, meta
+    fields = {"infotext": '"'+t+'"',
+              "text": t,
+              "formspec": "field[text;;${text}]"}
+    return None, None, (fields, {})
 
 te_convert = {"chest": convert_chest,
               "sign": convert_sign,

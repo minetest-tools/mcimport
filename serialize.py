@@ -16,6 +16,11 @@ def writeString(os, s):
     writeU16(os, len(b))
     os.write(b)
 
+def writeLongString(os, s):
+    b = bytes(s, "utf-8")
+    writeU32(os, len(b))
+    os.write(b)
+
 def bytesToInt(b):
     s = 0
     for x in b:

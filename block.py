@@ -4,6 +4,7 @@ import nbt
 from io import BytesIO
 import sqlite3
 from serialize import *
+from itemstack import *
 
 
 class MCMap:
@@ -175,6 +176,19 @@ class MTBlock:
             content[i], param2[i] = conversion_table[blocks[i]][data[i]]
             param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
 
+        for te in mcblock.tile_entites:
+            id = te["id"]
+            x, y, z = te["x"], te["y"], te["z"]
+            index = ((y&0xf)<<8)|((z&0xf)<<4)|(x&0xf)
+            f = te_convert.get(id.lower(), lambda arg: (None, None, None)) # Do nothing if not found
+            block, p2, meta = f(te)
+            if block != None:
+                blocks[index] = block
+            if p2 != None:
+                param2[index] = p2
+            if meta != None:
+                self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
+
     def save(self):
         os = BytesIO()
         writeU8(os, 25) # Version
@@ -228,8 +242,17 @@ class MTBlock:
         os.write(zlib.compress(cbuffer.getvalue()))
 
         # Nodemeta
+        meta = self.metadata
         cbuffer = BytesIO()
-        writeU8(cbuffer, 0) # TODO: actually store the meta
+        writeU8(cbuffer, 1) # Version
+        writeU16(cbuffer, len(meta))
+        for pos, data in meta.items():
+            writeU16(cbuffer, (pos[2]<<16)|(pos[1]<<8)|pos[0])
+            writeU32(cbuffer, len(data[0]))
+            for name, val in data[0].items():
+                writeString(cbuffer, name)
+                writeLongString(cbuffer, str(val))
+            serialize_inv(cbuffer, data[1])
         os.write(zlib.compress(cbuffer.getvalue()))
 
         # Static objects
