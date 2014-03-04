@@ -198,7 +198,7 @@ class MTBlock:
                     #writeU16(cbuffer, content[k])
                     c = content[k]
                     if c in nimap:
-                        writeU16(cbuffer, nimap[k])
+                        writeU16(cbuffer, nimap[c])
                     else:
                         nimap[c] = first_free_content
                         writeU16(cbuffer, first_free_content)
