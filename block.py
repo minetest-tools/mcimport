@@ -53,6 +53,12 @@ class MCMap:
     def getChunk(self, chkx, chkz):
         return MCChunk(chkx, chkz, self.world_path, self.ext)
 
+    def getBlocksIterator(self):
+        for chkx, chkz in self.chunk_pos:
+            blocks = self.getChunk(chkx, chkz).blocks
+            for block in blocks:
+                yield block
+
 class MCChunk:
     """A 16x16 column of nodes"""
     def __init__(self, chkx, chkz, path, ext):
@@ -267,21 +273,14 @@ class MTMap:
         return p[0]+4096*(p[1]+4096*p[2])
 
     @staticmethod
-    def fromMCMap_blocks(mcmap, name_id_mapping, conversion_table):
-        num_converted = 0
-        num_to_convert = len(mcmap.chunk_pos)
-        for chkx, chkz in mcmap.chunk_pos:
-            if num_converted%20 == 0:
-                print("Converted" num_converted, "chunks on", num_to_convert)
-            num_converted += 1
-            mcblocks = mcmap.getChunk(chkx, chkz).blocks
-            for mcblock in mcblocks:
-                mtblock = MTBlock(name_id_mapping)
-                mtblock.fromMCBlock(mcblock, conversion_table)
-                yield mtblock
+    def fromMCMapBlocksIterator(mcmap, name_id_mapping, conversion_table):
+        for mcblock in mcmap.getBlocksIterator():
+            mtblock = MTBlock(name_id_mapping)
+            mtblock.fromMCBlock(mcblock, conversion_table)
+            yield mtblock
 
     def fromMCMap(self, mcmap, nimap, ct):
-        self.blocks = self.fromMCMap_blocks(mcmap, nimap, ct)
+        self.blocks = self.fromMCMapBlocksIterator(mcmap, nimap, ct)
 
     def save(self):
         conn = sqlite3.connect(os.path.join(self.world_path, "map.sqlite"))
