@@ -1,9 +1,9 @@
 from itemstack import *
 
 def convert_chest(te):
-    formspec = "size[8,9]\
-                list[current_name;main;0,0;8,4;]\
-                list[current_player;main;0,5;8,4;]"
+    formspec = "size[8,9]"+\
+               "list[current_name;main;0,0;8,4;]"+\
+               "list[current_player;main;0,5;8,4;]"
     fields = {"infotext": "Chest",
               "formspec": formspec}
     inventory = {"main": (0, [MTItemStack()]*32)}
@@ -29,11 +29,12 @@ def convert_furnace(te):
     fuel_time = 0
     fuel_totaltime = 0
     infotext = "Furnace out of fuel"
-    formspec = "size[8,9]image[2,2;1,1;default_furnace_fire_bg.png]\
-                list[current_name;fuel;2,3;1,1;]\
-                list[current_name;src;2,1;1,1;]\
-                list[current_name;dst;5,1;2,2;]\
-                list[current_player;main;0,5;8,4;]"
+    formspec = "size[8,9]"+\
+               "image[2,2;1,1;default_furnace_fire_bg.png]"+\
+               "list[current_name;fuel;2,3;1,1;]"+\
+               "list[current_name;src;2,1;1,1;]"+\
+               "list[current_name;dst;5,1;2,2;]"+\
+               "list[current_player;main;0,5;8,4;]"
     fields = {"infotext": infotext,
               "formspec": formspec,
               "src_totaltime": src_totaltime,

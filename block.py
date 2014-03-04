@@ -248,7 +248,7 @@ class MTBlock:
         writeU8(cbuffer, 1) # Version
         writeU16(cbuffer, len(meta))
         for pos, data in meta.items():
-            writeU16(cbuffer, (pos[2]<<16)|(pos[1]<<8)|pos[0])
+            writeU16(cbuffer, (pos[2]<<8)|(pos[1]<<4)|pos[0])
             writeU32(cbuffer, len(data[0]))
             for name, val in data[0].items():
                 writeString(cbuffer, name)
