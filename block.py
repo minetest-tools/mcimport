@@ -266,20 +266,22 @@ class MTMap:
     def getBlockAsInteger(p):
         return p[0]+4096*(p[1]+4096*p[2])
 
-    def fromMCMap(self, mcmap, name_id_mapping, conversion_table):
+    @staticmethod
+    def fromMCMap_blocks(mcmap, name_id_mapping, conversion_table):
         num_converted = 0
         num_to_convert = len(mcmap.chunk_pos)
         for chkx, chkz in mcmap.chunk_pos:
             if num_converted%20 == 0:
-                print(num_converted, num_to_convert)
-            #if num_converted == 100:
-            #    break
+                print("Converted" num_converted, "chunks on", num_to_convert)
             num_converted += 1
             mcblocks = mcmap.getChunk(chkx, chkz).blocks
             for mcblock in mcblocks:
                 mtblock = MTBlock(name_id_mapping)
                 mtblock.fromMCBlock(mcblock, conversion_table)
-                self.blocks.append(mtblock)
+                yield mtblock
+
+    def fromMCMap(self, mcmap, nimap, ct):
+        self.blocks = self.fromMCMap_blocks(mcmap, nimap, ct)
 
     def save(self):
         conn = sqlite3.connect(os.path.join(self.world_path, "map.sqlite"))
@@ -289,10 +291,9 @@ class MTMap:
             `pos` INT NOT NULL PRIMARY KEY, `data` BLOB);")
 
         num_saved = 0
-        num_to_save = len(self.blocks)
         for block in self.blocks:
             if num_saved%50 == 0:
-                print(num_saved, num_to_save)
+                print("Saved", num_saved, "blocks")
             num_saved += 1
             cur.execute("INSERT INTO blocks VALUES (?,?)",
                         (self.getBlockAsInteger(block.pos),
