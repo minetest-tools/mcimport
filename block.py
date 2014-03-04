@@ -5,6 +5,7 @@ from io import BytesIO
 import sqlite3
 from serialize import *
 from itemstack import *
+from tile_entities import te_convert
 
 
 class MCMap:
