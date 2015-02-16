@@ -63,7 +63,8 @@ def read_content(flags):
                     if key not in bd:
                         bd[key] = (get_id(name_id_mapping, name), param2)
 
-    blocks_len = max([i[0] for i in bd.keys()])+1
+    #blocks_len = max([i[0] for i in bd.keys()])+1
+    blocks_len = 4096
     blocks = [[(0, 0)]*16 for i in range(blocks_len)]
     for (id, data), value in bd.items():
         blocks[id][data] = value
