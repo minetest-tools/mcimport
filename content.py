@@ -26,18 +26,23 @@ def preprocess(lines, flags):
 
 def get_id(name_id_mapping, name):
     try:
+        # if the name of the node is known then return the location with the name_id_mapping list
         return name_id_mapping.index(name)
     except:
+        # else add the name of the node to the list then return the location
         name_id_mapping.append(name)
         return len(name_id_mapping)-1
 
 def read_content(flags):
     with open("map_content.txt", "r") as f:
         lines = f.readlines()
-    
+
     lines = preprocess(lines, flags)
-    name_id_mapping = ["air"]
-    bd = {}
+    # if you map to air, then unknown blocks will be ignored
+#    name_id_mapping = ["air"]
+    name_id_mapping = ["mcblock:unknown"]
+    bd = {}         # bd is block data, and keeps a list of the node names in the block
+    # iterate through all the lines in the map_content.txt file
     for line in lines:
         s = line.split("\t")
         if len(s) >= 2:

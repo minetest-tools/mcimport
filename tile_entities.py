@@ -1,4 +1,6 @@
 from itemstack import *
+#If you wish to add more entities, then...
+# To print out pre and post-conversion entity information uncomment line 237 (ish) in blocks.py (search for 'EntityInfo' to locate it)
 
 def convert_chest(te):
     formspec = "size[8,9]"+\
