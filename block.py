@@ -19,9 +19,13 @@ class MCMap:
             if len(filenames) > 0:
                 self.ext = ext
                 break
+        chunkCounta = 0
+        chunkCountb = 0
         for filename in filenames:
+            chunkCounta += 1
             s = filename.split(".")
             cx, cz = int(s[1])*32, int(s[2])*32
+
             with open(os.path.join(self.world_path, filename), "rb") as f:
                 for chkx in range(cx, cx+32):
                     for chkz in range(cz, cz+32):
@@ -29,7 +33,9 @@ class MCMap:
                         f.seek(offset)
                         if bytesToInt(f.read(3)) != 0:
                             self.chunk_pos.append((chkx, chkz))
-        
+                            chunkCountb += 1
+#        print('Total Chunks: ' + str(len(self.chunk_pos)))
+
     def getChunk(self, chkx, chkz):
         return MCChunk(chkx, chkz, self.world_path, self.ext)
 
@@ -67,14 +73,19 @@ class MCChunk:
         else:
             for yslice in range(8):
                 self.blocks.append(MCBlock(raw_data, (chkx, chkz), yslice, False))
-        
-        
+
+
 
 class MCBlock:
     """A 16x16x16 block"""
     def __init__(self, chunk, chunkpos, yslice, is_anvil=True):
-        self.pos = (chunkpos[0], yslice, chunkpos[1])
+        self.pos = (-chunkpos[0]-1, yslice, chunkpos[1])
         if is_anvil:
+            # the x axis has to be inverted to convert to minetest (the chunk location is at the L lower corner, so subtract one or there would be 2 chunks at 0).
+            # This converts the chunk location (node level data is converted by reverse_X_axis)
+            # It would be better here rather than the line above so it doesn't affect pre-anvil conversion (as this hasn't been implemented within the chunks)
+            # but doesn't like it, so...
+            #self.pos[0] = -self.pos[0]-1
             # Find the slice
             for section in chunk["Sections"]:
                 if section["Y"] == yslice:
@@ -83,24 +94,56 @@ class MCBlock:
         else:
             # No luck, we have to convert
             self.from_chunk(chunk, yslice)
-        
+
         self.tile_entities = []
         for te in chunk["TileEntities"]:
             if (te["y"]>>4) == yslice:
                 t = te.copy()
+                # Entity data stores it's own position information, so has to be modified independently in addition to other blocks.
                 t["y"] &= 0xf
+                t["y"] = t["y"] -16
+                # within the chunk x position has to be inverted to convert to minetest:-
+                if is_anvil:
+                    t["x"] = self.pos[0]*16 + 15-t["x"]%16
                 self.tile_entities.append(t)
 
     @staticmethod
     def expand_half_bytes(l):
-        l2 = []
-        for i in l:
-            l2.append(i&0xf)
-            l2.append((i>>4)&0xf)
-        return l2
+        # This function reverses x axis node order within each slice, and
+        #   expands the 4bit sequences into 8bit sequences
+
+        l3=[]
+        for y in range(0,2047,128):
+            for z in range(0,127,8):
+                locSt=y+z
+                l2 = l[locSt:locSt+8]
+                for i in reversed(l2):
+                    l3.append((i>>4)&0xf)
+                    l3.append(i&0xf)
+        return l3
+
+
+    @staticmethod
+    def reverse_X_axis(l):
+        # Anvil format is YZX ((y * 16 + z) * 16 + x)
+        # block data is actually u12 per data point (ie per node)
+        # but is split into u8 (='blocks') dealt with in reverse_X_axis() and u4 (='data') dealt with in expand_half_bytes()
+        # NB data, skylight and blocklight are only 4bits of data
+
+        # To convert minecraft to minetest coordinates you must invert the x order while leaving y and z the same
+        l3=[]
+        for y in range(0,4095,256):
+            for z in range(0,255,16):
+                locSt=y+z
+                l2 = l[locSt:locSt+16]
+                for i in reversed(l2):
+                    l3.append(i)
+        return l3
+
+
 
     def from_section(self, section):
-        self.blocks = section["Blocks"]
+        self.blocks = self.reverse_X_axis(section["Blocks"])
         self.data = self.expand_half_bytes(section["Data"])
         self.sky_light = self.expand_half_bytes(section["SkyLight"])
         self.block_light = self.expand_half_bytes(section["BlockLight"])
@@ -147,7 +190,7 @@ class MCBlock:
             k2 += 256 # Skip a layer
             k3 += 256
         return data2
-    
+
     def from_chunk(self, chunk, yslice):
         self.blocks = self.extract_slice(chunk["Blocks"], yslice)
         self.data = self.extract_slice_half_bytes(chunk["Data"], yslice)
@@ -158,24 +201,32 @@ class MTBlock:
     def __init__(self, name_id_mapping):
         self.name_id_mapping = name_id_mapping
         self.content = [0]*4096
+        self.mcblockidentifier = ['']*4096
         self.param1 = [0]*4096
         self.param2 = [0]*4096
         self.metadata = {}
         self.pos = (0, 0, 0)
 
     def fromMCBlock(self, mcblock, conversion_table):
+#        print('\n***fromMCBlock: Starting New Block***')
+
         self.pos = (mcblock.pos[0], mcblock.pos[1]-4, mcblock.pos[2])
         content = self.content
+        mcblockidentifier = self.mcblockidentifier
         param1 = self.param1
         param2 = self.param2
         blocks = mcblock.blocks
         data = mcblock.data
         skylight = mcblock.sky_light
         blocklight = mcblock.block_light
-        
+
+        # now load all the nodes in the 16x16x16 (=4096) block
         for i in range(4096):
             content[i], param2[i] = conversion_table[blocks[i]][data[i]]
             param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
+            mcblockidentifier[i] = str(blocks[i]) + ':' + str(data[i])
+            if content[i]==0 and param2[i]==0 and not (blocks[i]==0):
+                print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 
         for te in mcblock.tile_entities:
             id = te["id"]
@@ -183,6 +234,10 @@ class MTBlock:
             index = ((y&0xf)<<8)|((z&0xf)<<4)|(x&0xf)
             f = te_convert.get(id.lower(), lambda arg: (None, None, None)) # Do nothing if not found
             block, p2, meta = f(te)
+#            print('\nEntityInfoPre: ' +str(te))                                                         # EntityInfo: if you want to print pre-conversion entity information then uncomment this line
+#            print('EntityInfoPost: ' +' y='+str(y)+' z='+str(z)+' x='+str(x)+' Meta:'+str(meta))        # EntityInfo: if you want to print post-conversion entity information then uncomment this line
+            # NB block and p2 never seems to be returned, but if this is important, then just change the above 'meta' to 'f(te)'
+
             if block != None:
                 blocks[index] = block
             if p2 != None:
@@ -193,10 +248,16 @@ class MTBlock:
     def save(self):
         os = BytesIO()
         writeU8(os, 25) # Version
+
+        #flags
         flags = 0x00
         if self.pos[1] < -1:
-            flags |= 0x01
+            flags |= 0x01       #is_underground
+        flags |= 0x02           #day_night_differs
+        flags |= 0x04           #lighting_expired
+        flags |= 0x08           #generated
         writeU8(os, flags)
+
         writeU8(os, 2) # content_width
         writeU8(os, 2) # params_width
 
@@ -244,6 +305,7 @@ class MTBlock:
 
         # Nodemeta
         meta = self.metadata
+
         cbuffer = BytesIO()
         writeU8(cbuffer, 1) # Version
         writeU16(cbuffer, len(meta))
@@ -273,7 +335,7 @@ class MTBlock:
         # Node timer
         writeU8(os, 2+4+4) # Timer data len
         writeU16(os, 0) # Number of timers
-        
+
         return os.getvalue()
 
 class MTMap:
@@ -309,20 +371,21 @@ class MTMap:
                 conn.commit()
             num_saved += 1
             cur.execute("INSERT INTO blocks VALUES (?,?)",
-                        (self.getBlockAsInteger(block.pos),
+#                        (self.getBlockAsInteger((-block.pos[0],block.pos[1],block.pos[2])),
+                        (self.getBlockAsInteger((block.pos[0],block.pos[1],block.pos[2])),
                         block.save()))
 
         conn.commit()
         conn.close()
 
-    
+
 if __name__ == "__main__":
     # Tests
     from random import randrange
     t = [randrange(256) for i in range(2048*8)]
     assert(MCBlock.extract_slice(MCBlock.expand_half_bytes(t), 0)
           == MCBlock.extract_slice_half_bytes(t, 0))
-    
+
     from time import time
     t0 = time()
     s1 = MCBlock.extract_slice(MCBlock.expand_half_bytes(t), 1)
