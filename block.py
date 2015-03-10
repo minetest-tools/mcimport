@@ -79,19 +79,17 @@ class MCChunk:
 class MCBlock:
     """A 16x16x16 block"""
     def __init__(self, chunk, chunkpos, yslice, is_anvil=True):
-        self.pos = (-chunkpos[0]-1, yslice, chunkpos[1])
         if is_anvil:
             # the x axis has to be inverted to convert to minetest (the chunk location is at the L lower corner, so subtract one or there would be 2 chunks at 0).
             # This converts the chunk location (node level data is converted by reverse_X_axis)
-            # It would be better here rather than the line above so it doesn't affect pre-anvil conversion (as this hasn't been implemented within the chunks)
-            # but doesn't like it, so...
-            #self.pos[0] = -self.pos[0]-1
+            self.pos = (-chunkpos[0]-1, yslice, chunkpos[1])
             # Find the slice
             for section in chunk["Sections"]:
                 if section["Y"] == yslice:
                     self.from_section(section)
                     break
         else:
+            self.pos = (chunkpos[0], yslice, chunkpos[1])
             # No luck, we have to convert
             self.from_chunk(chunk, yslice)
 
