@@ -24,3 +24,5 @@ The names of nodes within the mod aren't exactly the same as the newer style of 
 -- utilise 3D models: /assets/minecraft/models, and 3D textures /assets/minecraft/textures/entity
 -- Functioning Redstone
 -- Mobs
+
+License: all code is licensed under the CC0
