@@ -75,7 +75,7 @@
 	162	default:tree			// TODO: Trunk orientation
 #endif
 
-19	default:nyan_cat_rainbow		// Sponge
+19	default:nyancat_rainbow			// Sponge
 20	default:glass
 21	default:stone				// FIXME: Lapis Lazuli
 24	default:sandstone			// TODO: Sandstone type
