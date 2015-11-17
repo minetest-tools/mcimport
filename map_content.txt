@@ -17,6 +17,7 @@
 	6 3	moretrees:sequoia_sapling
 	6 4	moretrees:fir_sapling
 	6 5	moretrees:oak_sapling
+	6 8	default:sapling
 #else
 	5	default:wood
 	6	default:sapling
@@ -35,10 +36,18 @@
 16	default:stone_with_coal
 
 #if MORETREES
-	17 0	default:tree			// TODO: Trunk orientation
-	17 1	moretrees:spruce_trunk
-	17 2	moretrees:birch_trunk
-	17 3	moretrees:sequoia_trunk
+	17 0	default:tree 0
+	17 4	default:tree 18
+	17 8	default:tree 9
+	17 1	moretrees:spruce_trunk 0
+	17 5	moretrees:spruce_trunk 18
+	17 9	moretrees:spruce_trunk 9
+	17 2	moretrees:birch_trunk 0
+	17 6	moretrees:birch_trunk 18
+	17 10	moretrees:birch_trunk 9
+	17 3	moretrees:sequoia_trunk 0
+	17 7	moretrees:sequoia_trunk 18
+	17 11	moretrees:sequoia_trunk 9
 	18 0,8	default:leaves
 	18 4,12	default:leaves 1
 	18 1,9	moretrees:spruce_leaves
@@ -51,8 +60,12 @@
 	161 4,12	moretrees:fir_leaves 1
 	161 1,9	moretrees:oak_leaves
 	161 5,13	moretrees:oak_leaves 1
-	162 0	moretrees:fir_trunk		// TODO: Trunk orientation
-	162 1	moretrees:oak_trunk
+	162 0	moretrees:acacia_trunk 0
+	162 4	moretrees:acacia_trunk 18
+	162 8	moretrees:acacia_trunk 9
+	162 1	moretrees:oak_trunk 0
+	162 5	moretrees:oak_trunk 18
+	162 9	moretrees:oak_trunk 9
 #else
 	17	default:tree			// TODO: Trunk orientation
 	18 0,1,2,3,8,9,10,11	default:leaves
@@ -64,10 +77,12 @@
 
 19	default:nyan_cat_rainbow		// Sponge
 20	default:glass
+21	default:stone				// FIXME: Lapis Lazuli
 24	default:sandstone			// TODO: Sandstone type
 27	default:rail				// Powered rail
 28	default:rail				// Detector rail
-31	default:grass_5				// Tall grass
+30	homedecor:cobweb_plantlike		// FIXME homedecor test
+31	default:grass_5				// FIXME change randomly to grass_1/2/3/4/5
 32	default:dry_shrub
 
 35 0	wool:white
@@ -80,7 +95,7 @@
 35 7	wool:dark_grey
 35 8	wool:grey
 35 9	wool:cyan
-35 10	wool:purple
+35 10	wool:violet
 35 11	wool:blue
 35 12	wool:brown
 35 13	wool:dark_green
@@ -94,6 +109,9 @@
 38 3,6	flowers:dandelion_white
 38 5,7	flowers:tulip
 
+39	flowers:mushroom_brown
+40	flowers:mushroom_red
+
 41	default:goldblock
 42	default:steelblock
 
@@ -104,37 +122,37 @@
 43 4	default:brick
 43 5	default:stonebrick
 43 6	nether:brick
-43 7	quartz:chiseled
+43 7	quartz:block
 43 8	default:stone
 43 9	default:sandstone
 43 10	quartz:chiseled
 
 44 0	stairs:slab_stone
-44 8	stairs:slab_stone 20
+44 8	stairs:slab_stone 22
 44 1	stairs:slab_sandstone
-44 9	stairs:slab_sandstone 20
+44 9	stairs:slab_sandstone 22
 44 2	stairs:slab_wood
-44 10	stairs:slab_wood 20
+44 10	stairs:slab_wood 22
 44 3	stairs:slab_cobble
-44 11	stairs:slab_cobble 20
+44 11	stairs:slab_cobble 22
 44 4	stairs:slab_brick
-44 12	stairs:slab_brick 20
+44 12	stairs:slab_brick 22
 44 5	stairs:slab_stonebrick
-44 13	stairs:slab_stonebrick 20
+44 13	stairs:slab_stonebrick 22
 #if NETHER
 	44 6	stairs:slab_nether_brick
-	44 14	stairs:slab_nether_brick 20
+	44 14	stairs:slab_nether_brick 22
 #else
 	44 6	stairs:slab_stonebrick
-	44 14	stairs:slab_stonebrick 20
+	44 14	stairs:slab_stonebrick 22
 #endif
 
 #if QUARTZ
 	44 7	stairs:slab_quartzblock
-	44 15	stairs:slab_quartzblock 20
+	44 15	stairs:slab_quartzblock 22
 #else
 	44 7	stairs:slab_stonebrick
-	44 15	stairs:slab_stonebrick 20
+	44 15	stairs:slab_stonebrick 22
 #endif
 
 45	default:brick
@@ -147,15 +165,18 @@
 50 2	default:torch 2
 50 3	default:torch 5
 50 4	default:torch 4
+50 5	default:torch 1
 
 51	fire:basic_flame
 
-53 0	stairs:stair_wood 1
-53 1	stairs:stair_wood 3
+						// 52 monster spawner
+
+53 0	stairs:stair_wood 3
+53 1	stairs:stair_wood 1
 53 2	stairs:stair_wood 0
 53 3	stairs:stair_wood 2
-53 4	stairs:stair_wood 23
-53 5	stairs:stair_wood 21
+53 4	stairs:stair_wood 21
+53 5	stairs:stair_wood 23
 53 6	stairs:stair_wood 20
 53 7	stairs:stair_wood 22
 
@@ -163,6 +184,8 @@
 54 3	default:chest 2
 54 4	default:chest 1
 54 5	default:chest 3
+
+55	mesecons:mesecon			// FIXME: orient
 
 56	default:stone_with_diamond
 57	default:diamondblock
@@ -179,7 +202,7 @@
 60 0	farming:soil
 60	farming:soil_wet
 
-61 2	default:furnace	0			// TODO: contents
+61 2	default:furnace 0			// TODO: contents
 61 3	default:furnace 2
 61 4	default:furnace 1
 61 5	default:furnace 3
@@ -190,6 +213,15 @@
 
 63	default:sign_wall 0
 
+64 0,4	doors:door_wood_b_1 0			//FIXME: doors fix themselves after open/close
+64 1,5	doors:door_wood_b_1 1
+64 2,6	doors:door_wood_b_1 2
+64 3,7	doors:door_wood_b_1 3
+64 8	doors:door_wood_t_1
+64 9	doors:door_wood_t_1
+64 10	doors:door_wood_t_1
+64 11	doors:door_wood_t_1
+
 65 2	default:ladder 4
 65 3	default:ladder 5
 65 4	default:ladder 2
@@ -197,12 +229,12 @@
 
 66	default:rail
 
-67 0	stairs:stair_cobble 1
-67 1	stairs:stair_cobble 3
+67 0	stairs:stair_cobble 3
+67 1	stairs:stair_cobble 1
 67 2	stairs:stair_cobble 0
 67 3	stairs:stair_cobble 2
-67 4	stairs:stair_cobble 23
-67 5	stairs:stair_cobble 21
+67 4	stairs:stair_cobble 21
+67 5	stairs:stair_cobble 23
 67 6	stairs:stair_cobble 20
 67 7	stairs:stair_cobble 22
 
@@ -235,61 +267,166 @@
 97 1	default:cobble
 97 2	default:stonebrick
 
-98	default:stonebrick
+98 0,1,2	default:stonebrick
+98 3	moreblocks:circle_stone_bricks
 
 102	default:glass				// Glass pane
 
-108 0	stairs:stair_brick 1
-108 1	stairs:stair_brick 3
+106 0	vines:side_middle 3
+106 1	vines:side_middle 4
+106 2	vines:side_middle 2
+						// 106 3	vines:side_middle 5
+106 4	vines:side_middle 5
+						// 106 5	default:b5
+						// 106 6	default:b6
+						// 106 7	default:b7
+106 8	vines:side_middle 3
+
+108 0	stairs:stair_brick 3
+108 1	stairs:stair_brick 1
 108 2	stairs:stair_brick 0
 108 3	stairs:stair_brick 2
-108 4	stairs:stair_brick 23
-108 5	stairs:stair_brick 21
+108 4	stairs:stair_brick 21
+108 5	stairs:stair_brick 23
 108 6	stairs:stair_brick 20
 108 7	stairs:stair_brick 22
 
-109 0	stairs:stair_stonebrick 1
-109 1	stairs:stair_stonebrick 3
+109 0	stairs:stair_stonebrick 3
+109 1	stairs:stair_stonebrick 1
 109 2	stairs:stair_stonebrick 0
 109 3	stairs:stair_stonebrick 2
-109 4	stairs:stair_stonebrick 23
-109 5	stairs:stair_stonebrick 21
+109 4	stairs:stair_stonebrick 21
+109 5	stairs:stair_stonebrick 23
 109 6	stairs:stair_stonebrick 20
 109 7	stairs:stair_stonebrick 22
 
 110	default:dirt_with_grass			// Mycelium
 
+111	flowers:waterlily			// FIXME randomly rotate
+
 #if NETHER
 	112	nether:brick
-	
-	114 0	stairs:stair_nether_brick 1
-	114 1	stairs:stair_nether_brick 3
-	114 2	stairs:stair_nether_brick 0
-	114 3	stairs:stair_nether_brick 2
-	114 4	stairs:stair_nether_brick 23
-	114 5	stairs:stair_nether_brick 21
-	114 6	stairs:stair_nether_brick 20
-	114 7	stairs:stair_nether_brick 22
 #endif
+
+114 0	stairs:stair_nether_brick 3
+114 1	stairs:stair_nether_brick 1
+114 2	stairs:stair_nether_brick 0
+114 3	stairs:stair_nether_brick 2
+114 4	stairs:stair_nether_brick 21
+114 5	stairs:stair_nether_brick 23
+114 6	stairs:stair_nether_brick 20
+114 7	stairs:stair_nether_brick 22
+
+
+#if MORETREES
+	125 1	moretrees:spruce_planks
+	125 2	moretrees:birch_planks
+	125 3	moretrees:sequoia_planks
+	125 4	moretrees:fir_planks
+	125 5	moretrees:oak_planks
+#endif
+125	default:wood
+
+#if MORETREES
+	126 1	moretrees:slab_spruce_planks
+	126 9	moretrees:slab_spruce_planks 22
+	126 2	moretrees:slab_birch_planks
+	126 10	moretrees:slab_birch_planks 22
+	126 3	moretrees:slab_sequoia_planks
+	126 11	moretrees:slab_sequoia_planks 22
+	126 4	moretrees:slab_fir_planks
+	126 12	moretrees:slab_fir_planks 22
+	126 5	moretrees:slab_oak_planks
+	126 13	moretrees:slab_oak_planks 22
+#endif
+126 8	stairs:slab_wood 22
+126	stairs:slab_wood
+
+128 0	stairs:stair_sandstone 3
+128 1	stairs:stair_sandstone 1
+128 2	stairs:stair_sandstone 0
+128 3	stairs:stair_sandstone 2
+128 4	stairs:stair_sandstone 21
+128 5	stairs:stair_sandstone 23
+128 6	stairs:stair_sandstone 20
+128 7	stairs:stair_sandstone 22
+
+129	default:stone				// FIXME: emerald ore
+
+134	moretrees:stair_spruce_planks		// FIXME: orientation
+135	moretrees:stair_birch_planks
+136	moretrees:stair_sequoia_planks
+137	moretrees:stair_fir_planks
+138	moretrees:stair_oak_planks
+
+139 1	default:mossycobble			// FIXME: you may not want this
+139	default:cobble				// FIXME: you may not want this
+
+140	homedecor:potted_viola			// FIXME: get proper colors
+
+143	mesecons:button				// FIXME: orientation
 
 146 2	default:chest 0				// Trapped chest
 146 3	default:chest 2
 146 4	default:chest 1
 146 5	default:chest 3
 
+152	default:mese
+
 #if QUARTZ
+	153	quartz:quartz_ore
+
 	155 0	quartz:block
 	155 1	quartz:chiseled
 	155 2	quartz:pillar
 	155 3	quartz:pillar 4				// TODO: check that
 	155 4	quartz:pillar 8				// TODO: check that
 	
-	156 0	stairs:stair_quartzblock 1
-	156 1	stairs:stair_quartzblock 3
+	156 0	stairs:stair_quartzblock 3
+	156 1	stairs:stair_quartzblock 1
 	156 2	stairs:stair_quartzblock 0
 	156 3	stairs:stair_quartzblock 2
-	156 4	stairs:stair_quartzblock 23
-	156 5	stairs:stair_quartzblock 21
+	156 4	stairs:stair_quartzblock 21
+	156 5	stairs:stair_quartzblock 23
 	156 6	stairs:stair_quartzblock 20
 	156 7	stairs:stair_quartzblock 22
 #endif
+
+163 0	stairs:stair_acacia_wood 1 			// FIXME: test
+163 1	stairs:stair_acacia_wood 3
+163 2	stairs:stair_acacia_wood 0
+163 3	stairs:stair_acacia_wood 2
+163 4	stairs:stair_acacia_wood 23
+163 5	stairs:stair_acacia_wood 21
+163 6	stairs:stair_acacia_wood 20
+163 7	stairs:stair_acacia_wood 22
+
+164 0	moretrees:stair_oak_planks 1			// FIXME: test
+164 1	moretrees:stair_oak_planks 3
+164 2	moretrees:stair_oak_planks 0
+164 3	moretrees:stair_oak_planks 2
+164 4	moretrees:stair_oak_planks 23
+164 5	moretrees:stair_oak_planks 21
+164 6	moretrees:stair_oak_planks 20
+164 7	moretrees:stair_oak_planks 22
+
+173	default:coalblock
+174	default:ice					// approx
+
+179 1	default:desert_stone			// approx
+179 2	default:desert_stone			// approx
+179	default:desert_stone
+180	stairs:stair_desert_stone
+181	default:desert_stone
+182 8	stairs:slab_desert_stone 22
+182	stairs:slab_desert_stone
+
+324 0,4	doors:door_wood_b_1 0
+324 1,5	doors:door_wood_b_1 1
+324 2,6	doors:door_wood_b_1 2
+324 3,7	doors:door_wood_b_1 3
+324 8	doors:door_wood_t_1
+324 9	doors:door_wood_t_1
+324 10	doors:door_wood_t_1
+324 11	doors:door_wood_t_1
+
