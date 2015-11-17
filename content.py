@@ -39,8 +39,8 @@ def read_content(flags):
 
     lines = preprocess(lines, flags)
     # if you map to air, then unknown blocks will be ignored
-#    name_id_mapping = ["air"]
-    name_id_mapping = ["mcblock:unknown"]
+    name_id_mapping = ["air"]
+    # name_id_mapping = ["mcblock:unknown"]
     bd = {}         # bd is block data, and keeps a list of the node names in the block
     # iterate through all the lines in the map_content.txt file
     for line in lines:
