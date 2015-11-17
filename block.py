@@ -364,7 +364,7 @@ class MTMap:
 
         num_saved = 0
         for block in self.blocks:
-            if num_saved%50 == 0:
+            if num_saved%100 == 0:
                 print("Saved", num_saved, "blocks")
                 conn.commit()
             num_saved += 1
