@@ -12,12 +12,17 @@
 	5 5	moretrees:oak_planks
 
 	6 0	default:sapling
-	6 1	moretrees:spruce_sapling
-	6 2	moretrees:birch_sapling
-	6 3	moretrees:sequoia_sapling
-	6 4	moretrees:fir_sapling
-	6 5	moretrees:oak_sapling
 	6 8	default:sapling
+	6 1	moretrees:spruce_sapling
+	6 9	moretrees:spruce_sapling
+	6 2	moretrees:birch_sapling
+	6 10	moretrees:birch_sapling
+	6 3	moretrees:sequoia_sapling
+	6 11	moretrees:sequoia_sapling
+	6 4	default:acacia_sapling
+	6 12	default:acacia_sapling
+	6 5	moretrees:oak_sapling
+	6 13	moretrees:oak_sapling
 #else
 	5	default:wood
 	6	default:sapling
@@ -56,8 +61,8 @@
 	18 6,14	moretrees:birch_leaves 1
 	18 3,11	moretrees:sequoia_leaves
 	18 7,15	moretrees:sequoia_leaves 1
-	161 0,8	moretrees:fir_leaves
-	161 4,12	moretrees:fir_leaves 1
+	161 0,8	moretrees:acacia_leaves
+	161 4,12	moretrees:acacia_leaves 1
 	161 1,9	moretrees:oak_leaves
 	161 5,13	moretrees:oak_leaves 1
 	162 0	moretrees:acacia_trunk 0
@@ -82,7 +87,9 @@
 27	default:rail				// Powered rail
 28	default:rail				// Detector rail
 30	homedecor:cobweb_plantlike		// FIXME homedecor test
-31	default:grass_5				// FIXME change randomly to grass_1/2/3/4/5
+31 0	default:dry_shrub
+31 2	ferns:tree_fern_leaves
+31 1	default:grass_5				// FIXME change randomly to grass_1/2/3/4/5
 32	default:dry_shrub
 
 35 0	wool:white
@@ -161,8 +168,8 @@
 49	default:obsidian
 
 50 0	default:torch 1
-50 1	default:torch 3
-50 2	default:torch 2
+50 1	default:torch 2
+50 2	default:torch 3
 50 3	default:torch 5
 50 4	default:torch 4
 50 5	default:torch 1
@@ -185,7 +192,7 @@
 54 4	default:chest 1
 54 5	default:chest 3
 
-55	mesecons:mesecon			// FIXME: orient
+55	mesecons:wire_00000000_off		// FIXME: this one gets complex
 
 56	default:stone_with_diamond
 57	default:diamondblock
@@ -204,12 +211,12 @@
 
 61 2	default:furnace 0			// TODO: contents
 61 3	default:furnace 2
-61 4	default:furnace 1
-61 5	default:furnace 3
+61 4	default:furnace 3
+61 5	default:furnace 1
 62 2	default:furnace_active 0
 62 3	default:furnace_active 2
-62 4	default:furnace_active 1
-62 5	default:furnace_active 3
+62 4	default:furnace_active 3
+62 5	default:furnace_active 1
 
 63	default:sign_wall 0
 
@@ -224,8 +231,8 @@
 
 65 2	default:ladder 4
 65 3	default:ladder 5
-65 4	default:ladder 2
-65 5	default:ladder 3
+65 4	default:ladder 3
+65 5	default:ladder 2
 
 66	default:rail
 
@@ -243,8 +250,16 @@
 68 4	default:sign_wall 2
 68 5	default:sign_wall 3
 
+70	mesecons_pressureplates:pressure_plate_stone_off
+72	mesecons_pressureplates:pressure_plate_wood_off
+
 73	default:stone_with_mese			// Redstone ore
 74	default:stone_with_mese
+
+75	mesecons_torch:mesecon_torch_off
+76	mesecons_torch:mesecon_torch_on
+
+77	mesecons_button:button_off		// FIXME: orientation
 
 78	default:snow				// TODO: snow height
 
@@ -262,6 +277,23 @@
 	89	nether:glowstone
 	90	nether:portal
 #endif
+
+96 0	doors:trapdoor 0
+96 1	doors:trapdoor 2
+96 2	doors:trapdoor 3
+96 3	doors:trapdoor 1
+96 4	doors:trapdoor_open 0
+96 5	doors:trapdoor_open 2
+96 6	doors:trapdoor_open 3
+96 7	doors:trapdoor_open 1
+96 8	doors:trapdoor 20
+96 9	doors:trapdoor 22
+96 10	doors:trapdoor 21
+96 11	doors:trapdoor 23
+96 12	doors:trapdoor_open 20
+96 13	doors:trapdoor_open 22
+96 14	doors:trapdoor_open 21
+96 15	doors:trapdoor_open 23
 
 97 0	default:stone				// Silverfish
 97 1	default:cobble
@@ -401,14 +433,14 @@
 139 1	default:mossycobble			// FIXME: you may not want this
 139	default:cobble				// FIXME: you may not want this
 
-140	homedecor:potted_viola			// FIXME: get proper colors
+140	homedecor:flower_pot_small
 
-143	mesecons:button				// FIXME: orientation
+143	mesecons_button:button_off				// FIXME: orientation
 
 146 2	default:chest 0				// Trapped chest
 146 3	default:chest 2
-146 4	default:chest 1
-146 5	default:chest 3
+146 4	default:chest 3
+146 5	default:chest 1
 
 152	default:mese
 
@@ -451,6 +483,8 @@
 
 173	default:coalblock
 174	default:ice					// approx
+
+175 0	flowers:sunflower
 
 179 1	default:desert_stone			// approx
 179 2	default:desert_stone			// approx
