@@ -302,7 +302,8 @@
 98 0,1,2	default:stonebrick
 98 3	moreblocks:circle_stone_bricks
 
-102	default:glass				// Glass pane
+101	xpanes:bar_15				// FIXME: rotation, shape
+102	xpanes:pane_15				// FIXME: rotation, shape
 
 106 0	vines:side_middle 3
 106 1	vines:side_middle 4
