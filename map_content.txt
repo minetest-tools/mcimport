@@ -163,7 +163,9 @@
 #endif
 
 45	default:brick
-47	default:bookshelf
+
+47	default:bookshelf			// FIXME: MC's node is same-faced every way, can't rotate smartly
+
 48	default:mossycobble
 49	default:obsidian
 
@@ -218,7 +220,22 @@
 62 4	default:furnace_active 3
 62 5	default:furnace_active 1
 
-63	default:sign_wall 0
+63 0	default:sign_wall 5
+63 1	default:sign_wall 5
+63 2	default:sign_wall 5
+63 3	default:sign_wall 3
+63 4	default:sign_wall 3
+63 5	default:sign_wall 3
+63 6	default:sign_wall 3
+63 7	default:sign_wall 4
+63 8	default:sign_wall 4
+63 9	default:sign_wall 4
+63 10	default:sign_wall 4
+63 11	default:sign_wall 2
+63 12	default:sign_wall 2
+63 13	default:sign_wall 2
+63 14	default:sign_wall 2
+63 15	default:sign_wall 5
 
 64 0,4	doors:door_wood_b_1 0			//FIXME: doors fix themselves after open/close
 64 1,5	doors:door_wood_b_1 1
@@ -247,8 +264,8 @@
 
 68 2	default:sign_wall 4
 68 3	default:sign_wall 5
-68 4	default:sign_wall 2
-68 5	default:sign_wall 3
+68 4	default:sign_wall 3
+68 5	default:sign_wall 2
 
 70	mesecons_pressureplates:pressure_plate_stone_off
 72	mesecons_pressureplates:pressure_plate_wood_off
