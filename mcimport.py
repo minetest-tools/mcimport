@@ -37,6 +37,8 @@ if not os.path.exists(sys.argv[2] + "/world.mt"):
     wo.write("load_mod_quartz = true\n")
     wo.write("load_mod_singlenode = true\n")
     wo.write("load_mod_vines = true\n")
+    wo.write("load_mod_signs = true\n")
+    wo.write("load_mod_signs_lib = true\n")
     wo.close()
 
 #os.makedirs(sys.argv[2]+"/worldmods")

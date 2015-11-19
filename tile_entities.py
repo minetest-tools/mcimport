@@ -51,14 +51,15 @@ def convert_furnace(te):
 def convert_sign(te):
     t = ""
     for i in range(1, 5):
-        line = te.get("Text"+str(i), "").strip()
+        line = te.get("Text"+str(i), "").strip('"')
         if line != "":
             t += line
-            t += " "
+            t += "\n"
     t = t.strip()
-    fields = {"infotext": '"'+t+'"',
+    fields = {"infotext": t,
               "text": t,
-              "formspec": "field[text;;${text}]"}
+              "__signslib_new_format": "1",
+              "formspec": "size[6,4]textarea[0,-0.3;6.5,3;text;;${text}]button_exit[2,3.4;2,1;ok;Write]background[-0.5,-0.5;7,5;bg_signs_lib.jpg]"}
     return None, None, (fields, {})
 
 te_convert = {"chest": convert_chest,

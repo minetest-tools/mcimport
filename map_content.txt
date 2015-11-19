@@ -220,22 +220,22 @@
 62 4	default:furnace_active 3
 62 5	default:furnace_active 1
 
-63 0	default:sign_wall 5
-63 1	default:sign_wall 5
-63 2	default:sign_wall 5
-63 3	default:sign_wall 3
-63 4	default:sign_wall 3
-63 5	default:sign_wall 3
-63 6	default:sign_wall 3
-63 7	default:sign_wall 4
-63 8	default:sign_wall 4
-63 9	default:sign_wall 4
-63 10	default:sign_wall 4
-63 11	default:sign_wall 2
-63 12	default:sign_wall 2
-63 13	default:sign_wall 2
-63 14	default:sign_wall 2
-63 15	default:sign_wall 5
+63 0	signs:sign_yard 2			// small stick under sign
+63 1	signs:sign_yard 2			// doesn't rotate like MC's sign
+63 2	signs:sign_yard 2			// does so make an approximation for the
+63 3	signs:sign_yard 3			// rotation angles.
+63 4	signs:sign_yard 3
+63 5	signs:sign_yard 3
+63 6	signs:sign_yard 3
+63 7	signs:sign_yard 0
+63 8	signs:sign_yard 0
+63 9	signs:sign_yard 0
+63 10	signs:sign_yard 0
+63 11	signs:sign_yard 1
+63 12	signs:sign_yard 1
+63 13	signs:sign_yard 1
+63 14	signs:sign_yard 1
+63 15	signs:sign_yard 2
 
 64 0,4	doors:door_wood_b_1 0			//FIXME: doors fix themselves after open/close
 64 1,5	doors:door_wood_b_1 1
