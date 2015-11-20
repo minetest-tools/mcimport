@@ -84,6 +84,18 @@
 20	default:glass
 21	default:stone				// FIXME: Lapis Lazuli
 24	default:sandstone			// TODO: Sandstone type
+
+25	mesecons_noteblock:noteblock		// FIXME: get pitch from entity data
+
+26 0	beds:bed_bottom 0
+26 1	beds:bed_bottom 1
+26 2	beds:bed_bottom 2
+26 3	beds:bed_bottom 3
+26 8	beds:bed_top 0
+26 9	beds:bed_top 1
+26 10	beds:bed_top 2
+26 11	beds:bed_top 3
+
 27	default:rail				// Powered rail
 28	default:rail				// Detector rail
 30	homedecor:cobweb_plantlike		// FIXME homedecor test
@@ -268,6 +280,16 @@
 68 5	default:sign_wall 2
 
 70	mesecons_pressureplates:pressure_plate_stone_off
+
+71 0,4	doors:door_steel_b_1 0			//FIXME: doors fix themselves after open/close
+71 1,5	doors:door_steel_b_1 1
+71 2,6	doors:door_steel_b_1 2
+71 3,7	doors:door_steel_b_1 3
+71 8	doors:door_steel_t_1
+71 9	doors:door_steel_t_1
+71 10	doors:door_steel_t_1
+71 11	doors:door_steel_t_1
+
 72	mesecons_pressureplates:pressure_plate_wood_off
 
 73	default:stone_with_mese			// Redstone ore
