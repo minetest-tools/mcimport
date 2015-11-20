@@ -1,28 +1,52 @@
 # mcimport
-This mod provides a layer to make use of minecraft texture packs.
-It also provides basic conversions for approximately 1000 nodes which will fit the names of the .pngs found in the current minetest (1.81) and associated texture packs. 
 
-I've also provided a map_content.txt file which will enable worlds to be imported by mcimport - [url]https://forum.minetest.net/viewtopic.php?f=5&t=11146[/url]. You'll need to replace the one in mcimport with this file to fully enable mcblocks during an import.
+This mod converts a minecraft world into minetest.
 
-To use the mod, download a texture pack and extract the assets folder into the mod folder.
-On the first run, the mod will automatically move the files from the relevant directories into the texture folder. 
+The process is offline. Minecraft should not be running on the world
+that is to be converted. The output should be an empty folder, and
+no map.sqlite should be present in the empty folder.
 
-NB not all texture packs are complete, so if you have missing textures, try another pack. Any existing files will be overwritten, but files which don't have a replacement won't be deleted. Please follow the licenses, so although you could also start by extracting the assets folder directly from minecraft I'm not sure that using these textures in minetest would be licensed) 
+The output is a world folder that is playable, permitted that the
+required minetest mods are installed. If mods are missing, you will
+encounter "Unknown" blocks in the minetest world.
 
+This mcimport fork was created to improve on the existing mcimport
+project, with one significant change: This form aims to create
+*playable* minetest worlds where stuff works:
 
-Caveats:
-Currently there is no functionality for the blocks (eg furnaces don't burn, chests don't work, nor do crafting tables, crops don't grow, etc)
-I haven't tested for texture packs from previous versions.
-The names of nodes within the mod aren't exactly the same as the newer style of minecraft, there were some inconsistencies in my sources and it took me a while to realise what was correct. Anyone who wishes too is welcome to rename them all and push to git (but you'll have to do it in one go, I'm not going to import them piecemeal).
+- chests can be used to put stuff in
+- doors open and close
+- simple mesecons circuits may work
+- furnaces work
 
--- TODO:
--- Correctly display Fences, Doors, Gates, Beds, Rails, animated blocks
--- Enable Special Block Functions (doors, chests, enchanting table, crafting table/workbench, furnace, anvil, cake, signs)
--- correct plants: Double-height plants, tallgrass, waterlillies, mushrooms, growing Crops
+Also, the assumption is that converted maps are for multiplayer
+use, and that the most important motivation for using this
+converter is to *preserve* previously custom built objects
+and buildings, but *not* meant to preserve the gameplay style
+and feel of minecraft. As such, there are numerous blocks that
+are *not* converted 1:1 from MC to MT. A good example is Lapis
+Lazuli. LL ore will be converted to plain stone, and LL blocks
+into blue wool, simply because there is no reasonable equivalent
+in MT that is an actually useful block and not something created
+purely to copy MC. This project also aims to never convert
+blocks to "Unknown" nodes and strives to leave a playable are
+that is friendly for users performing a one-time conversion.
 
---More Difficult:
--- utilise 3D models: /assets/minecraft/models, and 3D textures /assets/minecraft/textures/entity
--- Functioning Redstone
--- Mobs
+- some flowers are approximations
+- double plants may end up being single node blocks
+- wood types are similarly not an exact copy
+- until fixed, beds, doors, fences, walls are likely broken
+- signs convert, but MT can't rotate them in 30 degree angles
+
+There are a large number of things that are just never going to
+be convertable, and so the following will likely never work and
+are therefore converted to air blocks. Entities are readily
+spawned by several mob mods in minetest, so conversion is likely
+not critical to users, and left out.
+
+- crafting table
+- hoppers, dispensers, droppers
+- entities
+
 
 License: all code is licensed under the CC0
