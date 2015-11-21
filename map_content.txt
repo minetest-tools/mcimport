@@ -295,10 +295,24 @@
 73	default:stone_with_mese			// Redstone ore
 74	default:stone_with_mese
 
-75	mesecons_torch:mesecon_torch_off
-76	mesecons_torch:mesecon_torch_on
+75 1	mesecons_torch:mesecon_torch_off 2
+75 2	mesecons_torch:mesecon_torch_off 3
+75 3	mesecons_torch:mesecon_torch_off 5
+75 4	mesecons_torch:mesecon_torch_off 4
+75 5	mesecons_torch:mesecon_torch_off 1
 
-77	mesecons_button:button_off		// FIXME: orientation
+76 1	mesecons_torch:mesecon_torch_on 2
+76 2	mesecons_torch:mesecon_torch_on 3
+76 3	mesecons_torch:mesecon_torch_on 5
+76 4	mesecons_torch:mesecon_torch_on 4
+76 5	mesecons_torch:mesecon_torch_on 1
+
+77 0	mesecons_button:button_off 8
+77 1	mesecons_button:button_off 1
+77 2	mesecons_button:button_off 3
+77 3	mesecons_button:button_off 4
+77 4	mesecons_button:button_off 0
+77 5	mesecons_button:button_off 10
 
 78	default:snow				// TODO: snow height
 
@@ -475,7 +489,12 @@
 
 140	homedecor:flower_pot_small
 
-143	mesecons_button:button_off				// FIXME: orientation
+143 0	mesecons_button:button_off 8
+143 1	mesecons_button:button_off 1
+143 2	mesecons_button:button_off 3
+143 3	mesecons_button:button_off 2
+143 4	mesecons_button:button_off 0
+143 5	mesecons_button:button_off 10
 
 146 2	default:chest 0				// Trapped chest
 146 3	default:chest 2
