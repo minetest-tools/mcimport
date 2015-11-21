@@ -331,6 +331,40 @@
 	90	nether:portal
 #endif
 
+93 0	mesecons_delayer:delayer_off_1 1
+93 1	mesecons_delayer:delayer_off_1 2
+93 2	mesecons_delayer:delayer_off_1 3
+93 3	mesecons_delayer:delayer_off_1 0
+93 4	mesecons_delayer:delayer_off_2 1
+93 5	mesecons_delayer:delayer_off_2 2
+93 6	mesecons_delayer:delayer_off_2 3
+93 7	mesecons_delayer:delayer_off_2 0
+93 8	mesecons_delayer:delayer_off_3 1
+93 9	mesecons_delayer:delayer_off_3 2
+93 10	mesecons_delayer:delayer_off_3 3
+93 11	mesecons_delayer:delayer_off_3 0
+93 12	mesecons_delayer:delayer_off_4 1
+93 13	mesecons_delayer:delayer_off_4 2
+93 14	mesecons_delayer:delayer_off_4 3
+93 15	mesecons_delayer:delayer_off_4 0
+
+94 0	mesecons_delayer:delayer_on_1 1
+94 1	mesecons_delayer:delayer_on_1 2
+94 2	mesecons_delayer:delayer_on_1 3
+94 3	mesecons_delayer:delayer_on_1 0
+94 4	mesecons_delayer:delayer_on_2 1
+94 5	mesecons_delayer:delayer_on_2 2
+94 6	mesecons_delayer:delayer_on_2 3
+94 7	mesecons_delayer:delayer_on_2 0
+94 8	mesecons_delayer:delayer_on_3 1
+94 9	mesecons_delayer:delayer_on_3 2
+94 10	mesecons_delayer:delayer_on_3 3
+94 11	mesecons_delayer:delayer_on_3 0
+94 12	mesecons_delayer:delayer_on_4 1
+94 13	mesecons_delayer:delayer_on_4 2
+94 14	mesecons_delayer:delayer_on_4 3
+94 15	mesecons_delayer:delayer_on_4 0
+
 96 0	doors:trapdoor 0
 96 1	doors:trapdoor 2
 96 2	doors:trapdoor 3
