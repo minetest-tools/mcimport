@@ -64,7 +64,7 @@ def convert_sign(te):
 
 def convert_nodeblock(te):
     pitch = te.get("note")
-    return None, int(pitch), None
+    return None, int(pitch) % 12, None
 
 te_convert = {"chest": convert_chest,
               "sign": convert_sign,
