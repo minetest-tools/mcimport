@@ -62,6 +62,11 @@ def convert_sign(te):
               "formspec": "size[6,4]textarea[0,-0.3;6.5,3;text;;${text}]button_exit[2,3.4;2,1;ok;Write]background[-0.5,-0.5;7,5;bg_signs_lib.jpg]"}
     return None, None, (fields, {})
 
+def convert_nodeblock(te):
+    pitch = te.get("note")
+    return None, int(pitch), None
+
 te_convert = {"chest": convert_chest,
               "sign": convert_sign,
-              "furnace": convert_furnace}
+              "furnace": convert_furnace,
+              "music": convert_nodeblock}
