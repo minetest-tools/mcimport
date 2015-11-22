@@ -321,14 +321,7 @@
 
 70	mesecons_pressureplates:pressure_plate_stone_off
 
-71 0,4	doors:door_steel_b_1 0			//FIXME: doors fix themselves after open/close
-71 1,5	doors:door_steel_b_1 1
-71 2,6	doors:door_steel_b_1 2
-71 3,7	doors:door_steel_b_1 3
-71 8	doors:door_steel_t_1
-71 9	doors:door_steel_t_1
-71 10	doors:door_steel_t_1
-71 11	doors:door_steel_t_1
+71	air					// door parts get fixed up in code
 
 72	mesecons_pressureplates:pressure_plate_wood_off
 
@@ -649,6 +642,12 @@
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
 
+193	air					// door parts get fixed up in code
+194	air					// door parts get fixed up in code
+195	air					// door parts get fixed up in code
+196	air					// door parts get fixed up in code
+197	air					// door parts get fixed up in code
+
 324 0,4	doors:door_wood_b_1 0
 324 1,5	doors:door_wood_b_1 1
 324 2,6	doors:door_wood_b_1 2
@@ -726,4 +725,38 @@
 965 13	doors:door_wood_t_1 3
 965 14	doors:door_wood_t_1 0
 965 15	doors:door_wood_t_1 1
+
+966 0	doors:door_steel_b_1 3
+966 1	doors:door_steel_b_1 0
+966 2	doors:door_steel_b_1 1
+966 3	doors:door_steel_b_1 2
+966 4	doors:door_steel_b_2 0
+966 5	doors:door_steel_b_2 1
+966 6	doors:door_steel_b_2 2
+966 7	doors:door_steel_b_2 3
+966 8	doors:door_steel_b_2 3
+966 9	doors:door_steel_b_2 0
+966 10	doors:door_steel_b_2 1
+966 11	doors:door_steel_b_2 2
+966 12	doors:door_steel_b_1 2
+966 13	doors:door_steel_b_1 3
+966 14	doors:door_steel_b_1 0
+966 15	doors:door_steel_b_1 1
+
+967 0	doors:door_steel_t_1 3
+967 1	doors:door_steel_t_1 0
+967 2	doors:door_steel_t_1 1
+967 3	doors:door_steel_t_1 2
+967 4	doors:door_steel_t_2 0
+967 5	doors:door_steel_t_2 1
+967 6	doors:door_steel_t_2 2
+967 7	doors:door_steel_t_2 3
+967 8	doors:door_steel_t_2 3
+967 9	doors:door_steel_t_2 0
+967 10	doors:door_steel_t_2 1
+967 11	doors:door_steel_t_2 2
+967 12	doors:door_steel_t_1 2
+967 13	doors:door_steel_t_1 3
+967 14	doors:door_steel_t_1 0
+967 15	doors:door_steel_t_1 1
 

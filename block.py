@@ -226,6 +226,9 @@ class MTBlock:
             param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
             mcblockidentifier[i] = str(blocks[i]) + ':' + str(data[i])
 
+            def isdoor(b):
+                return b == 64 or b == 71 or (b >= 193 and b <= 197)
+
             # pressure plates - append mesecons node timer
             if blocks[i] == 70 or blocks[i] == 72:
                 self.timers.append(((i&0xf)|((i>>4)&0xf)<<8|((i>>8)&0xf)<<4, 100, 0))
@@ -236,30 +239,36 @@ class MTBlock:
             elif blocks[i] == 31 and data[i] == 1:
                 content[i], param2[i] = conversion_table[931][random.randint(0,4)]
             # fix doors based on top/bottom bits
-            elif blocks[i] == 64 and data[i] < 8:
+            elif isdoor(blocks[i]) and data[i] < 8:
                 above = i + 256
                 if (above >= 4096):
                     print('Unable to fix door - top part is across block boundary!')
-                elif blocks[above] == 64 and data[above] < 7:
+                elif isdoor(blocks[above]) and data[above] < 7:
                     print('Unable to fix door - bottom part on top of bottom part!')
                 else:
                     d_right = data[above] & 1  # 0 - left, 1 - right
                     d_open = data[i] & 4       # 0 - closed, 1 - open
                     d_face = data[i] & 3       # n,e,s,w orientation
-                    content[i], param2[i] = conversion_table[964][d_face|d_open|(d_right<<3)]
+                    alt = 964
+                    if blocks[i] == 71:
+                        alt = 966
+                    content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
-            elif blocks[i] == 64 and data[i] >= 8:
+            elif isdoor(blocks[i]) and data[i] >= 8:
                 below = i - 256
                 if (below < 0):
                     print('Unable to fix door - bottom part is across block boundary!')
-                elif blocks[below] == 64 and data[below] >= 8:
+                elif isdoor(blocks[below]) and data[below] >= 8:
                     print('Unable to fix door - top part below top part!')
                 else:
                     d_right = data[i] & 1      # 0 - left, 1 - right
                     d_open = data[below] & 4   # 0 - closed, 1 - open
                     d_face = data[below] & 3   # n,e,s,w orientation
-                    content[i], param2[i] = conversion_table[965][d_face|d_open|(d_right<<3)]
+                    alt = 965
+                    if blocks[i] == 71:
+                        alt = 967
+                    content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
 
