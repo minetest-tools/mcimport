@@ -1,6 +1,7 @@
 import os
 import zlib
 import nbt
+import random
 from io import BytesIO
 import sqlite3
 from serialize import *
@@ -226,8 +227,13 @@ class MTBlock:
             mcblockidentifier[i] = str(blocks[i]) + ':' + str(data[i])
             if content[i]==0 and param2[i]==0 and not (blocks[i]==0):
                 print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
-            if mcblockidentifier[i] == "70:0" or mcblockidentifier[i] == "72:0":
+
+            if blocks[i] == 70 or blocks[i] == 72:
                 self.timers.append(((i&0xf)|((i>>4)&0xf)<<8|((i>>8)&0xf)<<4, 100, 0))
+            elif blocks[i] == 111:
+                param2[i] = random.randint(0,3)
+            elif blocks[i] == 31 and data[i] == 1:
+                content[i], param2[i] = conversion_table[931][random.randint(0,4)]
 
         for te in mcblock.tile_entities:
             id = te["id"]

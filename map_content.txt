@@ -115,7 +115,8 @@
 30	homedecor:cobweb_plantlike		// FIXME homedecor test
 31 0	default:dry_shrub
 31 2	ferns:tree_fern_leaves
-31 1	default:grass_5				// FIXME change randomly to grass_1/2/3/4/5
+
+31 1	default:grass_5				// code randomly changes height
 32	default:dry_shrub
 
 33 0	mesecons_pistons:piston_down_normal_off
@@ -233,7 +234,7 @@
 54 4	default:chest 1
 54 5	default:chest 3
 
-55	mesecons:wire_00000000_off		// FIXME: this one gets complex
+55	mesecons:wire_11111111_off		// FIXME: manually fit wires based on neighbors
 
 56	default:stone_with_diamond
 57	default:diamondblock
@@ -466,7 +467,7 @@
 
 110	default:dirt_with_grass			// Mycelium
 
-111	flowers:waterlily			// FIXME randomly rotate
+111	flowers:waterlily			// rotation done in code randomly
 
 #if NETHER
 	112	nether:brick
@@ -662,6 +663,8 @@
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
 
+321	homedecor:painting_1			// FIXME random 1-20
+
 324 0,4	doors:door_wood_b_1 0
 324 1,5	doors:door_wood_b_1 1
 324 2,6	doors:door_wood_b_1 2
@@ -670,4 +673,14 @@
 324 9	doors:door_wood_t_1
 324 10	doors:door_wood_t_1
 324 11	doors:door_wood_t_1
+
+// Below here are non-MC blocks. We need to put these blocks in the
+// table to make translation a bit easier
+
+// random pick for 31:1 grass
+931 0	default:grass_1				// the 8+ entries are used
+931 1	default:grass_2				// internally to vary grass
+931 2	default:grass_3				// height randomly
+931 3	default:grass_4
+931 4	default:grass_5
 
