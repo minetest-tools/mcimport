@@ -98,11 +98,38 @@
 
 27	default:rail				// Powered rail
 28	default:rail				// Detector rail
+
+29 0	mesecons_pistons:piston_down_sticky_off
+29 1	mesecons_pistons:piston_up_sticky_off
+29 2	mesecons_pistons:piston_sticky_off 0
+29 3	mesecons_pistons:piston_sticky_off 2
+29 4	mesecons_pistons:piston_sticky_off 3
+29 5	mesecons_pistons:piston_sticky_off 1
+29 8	mesecons_pistons:piston_down_sticky_on
+29 9	mesecons_pistons:piston_up_stiucky_on
+29 10	mesecons_pistons:piston_sticky_on 0
+29 11	mesecons_pistons:piston_sticky_on 2
+29 12	mesecons_pistons:piston_sticky_on 3
+29 13	mesecons_pistons:piston_sticky_on 1
+
 30	homedecor:cobweb_plantlike		// FIXME homedecor test
 31 0	default:dry_shrub
 31 2	ferns:tree_fern_leaves
 31 1	default:grass_5				// FIXME change randomly to grass_1/2/3/4/5
 32	default:dry_shrub
+
+33 0	mesecons_pistons:piston_down_normal_off
+33 1	mesecons_pistons:piston_up_normal_off
+33 2	mesecons_pistons:piston_normal_off 0
+33 3	mesecons_pistons:piston_normal_off 2
+33 4	mesecons_pistons:piston_normal_off 3
+33 5	mesecons_pistons:piston_normal_off 1
+33 8	mesecons_pistons:piston_down_normal_on
+33 9	mesecons_pistons:piston_up_stiucky_on
+33 10	mesecons_pistons:piston_normal_on 0
+33 11	mesecons_pistons:piston_normal_on 2
+33 12	mesecons_pistons:piston_normal_on 3
+33 13	mesecons_pistons:piston_normal_on 1
 
 35 0	wool:white
 35 1	wool:orange
@@ -278,6 +305,23 @@
 68 3	default:sign_wall 5
 68 4	default:sign_wall 3
 68 5	default:sign_wall 2
+
+69 0	mesecons_walllever:wall_lever_off 15
+69 1	mesecons_walllever:wall_lever_off 1
+69 2	mesecons_walllever:wall_lever_off 3
+69 3	mesecons_walllever:wall_lever_off 2
+69 4	mesecons_walllever:wall_lever_off 0
+69 5	mesecons_walllever:wall_lever_off 4
+69 6	mesecons_walllever:wall_lever_off 13
+69 7	mesecons_walllever:wall_lever_off 6
+69 8	mesecons_walllever:wall_lever_on 15
+69 9	mesecons_walllever:wall_lever_on 1
+69 10	mesecons_walllever:wall_lever_on 3
+69 11	mesecons_walllever:wall_lever_on 2
+69 12	mesecons_walllever:wall_lever_on 0
+69 13	mesecons_walllever:wall_lever_on 4
+69 14	mesecons_walllever:wall_lever_on 13
+69 15	mesecons_walllever:wall_lever_on 6
 
 70	mesecons_pressureplates:pressure_plate_stone_off
 
@@ -534,6 +578,23 @@
 146 3	default:chest 2
 146 4	default:chest 3
 146 5	default:chest 1
+
+151 0	mesecons_solarpanel:solar_panel_off 1
+151 1	mesecons_solarpanel:solar_panel_on 1
+151 2	mesecons_solarpanel:solar_panel_on 1
+151 3	mesecons_solarpanel:solar_panel_on 1
+151 4	mesecons_solarpanel:solar_panel_on 1
+151 5	mesecons_solarpanel:solar_panel_on 1
+151 6	mesecons_solarpanel:solar_panel_on 1
+151 7	mesecons_solarpanel:solar_panel_on 1
+151 8	mesecons_solarpanel:solar_panel_on 1
+151 9	mesecons_solarpanel:solar_panel_on 1
+151 10	mesecons_solarpanel:solar_panel_on 1
+151 11	mesecons_solarpanel:solar_panel_on 1
+151 12	mesecons_solarpanel:solar_panel_on 1
+151 13	mesecons_solarpanel:solar_panel_on 1
+151 14	mesecons_solarpanel:solar_panel_on 1
+151 15	mesecons_solarpanel:solar_panel_on 1
 
 152	default:mese
 
