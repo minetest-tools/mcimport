@@ -482,8 +482,8 @@
 114 6	stairs:stair_nether_brick 20
 114 7	stairs:stair_nether_brick 22
 
-123	mesecons_lamp:lamp_off 1		// these may end up floating :/
-124	mesecons_lamp:lamp_on 1
+123	mesecons_lightstone:lightstone_gray_off
+124	mesecons_lightstone:lightstone_gray_on
 
 #if MORETREES
 	125 1	moretrees:spruce_planks
