@@ -239,6 +239,8 @@
 56	default:stone_with_diamond
 57	default:diamondblock
 
+58	air					// IGNORE
+
 59 0	farming:wheat_1
 59 1 	farming:wheat_2
 59 2 	farming:wheat_3
@@ -277,14 +279,7 @@
 63 14	signs:sign_yard 1
 63 15	signs:sign_yard 2
 
-64 0,4	doors:door_wood_b_1 0			//FIXME: doors fix themselves after open/close
-64 1,5	doors:door_wood_b_1 1
-64 2,6	doors:door_wood_b_1 2
-64 3,7	doors:door_wood_b_1 3
-64 8	doors:door_wood_t_1
-64 9	doors:door_wood_t_1
-64 10	doors:door_wood_t_1
-64 11	doors:door_wood_t_1
+64	air					// door parts get fixed up in code
 
 65 2	default:ladder 4
 65 3	default:ladder 5
@@ -654,8 +649,6 @@
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
 
-321	homedecor:painting_1			// FIXME random 1-20
-
 324 0,4	doors:door_wood_b_1 0
 324 1,5	doors:door_wood_b_1 1
 324 2,6	doors:door_wood_b_1 2
@@ -674,4 +667,38 @@
 931 2	default:grass_3				// height randomly
 931 3	default:grass_4
 931 4	default:grass_5
+
+964 0	doors:door_wood_b_1 3
+964 1	doors:door_wood_b_1 0
+964 2	doors:door_wood_b_1 1
+964 3	doors:door_wood_b_1 2
+964 4	doors:door_wood_b_2 0
+964 5	doors:door_wood_b_2 1
+964 6	doors:door_wood_b_2 2
+964 7	doors:door_wood_b_2 3
+964 8	doors:door_wood_b_2 3
+964 9	doors:door_wood_b_2 0
+964 10	doors:door_wood_b_2 1
+964 11	doors:door_wood_b_2 2
+964 12	doors:door_wood_b_1 2
+964 13	doors:door_wood_b_1 3
+964 14	doors:door_wood_b_1 0
+964 15	doors:door_wood_b_1 1
+
+965 0	doors:door_wood_t_1 3
+965 1	doors:door_wood_t_1 0
+965 2	doors:door_wood_t_1 1
+965 3	doors:door_wood_t_1 2
+965 4	doors:door_wood_t_2 0
+965 5	doors:door_wood_t_2 1
+965 6	doors:door_wood_t_2 2
+965 7	doors:door_wood_t_2 3
+965 8	doors:door_wood_t_2 3
+965 9	doors:door_wood_t_2 0
+965 10	doors:door_wood_t_2 1
+965 11	doors:door_wood_t_2 2
+965 12	doors:door_wood_t_1 2
+965 13	doors:door_wood_t_1 3
+965 14	doors:door_wood_t_1 0
+965 15	doors:door_wood_t_1 1
 

@@ -225,15 +225,46 @@ class MTBlock:
             content[i], param2[i] = conversion_table[blocks[i]][data[i]]
             param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
             mcblockidentifier[i] = str(blocks[i]) + ':' + str(data[i])
-            if content[i]==0 and param2[i]==0 and not (blocks[i]==0):
-                print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 
+            # pressure plates - append mesecons node timer
             if blocks[i] == 70 or blocks[i] == 72:
                 self.timers.append(((i&0xf)|((i>>4)&0xf)<<8|((i>>8)&0xf)<<4, 100, 0))
+            # rotate lily pads randomly
             elif blocks[i] == 111:
                 param2[i] = random.randint(0,3)
+            # grass of varying length randomly
             elif blocks[i] == 31 and data[i] == 1:
                 content[i], param2[i] = conversion_table[931][random.randint(0,4)]
+            # fix doors based on top/bottom bits
+            elif blocks[i] == 64 and data[i] < 8:
+                above = i + 256
+                if (above >= 4096):
+                    print('Unable to fix door - top part is across block boundary!')
+                elif blocks[above] == 64 and data[above] < 7:
+                    print('Unable to fix door - bottom part on top of bottom part!')
+                else:
+                    d_right = data[above] & 1  # 0 - left, 1 - right
+                    d_open = data[i] & 4       # 0 - closed, 1 - open
+                    d_face = data[i] & 3       # n,e,s,w orientation
+                    content[i], param2[i] = conversion_table[964][d_face|d_open|(d_right<<3)]
+                    if d_right == 1:
+                        self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
+            elif blocks[i] == 64 and data[i] >= 8:
+                below = i - 256
+                if (below < 0):
+                    print('Unable to fix door - bottom part is across block boundary!')
+                elif blocks[below] == 64 and data[below] >= 8:
+                    print('Unable to fix door - top part below top part!')
+                else:
+                    d_right = data[i] & 1      # 0 - left, 1 - right
+                    d_open = data[below] & 4   # 0 - closed, 1 - open
+                    d_face = data[below] & 3   # n,e,s,w orientation
+                    content[i], param2[i] = conversion_table[965][d_face|d_open|(d_right<<3)]
+                    if d_right == 1:
+                        self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
+
+            if content[i]==0 and param2[i]==0 and not (blocks[i]==0):
+                print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 
         for te in mcblock.tile_entities:
             id = te["id"]
