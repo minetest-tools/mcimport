@@ -281,7 +281,18 @@ class MTBlock:
             if p2 != None:
                 param2[index] = p2
             if meta != None:
-                self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
+                try:
+                    p = meta[0]["_plant"]
+                    above = ((((y)&0xf)<<8)|((z&0xf)<<4)|(x&0xf)) + 256
+                    if above < 4096 and blocks[above] == 0:
+                        if p > 15:
+                            content[above], param2[above] = conversion_table[941][p&0xf]
+                        else:
+                            content[above], param2[above] = conversion_table[940][p]
+                    else:
+                        print("can't pot plant in pot across block border, or not air")
+                except:
+                    self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
 
     def save(self):
         os = BytesIO()

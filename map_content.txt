@@ -554,7 +554,7 @@
 139 1	default:mossycobble			// FIXME: you may not want this
 139	default:cobble				// FIXME: you may not want this
 
-140	homedecor:flower_pot_small
+140	homedecor:flower_pot_terracotta		// code will plant flowers on top
 
 143 0	mesecons_button:button_off 8
 143 1	mesecons_button:button_off 1
@@ -667,6 +667,31 @@
 931 2	default:grass_3				// height randomly
 931 3	default:grass_4
 931 4	default:grass_5
+
+// flower pot plants
+940 0	air
+940 1	flowers:mushroom_brown
+940 2	flowers:mushroom_red
+940 3	default:cactus
+940 4	default:dry_shrub
+940 5	flowers:rose
+940 6	flowers:geranium
+940 7	flowers:viola
+940 8	flowers:geranium
+940 9	flowers:rose
+940 10	flowers:tulip
+940 11	flowers:dandelion_white
+940 12	flowers:viola
+940 13	flowers:dandelion_white
+940 14	default:sapling
+940 15	moretrees:spruce_sapling
+// overflow
+941 0	moretrees:birch_sapling
+941 1	moretrees:sequoia_sapling
+941 2	default:acacia_sapling
+941 3	moretrees:oak_sapling
+941 4	ferns:tree_fern_leaves
+941 5	flowers:dandelion_white
 
 964 0	doors:door_wood_b_1 3
 964 1	doors:door_wood_b_1 0

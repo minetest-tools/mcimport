@@ -66,7 +66,43 @@ def convert_nodeblock(te):
     pitch = te.get("note")
     return None, int(pitch) % 12, None
 
+def convert_pot(te):
+    c = str(te.get("Item"))+":"+str(te.get("Data"))
+    # translation table for flowers
+    # highly approximate, based on color only
+    t = {
+        ":0" : 0, # air
+        "minecraft:brown_mushroom:0" : 1,
+        "minecraft:red_mushroom:0" : 2,
+        "minecraft:cactus:0" : 3,
+        "minecraft:deadbush:0" : 4,
+        "minecraft:red_flower:0" : 5,
+        "minecraft:red_flower:1" : 6,
+        "minecraft:red_flower:2" : 7,
+        "minecraft:red_flower:3" : 8,
+        "minecraft:red_flower:4" : 9,
+        "minecraft:red_flower:5" : 10,
+        "minecraft:red_flower:6" : 11,
+        "minecraft:red_flower:7" : 12,
+        "minecraft:red_flower:8" : 13,
+        "minecraft:sapling:0" : 14,
+        "minecraft:sapling:1" : 15,
+        "minecraft:sapling:2" : 16,
+        "minecraft:sapling:3" : 17,
+        "minecraft:sapling:4" : 18,
+        "minecraft:sapling:5" : 19,
+        "minecraft:tallgrass:2" : 20,
+        "minecraft:yellow_flower:0" : 21
+    }
+    try:
+        fields = { "_plant": t[c] }
+        return None, None, (fields, {})
+    except:
+        print('Unknown flower pot type: '+c)
+        return None, None, None
+
 te_convert = {"chest": convert_chest,
               "sign": convert_sign,
               "furnace": convert_furnace,
-              "music": convert_nodeblock}
+              "music": convert_nodeblock,
+              "flowerpot": convert_pot}
