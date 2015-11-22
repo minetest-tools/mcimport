@@ -547,6 +547,8 @@
 136 6	moretrees:stair_sequoia_planks 20
 136 7	moretrees:stair_sequoia_planks 22
 
+137	mesecons_commandblock:commandblock_off	// FIXME: formspec
+
 139 1	default:mossycobble			// FIXME: you may not want this
 139	default:cobble				// FIXME: you may not want this
 
