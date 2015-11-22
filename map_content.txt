@@ -437,15 +437,22 @@
 101	xpanes:bar_15				// FIXME: rotation, shape
 102	xpanes:pane_15				// FIXME: rotation, shape
 
-106 0	vines:side_middle 3
-106 1	vines:side_middle 4
-106 2	vines:side_middle 2
-						// 106 3	vines:side_middle 5
-106 4	vines:side_middle 5
-						// 106 5	default:b5
-						// 106 6	default:b6
-						// 106 7	default:b7
-106 8	vines:side_middle 3
+106 0	vines:side_middle 1			// flat lying vine
+106 1	vines:side_middle 4			// 1 - south
+106 2	vines:side_middle 2			// 2 - west
+106 3	vines:side_middle 2			// 4 - north
+106 4	vines:side_middle 5			// 8 - east
+106 5	vines:side_middle 5			// all other values are randomly
+106 6	vines:side_middle 2			// picked to distribute orientation
+106 7	vines:side_middle 5			// since we can't have vines occupy
+106 8	vines:side_middle 3			// multiple directions like in MC
+106 9	vines:side_middle 4
+106 10	vines:side_middle 2
+106 11	vines:side_middle 3
+106 12	vines:side_middle 5
+106 13	vines:side_middle 4
+106 14	vines:side_middle 2
+106 15	vines:side_middle 3
 
 108 0	stairs:stair_brick 3
 108 1	stairs:stair_brick 1
