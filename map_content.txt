@@ -481,6 +481,8 @@
 114 6	stairs:stair_nether_brick 20
 114 7	stairs:stair_nether_brick 22
 
+123	mesecons_lamp:lamp_off 1		// these may end up floating :/
+124	mesecons_lamp:lamp_on 1
 
 #if MORETREES
 	125 1	moretrees:spruce_planks
@@ -639,6 +641,8 @@
 174	default:ice					// approx
 
 175 0	flowers:sunflower
+
+// 178 is an inverted daylight sensor, cannot convert!
 
 179 1	default:desert_stone			// approx
 179 2	default:desert_stone			// approx
