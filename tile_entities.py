@@ -101,8 +101,22 @@ def convert_pot(te):
         print('Unknown flower pot type: '+c)
         return None, None, None
 
+def convert_cmdblock(te):
+    c = te.get("Command")
+    c = c.replace("/tp ", "teleport ")
+    c = c.replace("/tell ", "tell ")
+    c = c.replace(" @p ", " @nearest ")
+    c = c.replace(" @r ", " @random ")
+    fields = {"infotext" : "Command block, commands: \""+c+"\"",
+              "commands": c,
+              "owner": "no owner",
+              "formspec": "invsize[9,5;]textarea[0.5,0.5;8.5,4;commands;Commands;"+c+"]label[1,3.8;@nearest, @farthest, and @random are replaced by the respective player names]button_exit[3.3,4.5;2,1;submit;Submit]"
+    }
+    return None, None, (fields, {})
+
 te_convert = {"chest": convert_chest,
               "sign": convert_sign,
               "furnace": convert_furnace,
               "music": convert_nodeblock,
-              "flowerpot": convert_pot}
+              "flowerpot": convert_pot,
+              "control": convert_cmdblock}
