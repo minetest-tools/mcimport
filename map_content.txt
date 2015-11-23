@@ -155,6 +155,7 @@
 38 2	flowers:viola
 38 3,6	flowers:dandelion_white
 38 5,7	flowers:tulip
+38 8    flowers:dandelion_white
 
 39	flowers:mushroom_brown
 40	flowers:mushroom_red
@@ -239,7 +240,7 @@
 56	default:stone_with_diamond
 57	default:diamondblock
 
-58	air					// IGNORE
+58 0	default:wood				// cosmetically fits best.
 
 59 0	farming:wheat_1
 59 1 	farming:wheat_2
@@ -418,6 +419,9 @@
 97 0	default:stone				// Silverfish
 97 1	default:cobble
 97 2	default:stonebrick
+97 3	default:cobble
+97 4	default:cobble
+97 5	default:cobble
 
 98 0,1,2	default:stonebrick
 98 3	moreblocks:circle_stone_bricks
@@ -467,6 +471,7 @@
 #if NETHER
 	112	nether:brick
 #endif
+113	default:fence_wood		// nothing better than this, sadly
 
 114 0	stairs:stair_nether_brick 3
 114 1	stairs:stair_nether_brick 1
@@ -601,6 +606,8 @@
 
 157	default:rail					// activator rail
 
+160	xpanes:pane					// no colors here sadly
+
 163 0	stairs:stair_acacia_wood 3
 163 1	stairs:stair_acacia_wood 1
 163 2	stairs:stair_acacia_wood 0
@@ -618,6 +625,23 @@
 164 5	moretrees:stair_oak_planks 23
 164 6	moretrees:stair_oak_planks 20
 164 7	moretrees:stair_oak_planks 22
+
+167 0	doors:trapdoor 0				// should have been metal
+167 1	doors:trapdoor 2
+167 2	doors:trapdoor 3
+167 3	doors:trapdoor 1
+167 4	doors:trapdoor_open 0
+167 5	doors:trapdoor_open 2
+167 6	doors:trapdoor_open 3
+167 7	doors:trapdoor_open 1
+167 8	doors:trapdoor 20
+167 9	doors:trapdoor 22
+167 10	doors:trapdoor 21
+167 11	doors:trapdoor 23
+167 12	doors:trapdoor_open 20
+167 13	doors:trapdoor_open 22
+167 14	doors:trapdoor_open 21
+167 15	doors:trapdoor_open 23
 
 173	default:coalblock
 174	default:ice					// approx
@@ -643,6 +667,13 @@
 
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
+
+188	default:fence_wood			// nothing better than this, sadly
+189	default:fence_wood
+190	default:fence_wood
+191	default:fence_wood
+192	default:fence_wood
+193	default:fence_wood
 
 193	air					// door parts get fixed up in code
 194	air					// door parts get fixed up in code
