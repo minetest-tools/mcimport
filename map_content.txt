@@ -599,6 +599,8 @@
 	156 7	stairs:stair_quartzblock 22
 #endif
 
+157	default:rail					// activator rail
+
 163 0	stairs:stair_acacia_wood 3
 163 1	stairs:stair_acacia_wood 1
 163 2	stairs:stair_acacia_wood 0
