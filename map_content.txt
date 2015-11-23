@@ -28,7 +28,7 @@
 	6	default:sapling
 #endif
 
-7	default:cloud				// Bedrock
+7	default:stone				// Bedrock
 8	default:water_flowing
 9	default:water_source
 10	default:lava_flowing
