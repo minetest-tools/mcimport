@@ -235,6 +235,9 @@ class MTBlock:
             # rotate lily pads randomly
             elif blocks[i] == 111:
                 param2[i] = random.randint(0,3)
+            # melon/pumpkin blocks
+            elif blocks[i] == 86 or blocks[i] == 103:
+                param2[i] = random.randint(0,23)
             # grass of varying length randomly
             elif blocks[i] == 31 and data[i] == 1:
                 content[i], param2[i] = conversion_table[931][random.randint(0,4)]

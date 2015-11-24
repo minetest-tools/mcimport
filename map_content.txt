@@ -358,6 +358,8 @@
 
 85	default:fence_wood
 
+86	crops:pumpkin				// rotates randomly
+
 #if NETHER
 	87	nether:rack
 	88	nether:sand
@@ -428,6 +430,8 @@
 
 101	xpanes:bar_15				// FIXME: rotation, shape
 102	xpanes:pane_15				// FIXME: rotation, shape
+
+103	crops:melon				// rotates randomly
 
 106 0	vines:side_middle 1			// flat lying vine
 106 1	vines:side_middle 4			// 1 - south
