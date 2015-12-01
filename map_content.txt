@@ -29,10 +29,11 @@
 #endif
 
 7	default:stone				// Bedrock
-8	default:water_flowing
+
+// blocks 8, 9, 10 and 11 (water and lava) are handled in code.
 9	default:water_source
-10	default:lava_flowing
 11	default:lava_source
+
 12 0	default:sand
 12 1	default:desert_sand
 13	default:gravel

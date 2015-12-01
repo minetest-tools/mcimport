@@ -229,8 +229,14 @@ class MTBlock:
             def isdoor(b):
                 return b == 64 or b == 71 or (b >= 193 and b <= 197)
 
+            # water
+            if (blocks[i] == 9 or blocks[i] == 11) and (data[i] == 0):
+                content[i], param2[i] = conversion_table[blocks[i]][data[i]]
+            elif blocks[i] >= 8 and blocks[i] <= 11:
+                # nop, exit case
+                pass
             # pressure plates - append mesecons node timer
-            if blocks[i] == 70 or blocks[i] == 72:
+            elif blocks[i] == 70 or blocks[i] == 72:
                 self.timers.append(((i&0xf)|((i>>4)&0xf)<<8|((i>>8)&0xf)<<4, 100, 0))
             # rotate lily pads randomly
             elif blocks[i] == 111:
@@ -275,7 +281,7 @@ class MTBlock:
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
 
-            if content[i]==0 and param2[i]==0 and not (blocks[i]==0):
+            elif content[i]==0 and param2[i]==0 and not (blocks[i]==0):
                 print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 
         for te in mcblock.tile_entities:
