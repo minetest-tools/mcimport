@@ -548,7 +548,7 @@
 	126 12	moretrees:slab_fir_planks 22
 	126 5	moretrees:slab_oak_planks
 	126 13	moretrees:slab_oak_planks 22
-else
+#else
 	125 0	default:wood
 	125 1	default:pine_wood
 	125 2	default:wood
