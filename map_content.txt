@@ -838,7 +838,7 @@
 #endif
 941 1	default:junglesapling
 941 2	default:acacia_sapling
-941 3	default:oak_sapling
+941 3	default:sapling
 941 4	ferns:tree_fern_leaves
 941 5	flowers:dandelion_white
 
