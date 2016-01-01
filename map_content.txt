@@ -3,7 +3,7 @@
 3	default:dirt
 4	default:cobble
 
-#if MORETREES
+#ifdef MORETREES
 	5 0	default:wood
 	5 1	moretrees:spruce_planks
 	5 2	moretrees:birch_planks
@@ -58,7 +58,7 @@
 15	default:stone_with_iron
 16	default:stone_with_coal
 
-#if MORETREES
+#ifdef MORETREES
 	17 0	default:tree 0
 	17 4	default:tree 18
 	17 8	default:tree 9
@@ -229,7 +229,7 @@
 44 12	stairs:slab_brick 22
 44 5	stairs:slab_stonebrick
 44 13	stairs:slab_stonebrick 22
-#if NETHER
+#ifdef NETHER
 	44 6	stairs:slab_nether_brick
 	44 14	stairs:slab_nether_brick 22
 #else
@@ -237,7 +237,7 @@
 	44 14	stairs:slab_stonebrick 22
 #endif
 
-#if QUARTZ
+#ifdef QUARTZ
 	44 7	stairs:slab_quartzblock
 	44 15	stairs:slab_quartzblock 22
 #else
@@ -402,7 +402,7 @@
 
 86	crops:pumpkin				// rotates randomly
 
-#if NETHER
+#ifdef NETHER
 	87	nether:rack
 	88	nether:sand
 	89	nether:glowstone
@@ -514,7 +514,7 @@
 
 111	flowers:waterlily			// rotation done in code randomly
 
-#if NETHER
+#ifdef NETHER
 	112	nether:brick
 #endif
 113	default:fence_wood		// nothing better than this, sadly
@@ -531,7 +531,7 @@
 123	mesecons_lightstone:lightstone_gray_off
 124	mesecons_lightstone:lightstone_gray_on
 
-#if MORETREES
+#ifdef MORETREES
 	125 1	moretrees:spruce_planks
 	125 2	moretrees:birch_planks
 	125 3	moretrees:sequoia_planks
@@ -578,7 +578,7 @@ else
 
 129	default:stone				// FIXME: emerald ore
 
-#if MORETREES
+#ifdef MORETREES
 	134 0	moretrees:stair_spruce_planks 3
 	134 1	moretrees:stair_spruce_planks 1
 	134 2	moretrees:stair_spruce_planks 0
@@ -606,32 +606,32 @@ else
 	136 6	moretrees:stair_sequoia_planks 20
 	136 7	moretrees:stair_sequoia_planks 22
 #else
-	134 0	default:stair_pine_wood 3
-	134 1	default:stair_pine_wood 1
-	134 2	default:stair_pine_wood 0
-	134 3	default:stair_pine_wood 2
-	134 4	default:stair_pine_wood 21
-	134 5	default:stair_pine_wood 23
-	134 6	default:stair_pine_wood 20
-	134 7	default:stair_pine_wood 22
+	134 0	stairs:stair_pine_wood 3
+	134 1	stairs:stair_pine_wood 1
+	134 2	stairs:stair_pine_wood 0
+	134 3	stairs:stair_pine_wood 2
+	134 4	stairs:stair_pine_wood 21
+	134 5	stairs:stair_pine_wood 23
+	134 6	stairs:stair_pine_wood 20
+	134 7	stairs:stair_pine_wood 22
 
-	135 0	default:stair_wood 3
-	135 1	default:stair_wood 1
-	135 2	default:stair_wood 0
-	135 3	default:stair_wood 2
-	135 4	default:stair_wood 21
-	135 5	default:stair_wood 23
-	135 6	default:stair_wood 20
-	135 7	default:stair_wood 22
+	135 0	stairs:stair_wood 3
+	135 1	stairs:stair_wood 1
+	135 2	stairs:stair_wood 0
+	135 3	stairs:stair_wood 2
+	135 4	stairs:stair_wood 21
+	135 5	stairs:stair_wood 23
+	135 6	stairs:stair_wood 20
+	135 7	stairs:stair_wood 22
 
-	136 0	default:stair_junglewood 3
-	136 1	default:stair_junglewood 1
-	136 2	default:stair_junglewood 0
-	136 3	default:stair_junglewood 2
-	136 4	default:stair_junglewood 21
-	136 5	default:stair_junglewood 23
-	136 6	default:stair_junglewood 20
-	136 7	default:stair_junglewood 22
+	136 0	stairs:stair_junglewood 3
+	136 1	stairs:stair_junglewood 1
+	136 2	stairs:stair_junglewood 0
+	136 3	stairs:stair_junglewood 2
+	136 4	stairs:stair_junglewood 21
+	136 5	stairs:stair_junglewood 23
+	136 6	stairs:stair_junglewood 20
+	136 7	stairs:stair_junglewood 22
 #endif
 
 137	mesecons_commandblock:commandblock_off	// FIXME: formspec
@@ -672,7 +672,7 @@ else
 
 152	default:mese
 
-#if QUARTZ
+#ifdef QUARTZ
 	153	quartz:quartz_ore
 
 	155 0	quartz:block
@@ -816,7 +816,7 @@ else
 940 14	default:sapling
 940 15	default:pine_sapling
 // overflow
-#if MORETREES
+#ifdef MORETREES
 	941 0	moretrees:birch_sapling
 #else
 	941 0	default:sapling

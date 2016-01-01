@@ -7,7 +7,7 @@ def preprocess(lines, flags):
         if line == "":
             continue
         if line[0] == "#":
-            if line.startswith("#if"):
+            if line.startswith("#ifdef"):
                 cond = line[4:].strip()
                 if skip_level > 0 or cond not in flags:
                     skip_level += 1
