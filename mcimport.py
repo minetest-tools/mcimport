@@ -89,7 +89,7 @@ if not os.path.exists(sys.argv[2]+"/moretrees_settings.txt"):
     mo.write("--moretrees.enable_beech = false\n")
     mo.close()
 
-nimap, ct = content.read_content(["MORETREES", "NETHER", "QUARTZ"])
+nimap, ct = content.read_content(["NETHER", "QUARTZ"])
 mtmap.fromMCMap(mcmap, nimap, ct)
 mtmap.save()
 

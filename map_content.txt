@@ -24,8 +24,25 @@
 	6 5	moretrees:oak_sapling
 	6 13	moretrees:oak_sapling
 #else
-	5	default:wood
-	6	default:sapling
+	5 0	default:wood
+	5 1	default:pine_wood
+	5 2	default:wood
+	5 3	default:junglewood
+	5 4	default:acacia_wood
+	5 5	default:wood
+
+	6 0	default:sapling
+	6 8	default:sapling
+	6 1	default:pine_sapling
+	6 9	default:pine_sapling
+	6 2	default:sapling
+	6 10	default:sapling
+	6 3	default:junglesapling
+	6 11	default:junglesapling
+	6 4	default:acacia_sapling
+	6 12	default:acacia_sapling
+	6 5	default:sapling
+	6 13	default:sapling
 #endif
 
 7	default:stone				// Bedrock
@@ -73,12 +90,36 @@
 	162 5	moretrees:oak_trunk 18
 	162 9	moretrees:oak_trunk 9
 #else
-	17	default:tree			// TODO: Trunk orientation
-	18 0,1,2,3,8,9,10,11	default:leaves
-	18 4,5,6,7,12,13,14,15	default:leaves 1
-	161 0,1,2,3,8,9,10,11	default:leaves
-	161 4,5,6,7,12,13,14,15	default:leaves 1
-	162	default:tree			// TODO: Trunk orientation
+	17 0	default:tree 0
+	17 4	default:tree 18
+	17 8	default:tree 9
+	17 1	default:pine_tree 0
+	17 5	default:pine_tree 18
+	17 9	default:pine_tree 9
+	17 2	default:tree 0
+	17 6	default:tree 18
+	17 10	default:tree9
+	17 3	default:jungletree 0
+	17 7	default:jungletree 18
+	17 11	default:jungletree 9
+	18 0,8	default:leaves
+	18 4,12	default:leaves 1
+	18 1,9	default:pine_needles
+	18 5,13	default:pine_needles 1
+	18 2,10	default:leaves
+	18 6,14	default:leaves 1
+	18 3,11	default:jungleleaves
+	18 7,15	default:jungleleaves 1
+	161 0,8	default:acacia_leaves
+	161 4,12	default:acacia_leaves 1
+	161 1,9	default:leaves
+	161 5,13	default:leaves 1
+	162 0	default:acacia_tree 0
+	162 4	default:acacia_tree 18
+	162 8	default:acacia_tree 9
+	162 1	default:tree 0
+	162 5	default:tree 18
+	162 9	default:tree 9
 #endif
 
 19	default:nyancat_rainbow			// Sponge
@@ -496,10 +537,7 @@
 	125 3	moretrees:sequoia_planks
 	125 4	moretrees:fir_planks
 	125 5	moretrees:oak_planks
-#endif
-125	default:wood
 
-#if MORETREES
 	126 1	moretrees:slab_spruce_planks
 	126 9	moretrees:slab_spruce_planks 22
 	126 2	moretrees:slab_birch_planks
@@ -510,9 +548,24 @@
 	126 12	moretrees:slab_fir_planks 22
 	126 5	moretrees:slab_oak_planks
 	126 13	moretrees:slab_oak_planks 22
+else
+	125 0	default:wood
+	125 1	default:pine_wood
+	125 2	default:wood
+	125 3	default:junglewood
+	125 4	default:acacia_wood
+
+	126 1	stairs:slab_pine_wood
+	126 9	stairs:slab_pine_wood 22
+	126 2	stairs:slab_wood
+	126 10	stairs:slab_wood 22
+	126 3	stairs:slab_junglewood
+	126 11	stairs:slab_junglewood 22
+	126 4	stairs:slab_acacia_wood
+	126 12	stairs:slab_acacia_wood 22
+	126 5	stairs:slab_wood
+	126 13	stairs:slab_wood 22
 #endif
-126 8	stairs:slab_wood 22
-126	stairs:slab_wood
 
 128 0	stairs:stair_sandstone 3
 128 1	stairs:stair_sandstone 1
@@ -525,32 +578,61 @@
 
 129	default:stone				// FIXME: emerald ore
 
-134 0	moretrees:stair_spruce_planks 3
-134 1	moretrees:stair_spruce_planks 1
-134 2	moretrees:stair_spruce_planks 0
-134 3	moretrees:stair_spruce_planks 2
-134 4	moretrees:stair_spruce_planks 21
-134 5	moretrees:stair_spruce_planks 23
-134 6	moretrees:stair_spruce_planks 20
-134 7	moretrees:stair_spruce_planks 22
+#if MORETREES
+	134 0	moretrees:stair_spruce_planks 3
+	134 1	moretrees:stair_spruce_planks 1
+	134 2	moretrees:stair_spruce_planks 0
+	134 3	moretrees:stair_spruce_planks 2
+	134 4	moretrees:stair_spruce_planks 21
+	134 5	moretrees:stair_spruce_planks 23
+	134 6	moretrees:stair_spruce_planks 20
+	134 7	moretrees:stair_spruce_planks 22
 
-135 0	moretrees:stair_birch_planks 3
-135 1	moretrees:stair_birch_planks 1
-135 2	moretrees:stair_birch_planks 0
-135 3	moretrees:stair_birch_planks 2
-135 4	moretrees:stair_birch_planks 21
-135 5	moretrees:stair_birch_planks 23
-135 6	moretrees:stair_birch_planks 20
-135 7	moretrees:stair_birch_planks 22
+	135 0	moretrees:stair_birch_planks 3
+	135 1	moretrees:stair_birch_planks 1
+	135 2	moretrees:stair_birch_planks 0
+	135 3	moretrees:stair_birch_planks 2
+	135 4	moretrees:stair_birch_planks 21
+	135 5	moretrees:stair_birch_planks 23
+	135 6	moretrees:stair_birch_planks 20
+	135 7	moretrees:stair_birch_planks 22
 
-136 0	moretrees:stair_sequoia_planks 3
-136 1	moretrees:stair_sequoia_planks 1
-136 2	moretrees:stair_sequoia_planks 0
-136 3	moretrees:stair_sequoia_planks 2
-136 4	moretrees:stair_sequoia_planks 21
-136 5	moretrees:stair_sequoia_planks 23
-136 6	moretrees:stair_sequoia_planks 20
-136 7	moretrees:stair_sequoia_planks 22
+	136 0	moretrees:stair_sequoia_planks 3
+	136 1	moretrees:stair_sequoia_planks 1
+	136 2	moretrees:stair_sequoia_planks 0
+	136 3	moretrees:stair_sequoia_planks 2
+	136 4	moretrees:stair_sequoia_planks 21
+	136 5	moretrees:stair_sequoia_planks 23
+	136 6	moretrees:stair_sequoia_planks 20
+	136 7	moretrees:stair_sequoia_planks 22
+#else
+	134 0	default:stair_pine_wood 3
+	134 1	default:stair_pine_wood 1
+	134 2	default:stair_pine_wood 0
+	134 3	default:stair_pine_wood 2
+	134 4	default:stair_pine_wood 21
+	134 5	default:stair_pine_wood 23
+	134 6	default:stair_pine_wood 20
+	134 7	default:stair_pine_wood 22
+
+	135 0	default:stair_wood 3
+	135 1	default:stair_wood 1
+	135 2	default:stair_wood 0
+	135 3	default:stair_wood 2
+	135 4	default:stair_wood 21
+	135 5	default:stair_wood 23
+	135 6	default:stair_wood 20
+	135 7	default:stair_wood 22
+
+	136 0	default:stair_junglewood 3
+	136 1	default:stair_junglewood 1
+	136 2	default:stair_junglewood 0
+	136 3	default:stair_junglewood 2
+	136 4	default:stair_junglewood 21
+	136 5	default:stair_junglewood 23
+	136 6	default:stair_junglewood 20
+	136 7	default:stair_junglewood 22
+#endif
 
 137	mesecons_commandblock:commandblock_off	// FIXME: formspec
 
@@ -622,14 +704,25 @@
 163 6	stairs:stair_acacia_wood 20
 163 7	stairs:stair_acacia_wood 22
 
-164 0	moretrees:stair_oak_planks 3
-164 1	moretrees:stair_oak_planks 1
-164 2	moretrees:stair_oak_planks 0
-164 3	moretrees:stair_oak_planks 2
-164 4	moretrees:stair_oak_planks 21
-164 5	moretrees:stair_oak_planks 23
-164 6	moretrees:stair_oak_planks 20
-164 7	moretrees:stair_oak_planks 22
+#ifdef MORETREES
+	164 0	moretrees:stair_oak_planks 3
+	164 1	moretrees:stair_oak_planks 1
+	164 2	moretrees:stair_oak_planks 0
+	164 3	moretrees:stair_oak_planks 2
+	164 4	moretrees:stair_oak_planks 21
+	164 5	moretrees:stair_oak_planks 23
+	164 6	moretrees:stair_oak_planks 20
+	164 7	moretrees:stair_oak_planks 22
+#else
+	164 0	stairs:stair_wood 3
+	164 1	stairs:stair_wood 1
+	164 2	stairs:stair_wood 0
+	164 3	stairs:stair_wood 2
+	164 4	stairs:stair_wood 21
+	164 5	stairs:stair_wood 23
+	164 6	stairs:stair_wood 20
+	164 7	stairs:stair_wood 22
+#endif
 
 167 0	doors:trapdoor 0				// should have been metal
 167 1	doors:trapdoor 2
@@ -721,12 +814,16 @@
 940 12	flowers:viola
 940 13	flowers:dandelion_white
 940 14	default:sapling
-940 15	moretrees:spruce_sapling
+940 15	default:pine_sapling
 // overflow
-941 0	moretrees:birch_sapling
-941 1	moretrees:sequoia_sapling
+#if MORETREES
+	941 0	moretrees:birch_sapling
+#else
+	941 0	default:sapling
+#endif
+941 1	default:junglesapling
 941 2	default:acacia_sapling
-941 3	moretrees:oak_sapling
+941 3	default:oak_sapling
 941 4	ferns:tree_fern_leaves
 941 5	flowers:dandelion_white
 
