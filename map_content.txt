@@ -211,11 +211,17 @@
 43 3	default:cobble
 43 4	default:brick
 43 5	default:stonebrick
-43 6	nether:brick
-43 7	quartz:block
+#ifdef NETHER
+	43 6	nether:brick
+#endif
+#ifdef QUARTZ
+	43 7	quartz:block
+#endif
 43 8	default:stone
 43 9	default:sandstone
-43 10	quartz:chiseled
+#ifdef QUARTZ
+	43 10	quartz:chiseled
+#endif
 
 44 0	stairs:slab_stone
 44 8	stairs:slab_stone 22
@@ -229,6 +235,7 @@
 44 12	stairs:slab_brick 22
 44 5	stairs:slab_stonebrick
 44 13	stairs:slab_stonebrick 22
+
 #ifdef NETHER
 	44 6	stairs:slab_nether_brick
 	44 14	stairs:slab_nether_brick 22
@@ -517,16 +524,19 @@
 #ifdef NETHER
 	112	nether:brick
 #endif
+
 113	default:fence_wood		// nothing better than this, sadly
 
-114 0	stairs:stair_nether_brick 3
-114 1	stairs:stair_nether_brick 1
-114 2	stairs:stair_nether_brick 0
-114 3	stairs:stair_nether_brick 2
-114 4	stairs:stair_nether_brick 21
-114 5	stairs:stair_nether_brick 23
-114 6	stairs:stair_nether_brick 20
-114 7	stairs:stair_nether_brick 22
+#ifdef NETHER
+	114 0	stairs:stair_nether_brick 3
+	114 1	stairs:stair_nether_brick 1
+	114 2	stairs:stair_nether_brick 0
+	114 3	stairs:stair_nether_brick 2
+	114 4	stairs:stair_nether_brick 21
+	114 5	stairs:stair_nether_brick 23
+	114 6	stairs:stair_nether_brick 20
+	114 7	stairs:stair_nether_brick 22
+#endif
 
 123	mesecons_lightstone:lightstone_gray_off
 124	mesecons_lightstone:lightstone_gray_on
@@ -538,6 +548,8 @@
 	125 4	moretrees:fir_planks
 	125 5	moretrees:oak_planks
 
+	126 0	stairs:slab_wood
+	126 8	stairs:slab_wood 22
 	126 1	moretrees:slab_spruce_planks
 	126 9	moretrees:slab_spruce_planks 22
 	126 2	moretrees:slab_birch_planks
@@ -554,7 +566,10 @@
 	125 2	default:wood
 	125 3	default:junglewood
 	125 4	default:acacia_wood
+	125 5	default:wood
 
+	126 0	stairs:slab_wood
+	126 8	stairs:slab_wood 22
 	126 1	stairs:slab_pine_wood
 	126 9	stairs:slab_pine_wood 22
 	126 2	stairs:slab_wood
