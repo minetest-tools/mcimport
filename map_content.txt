@@ -98,7 +98,7 @@
 	17 9	default:pine_tree 9
 	17 2	default:tree 0
 	17 6	default:tree 18
-	17 10	default:tree9
+	17 10	default:tree 9
 	17 3	default:jungletree 0
 	17 7	default:jungletree 18
 	17 11	default:jungletree 9
