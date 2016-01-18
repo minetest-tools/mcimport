@@ -67,8 +67,8 @@ if not os.path.exists(sys.argv[2]+"/worldmods/mcimport/init.lua"):
     sn = open(sys.argv[2]+"/worldmods/mcimport/init.lua", "w")
     sn.write("-- map conversion requires a special water level\n")
     sn.write("minetest.set_mapgen_params({water_level = -2})\n\n")
-    sn.write("-- uncomment the line belowif you want to disable any new mapgen\n")
-    sn.write("--minetest.set_mapgen_params({mgname = \"singlenode\"})\n")
+    sn.write("-- comment the line belowif you want to enable mapgen (will destroy things!)\n")
+    sn.write("minetest.set_mapgen_params({mgname = \"singlenode\"})\n")
     sn.close()
 
 if not os.path.exists(sys.argv[2]+"/moretrees_settings.txt"):
