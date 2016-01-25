@@ -3,8 +3,13 @@ import sys
 from block import *
 import content
 
-mcmap = MCMap(sys.argv[1])
-mtmap = MTMap(sys.argv[2])
+if (sys.version_info < (3, 0)):
+    print("This script does not work with Python < 3.0, sorry.")
+    exit(1)
+
+if not os.path.exists(sys.argv[1]):
+    print("the minecraft world path does not exist.")
+    exit(1)
 
 if not os.path.exists(sys.argv[2]):
     os.makedirs(sys.argv[2])
@@ -67,7 +72,7 @@ if not os.path.exists(sys.argv[2]+"/worldmods/mcimport/init.lua"):
     sn = open(sys.argv[2]+"/worldmods/mcimport/init.lua", "w")
     sn.write("-- map conversion requires a special water level\n")
     sn.write("minetest.set_mapgen_params({water_level = -2})\n\n")
-    sn.write("-- comment the line belowif you want to enable mapgen (will destroy things!)\n")
+    sn.write("-- comment the line below if you want to enable mapgen (will destroy things!)\n")
     sn.write("minetest.set_mapgen_params({mgname = \"singlenode\"})\n")
     sn.close()
 
@@ -89,7 +94,26 @@ if not os.path.exists(sys.argv[2]+"/moretrees_settings.txt"):
     mo.write("moretrees.enable_beech = false\n")
     mo.close()
 
+if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
+    md = open(sys.argv[2]+"/get-mods.sh", "w")
+    md.write("#!/bin/sh\n")
+    md.write("# run this script to automatically get all the required mods\n")
+    md.write("git clone https://github.com/VanessaE/plantlife_modpack worldmods/plantlife_modpack\n")
+    md.write("git clone https://github.com/VanessaE/homedecor_modpack worldmods/homedecor_modpack\n")
+    md.write("git clone https://github.com/Jeija/minetest-mod-mesecons worldmods/mesecons\n")
+    md.write("git clone https://github.com/calinou/moreblocks worldmods/moreblocks\n")
+    md.write("git clone https://github.com/sofar/nether worldmods/nether\n")
+    md.write("git clone https://github.com/minetest-mods/quartz worldmods/quartz\n")
+    md.write("git clone https://github.com/VanessaE/biome_lib worldmods/biome_lib\n")
+    md.close()
+
+mcmap = MCMap(sys.argv[1])
+mtmap = MTMap(sys.argv[2])
+
 nimap, ct = content.read_content(["NETHER", "QUARTZ"])
 mtmap.fromMCMap(mcmap, nimap, ct)
 mtmap.save()
 
+print("Conversion finished!\n\n")
+print("Run the \"get-mods.sh\" script in the converted world to automatically download\n")
+print("the required mods.")
