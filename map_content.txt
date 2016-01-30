@@ -26,7 +26,7 @@
 #else
 	5 0	default:wood
 	5 1	default:pine_wood
-	5 2	default:wood
+	5 2	default:aspen_wood
 	5 3	default:junglewood
 	5 4	default:acacia_wood
 	5 5	default:wood
@@ -35,8 +35,8 @@
 	6 8	default:sapling
 	6 1	default:pine_sapling
 	6 9	default:pine_sapling
-	6 2	default:sapling
-	6 10	default:sapling
+	6 2	default:aspen_sapling
+	6 10	default:aspen_sapling
 	6 3	default:junglesapling
 	6 11	default:junglesapling
 	6 4	default:acacia_sapling
@@ -96,9 +96,9 @@
 	17 1	default:pine_tree 0
 	17 5	default:pine_tree 18
 	17 9	default:pine_tree 9
-	17 2	default:tree 0
-	17 6	default:tree 18
-	17 10	default:tree 9
+	17 2	default:aspen_tree 0
+	17 6	default:aspen_tree 18
+	17 10	default:aspen_tree 9
 	17 3	default:jungletree 0
 	17 7	default:jungletree 18
 	17 11	default:jungletree 9
@@ -563,7 +563,7 @@
 #else
 	125 0	default:wood
 	125 1	default:pine_wood
-	125 2	default:wood
+	125 2	default:aspen_wood
 	125 3	default:junglewood
 	125 4	default:acacia_wood
 	125 5	default:wood
@@ -572,8 +572,8 @@
 	126 8	stairs:slab_wood 22
 	126 1	stairs:slab_pine_wood
 	126 9	stairs:slab_pine_wood 22
-	126 2	stairs:slab_wood
-	126 10	stairs:slab_wood 22
+	126 2	stairs:slab_aspen_wood
+	126 10	stairs:slab_aspen_wood 22
 	126 3	stairs:slab_junglewood
 	126 11	stairs:slab_junglewood 22
 	126 4	stairs:slab_acacia_wood
@@ -630,14 +630,14 @@
 	134 6	stairs:stair_pine_wood 20
 	134 7	stairs:stair_pine_wood 22
 
-	135 0	stairs:stair_wood 3
-	135 1	stairs:stair_wood 1
-	135 2	stairs:stair_wood 0
-	135 3	stairs:stair_wood 2
-	135 4	stairs:stair_wood 21
-	135 5	stairs:stair_wood 23
-	135 6	stairs:stair_wood 20
-	135 7	stairs:stair_wood 22
+	135 0	stairs:stair_aspen_wood 3
+	135 1	stairs:stair_aspen_wood 1
+	135 2	stairs:stair_aspen_wood 0
+	135 3	stairs:stair_aspen_wood 2
+	135 4	stairs:stair_aspen_wood 21
+	135 5	stairs:stair_aspen_wood 23
+	135 6	stairs:stair_aspen_wood 20
+	135 7	stairs:stair_aspen_wood 22
 
 	136 0	stairs:stair_junglewood 3
 	136 1	stairs:stair_junglewood 1
@@ -834,7 +834,7 @@
 #ifdef MORETREES
 	941 0	moretrees:birch_sapling
 #else
-	941 0	default:sapling
+	941 0	default:aspen_sapling
 #endif
 941 1	default:junglesapling
 941 2	default:acacia_sapling
