@@ -148,7 +148,7 @@
 29 4	mesecons_pistons:piston_sticky_off 3
 29 5	mesecons_pistons:piston_sticky_off 1
 29 8	mesecons_pistons:piston_down_sticky_on
-29 9	mesecons_pistons:piston_up_stiucky_on
+29 9	mesecons_pistons:piston_up_sticky_on
 29 10	mesecons_pistons:piston_sticky_on 0
 29 11	mesecons_pistons:piston_sticky_on 2
 29 12	mesecons_pistons:piston_sticky_on 3
