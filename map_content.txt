@@ -739,22 +739,22 @@
 	164 7	stairs:stair_wood 22
 #endif
 
-167 0	doors:trapdoor 0				// should have been metal
-167 1	doors:trapdoor 2
-167 2	doors:trapdoor 3
-167 3	doors:trapdoor 1
-167 4	doors:trapdoor_open 0
-167 5	doors:trapdoor_open 2
-167 6	doors:trapdoor_open 3
-167 7	doors:trapdoor_open 1
-167 8	doors:trapdoor 20
-167 9	doors:trapdoor 22
-167 10	doors:trapdoor 21
-167 11	doors:trapdoor 23
-167 12	doors:trapdoor_open 20
-167 13	doors:trapdoor_open 22
-167 14	doors:trapdoor_open 21
-167 15	doors:trapdoor_open 23
+167 0	doors:trapdoor_steel 0
+167 1	doors:trapdoor_steel 2
+167 2	doors:trapdoor_steel 3
+167 3	doors:trapdoor_steel 1
+167 4	doors:trapdoor_steel_open 0
+167 5	doors:trapdoor_steel_open 2
+167 6	doors:trapdoor_steel_open 3
+167 7	doors:trapdoor_steel_open 1
+167 8	doors:trapdoor_steel 20
+167 9	doors:trapdoor_steel 22
+167 10	doors:trapdoor_steel 21
+167 11	doors:trapdoor_steel 23
+167 12	doors:trapdoor_steel_open 20
+167 13	doors:trapdoor_steel_open 22
+167 14	doors:trapdoor_steel_open 21
+167 15	doors:trapdoor_steel_open 23
 
 173	default:coalblock
 174	default:ice					// approx
