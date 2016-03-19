@@ -781,6 +781,13 @@
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
 
+183	doors:gate_closed
+184	doors:gate_closed
+185	doors:gate_closed
+186	doors:gate_closed
+186	doors:gate_closed
+187	doors:gate_closed
+
 188	default:fence_wood			// nothing better than this, sadly
 189	default:fence_wood
 190	default:fence_wood
