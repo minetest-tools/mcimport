@@ -708,6 +708,23 @@
 
 157	default:rail					// activator rail
 
+159 0	hardenedclay:hardened_clay_white
+159 1	hardenedclay:hardened_clay_orange
+159 2	hardenedclay:hardened_clay_magenta
+159 3	hardenedclay:hardened_clay_light_blue
+159 4	hardenedclay:hardened_clay_yellow
+159 5	hardenedclay:hardened_clay_lime
+159 6	hardenedclay:hardened_clay_pink
+159 7	hardenedclay:hardened_clay_gray
+159 8	hardenedclay:hardened_clay_light_gray
+159 9	hardenedclay:hardened_clay_cyan
+159 10	hardenedclay:hardened_clay_purple
+159 11	hardenedclay:hardened_clay_blue
+159 12	hardenedclay:hardened_clay_brown
+159 13	hardenedclay:hardened_clay_green
+159 14	hardenedclay:hardened_clay_red
+159 15	hardenedclay:hardened_clay_black
+
 160	xpanes:pane					// no colors here sadly
 
 163 0	stairs:stair_acacia_wood 3

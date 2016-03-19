@@ -105,6 +105,7 @@ if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
     md.write("git clone https://github.com/sofar/nether worldmods/nether\n")
     md.write("git clone https://github.com/minetest-mods/quartz worldmods/quartz\n")
     md.write("git clone https://github.com/VanessaE/biome_lib worldmods/biome_lib\n")
+    md.write("git clone https://github.com/oOChainLynxOo/hardenedclay worldmods/hardened_clay\n")
     md.close()
 
 mcmap = MCMap(sys.argv[1])
