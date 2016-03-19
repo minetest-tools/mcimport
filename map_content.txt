@@ -756,6 +756,8 @@
 167 14	doors:trapdoor_steel_open 21
 167 15	doors:trapdoor_steel_open 23
 
+170	farming:straw
+
 173	default:coalblock
 174	default:ice					// approx
 
