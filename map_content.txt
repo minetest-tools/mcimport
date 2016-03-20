@@ -807,12 +807,11 @@
 186	doors:gate_closed
 187	doors:gate_closed
 
-188	default:fence_wood			// nothing better than this, sadly
-189	default:fence_wood
-190	default:fence_wood
+188	default:fence_pine_wood
+189	default:fence_aspen_wood
+190	default:fence_junglewood
 191	default:fence_wood
-192	default:fence_wood
-193	default:fence_wood
+192	default:fence_acacia_wood
 
 193	air					// door parts get fixed up in code
 194	air					// door parts get fixed up in code
