@@ -52,6 +52,9 @@ def convert_sign(te):
     t = ""
     for i in range(1, 5):
         line = te.get("Text"+str(i), "").strip('"')
+        if '{"text":"' in line:
+            parts = line.split('"')
+            line = parts[3]
         if line != "":
             t += line
             t += "\n"
