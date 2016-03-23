@@ -25,6 +25,9 @@ def escape(s):
             s2 += c
     return s2
 
+def convert_frame(te):
+
+
 def convert_furnace(te):
     src_time = 0
     src_totaltime = 0
@@ -118,6 +121,7 @@ def convert_cmdblock(te):
     return None, None, (fields, {})
 
 te_convert = {"chest": convert_chest,
+              "ItemFrame": convert_frame,
               "sign": convert_sign,
               "furnace": convert_furnace,
               "music": convert_nodeblock,
