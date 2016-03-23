@@ -154,7 +154,7 @@
 29 12	mesecons_pistons:piston_sticky_on 3
 29 13	mesecons_pistons:piston_sticky_on 1
 
-30	homedecor:cobweb_plantlike		// FIXME homedecor test
+30	xdecor:cobweb
 31 0	default:dry_shrub
 31 2	ferns:tree_fern_leaves
 
@@ -774,6 +774,23 @@
 167 15	doors:trapdoor_steel_open 23
 
 170	farming:straw
+
+171 0	carpet:white
+171 1	carpet:orange
+171 2	carpet:magenta
+171 3	carpet:blue
+171 4	carpet:yellow
+171 5	carpet:green
+171 6	carpet:pink
+171 7	carpet:dark_grey
+171 8	carpet:grey
+171 9	carpet:cyan
+171 10	carpet:violet
+171 11	carpet:blue
+171 12	carpet:brown
+171 13	carpet:dark_green
+171 14	carpet:red
+171 15	carpet:black
 
 173	default:coalblock
 174	default:ice					// approx
