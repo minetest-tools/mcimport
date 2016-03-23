@@ -44,11 +44,16 @@ if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
     md.write("# run this script to automatically get all the required mods\n")
     md.write("cd worldmods\n")
     md.write("for mod in VanessaE/signs_lib VanessaE/plantlife_modpack VanessaE/homedecor_modpack Jeija/minetest-mod-mesecons calinou/moreblocks sofar/nether minetest-mods/crops minetest-mods/quartz VanessaE/biome_lib oOChainLynxOo/hardenedclay; do\n")
+    md.write("    echo \"Fetching: $mod\"\n")
     md.write("    s=`basename $mod`\n")
-    md.write("    curl -L -o master.zip https://codeload.github.com/$mod/zip/master\n")
-    md.write("    unzip master.zip\n")
+    md.write("    curl -q -L -o master.zip https://codeload.github.com/$mod/zip/master\n")
+    md.write("    unzip -qq master.zip\n")
     md.write("    rm master.zip\n")
     md.write("    mv $s-master $s\n")
+    md.write("done\n")
+    md.write("for ex in plantlife_modpack/dryplants plantlife_modpack/along_shore plantlife_modpack/molehills plantlife_modpack/woodsoils plantlife_modpack/bushes plantlife_modpack/bushes_classic plantlife_modpack/youngtrees plantlife_modpack/3dmushrooms plantlife_modpack/cavestuff plantlife_modpack/poisonivy plantlife_modpack/trunks homedecor_modpack/fake_fire homedecor_modpack/computer homedecor_modpack/plasmascreen homedecor_modpack/lavalamp homedecor_modpack/building_blocks homedecor_modpack/inbox homedecor_modpack/homedecor_3d_extras homedecor_modpack/chains homedecor_modpack/lrfurn; do\n");
+    md.write("    echo \"Pruning: $ex\"\n")
+    md.write("    rm -rf $ex\n")
     md.write("done\n")
     md.close()
 
