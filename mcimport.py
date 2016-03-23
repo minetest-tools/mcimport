@@ -10,11 +10,15 @@ if (sys.version_info < (3, 0)):
     exit(1)
 
 if not os.path.exists(sys.argv[1]):
-    print("the minecraft world path does not exist.")
+    print("The provided minecraft world path does not exist.")
     exit(1)
 
 if not os.path.exists(sys.argv[2]):
     os.makedirs(sys.argv[2])
+
+if os.path.exists(sys.argv[2] + "map.sqlite"):
+    print("A minetest world already exists - refusing to overwrite it.")
+    exit(1)
 
 if not os.path.exists(sys.argv[2] + "/world.mt"):
     wo = open(sys.argv[2] + "/world.mt", "w")
