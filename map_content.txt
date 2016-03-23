@@ -800,12 +800,12 @@
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
 
-183	doors:gate_closed
-184	doors:gate_closed
-185	doors:gate_closed
-186	doors:gate_closed
-186	doors:gate_closed
-187	doors:gate_closed
+183	doors:gate_wood_closed
+184	doors:gate_pine_wood_closed
+185	doors:gate_aspen_wood_closed
+186	doors:gate_junglewood_closed
+186	doors:gate_wood_closed
+187	doors:gate_acacia_wood_closed
 
 188	default:fence_pine_wood
 189	default:fence_aspen_wood
