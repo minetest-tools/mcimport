@@ -797,6 +797,8 @@
 
 175 0	flowers:sunflower
 
+175 2	default:junglegrass
+
 // 178 is an inverted daylight sensor, cannot convert!
 
 179 1	default:desert_stone			// approx
