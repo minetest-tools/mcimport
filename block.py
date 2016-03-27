@@ -7,6 +7,7 @@ import sqlite3
 from serialize import *
 from itemstack import *
 from tile_entities import te_convert
+from entities import e_convert
 
 
 class MCMap:
@@ -105,6 +106,12 @@ class MCBlock:
                 if is_anvil:
                     t["x"] = self.pos[0]*16 + 15-t["x"]%16
                 self.tile_entities.append(t)
+
+        self.entities = []
+        for e in chunk["Entities"]:
+            t = e.copy()
+            self.entities.append(t)
+
 
     @staticmethod
     def expand_half_bytes(l):
@@ -311,6 +318,11 @@ class MTBlock:
                         print("can't pot plant in pot across block border, or not air")
                 except:
                     self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
+
+        for e in mcblock.entities:
+            id = e["id"]
+            f = e_convert.get(id.lower(), lambda arg: (None, None, None)) # Do nothing if not found
+            block, p2, meta = f(e)
 
     def save(self):
         os = BytesIO()
