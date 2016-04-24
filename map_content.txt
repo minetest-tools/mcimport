@@ -102,6 +102,10 @@
 	17 3	default:jungletree 0
 	17 7	default:jungletree 18
 	17 11	default:jungletree 9
+	17 12	default:tree		 # bark only versions
+	17 13	default:pine_tree
+	17 14	default:aspen_tree
+	17 15	default:jungletree
 	18 0,8	default:leaves
 	18 4,12	default:leaves 1
 	18 1,9	default:pine_needles
@@ -120,6 +124,9 @@
 	162 1	default:tree 0
 	162 5	default:tree 18
 	162 9	default:tree 9
+	162 12	default:acacia_tree
+	162 13	default:tree
+
 #endif
 
 19	default:nyancat_rainbow			// Sponge
