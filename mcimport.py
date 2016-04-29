@@ -35,7 +35,16 @@ if not os.path.exists(sys.argv[2]+"/worldmods/mcimport/init.lua"):
     sn.write("-- map conversion requires a special water level\n")
     sn.write("minetest.set_mapgen_params({water_level = -2})\n\n")
     sn.write("-- comment the line below if you want to enable mapgen (will destroy things!)\n")
-    sn.write("minetest.set_mapgen_params({mgname = \"singlenode\"})\n")
+    sn.write("minetest.set_mapgen_params({mgname = \"singlenode\"})\n\n")
+    sn.write("-- below lines will recalculate lighting on map block load\n")
+    sn.write("minetest.register_on_generated(function(minp, maxp, seed)\n")
+    sn.write("        local vm = minetest.get_voxel_manip(minp, maxp)\n")
+    sn.write("        vm:set_lighting({day = 15, night = 0}, minp, maxp)\n")
+    sn.write("        vm:update_liquids()\n")
+    sn.write("        vm:write_to_map()\n")
+    sn.write("        vm:update_map()\n")
+    sn.write("end)\n\n")
+
     sn.close()
 
 if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
