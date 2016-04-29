@@ -51,16 +51,75 @@ def convert_furnace(te):
 def convert_sign(te):
     t = ""
     for i in range(1, 5):
-        line = te.get("Text"+str(i), "").strip()
+        line = te.get("Text"+str(i), "").strip('"')
+        if '{"text":"' in line:
+            parts = line.split('"')
+            line = parts[3]
         if line != "":
             t += line
-            t += " "
+            t += "\n"
     t = t.strip()
-    fields = {"infotext": '"'+t+'"',
+    fields = {"infotext": t,
               "text": t,
-              "formspec": "field[text;;${text}]"}
+              "__signslib_new_format": "1",
+              "formspec": "size[6,4]textarea[0,-0.3;6.5,3;text;;${text}]button_exit[2,3.4;2,1;ok;Write]background[-0.5,-0.5;7,5;bg_signs_lib.jpg]"}
+    return None, None, (fields, {})
+
+def convert_nodeblock(te):
+    pitch = te.get("note")
+    return None, int(pitch) % 12, None
+
+def convert_pot(te):
+    c = str(te.get("Item"))+":"+str(te.get("Data"))
+    # translation table for flowers
+    # highly approximate, based on color only
+    t = {
+        ":0" : 0, # air
+        "minecraft:brown_mushroom:0" : 1,
+        "minecraft:red_mushroom:0" : 2,
+        "minecraft:cactus:0" : 3,
+        "minecraft:deadbush:0" : 4,
+        "minecraft:red_flower:0" : 5,
+        "minecraft:red_flower:1" : 6,
+        "minecraft:red_flower:2" : 7,
+        "minecraft:red_flower:3" : 8,
+        "minecraft:red_flower:4" : 9,
+        "minecraft:red_flower:5" : 10,
+        "minecraft:red_flower:6" : 11,
+        "minecraft:red_flower:7" : 12,
+        "minecraft:red_flower:8" : 13,
+        "minecraft:sapling:0" : 14,
+        "minecraft:sapling:1" : 15,
+        "minecraft:sapling:2" : 16,
+        "minecraft:sapling:3" : 17,
+        "minecraft:sapling:4" : 18,
+        "minecraft:sapling:5" : 19,
+        "minecraft:tallgrass:2" : 20,
+        "minecraft:yellow_flower:0" : 21
+    }
+    try:
+        fields = { "_plant": t[c] }
+        return None, None, (fields, {})
+    except:
+        print('Unknown flower pot type: '+c)
+        return None, None, None
+
+def convert_cmdblock(te):
+    c = te.get("Command")
+    c = c.replace("/tp ", "teleport ")
+    c = c.replace("/tell ", "tell ")
+    c = c.replace(" @p ", " @nearest ")
+    c = c.replace(" @r ", " @random ")
+    fields = {"infotext" : "Command block, commands: \""+c+"\"",
+              "commands": c,
+              "owner": "no owner",
+              "formspec": "invsize[9,5;]textarea[0.5,0.5;8.5,4;commands;Commands;"+c+"]label[1,3.8;@nearest, @farthest, and @random are replaced by the respective player names]button_exit[3.3,4.5;2,1;submit;Submit]"
+    }
     return None, None, (fields, {})
 
 te_convert = {"chest": convert_chest,
               "sign": convert_sign,
-              "furnace": convert_furnace}
+              "furnace": convert_furnace,
+              "music": convert_nodeblock,
+              "flowerpot": convert_pot,
+              "control": convert_cmdblock}

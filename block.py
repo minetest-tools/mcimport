@@ -1,11 +1,13 @@
 import os
 import zlib
 import nbt
+import random
 from io import BytesIO
 import sqlite3
 from serialize import *
 from itemstack import *
 from tile_entities import te_convert
+from entities import e_convert
 
 
 class MCMap:
@@ -104,6 +106,12 @@ class MCBlock:
                 if is_anvil:
                     t["x"] = self.pos[0]*16 + 15-t["x"]%16
                 self.tile_entities.append(t)
+
+        self.entities = []
+        for e in chunk["Entities"]:
+            t = e.copy()
+            self.entities.append(t)
+
 
     @staticmethod
     def expand_half_bytes(l):
@@ -208,6 +216,7 @@ class MTBlock:
     def fromMCBlock(self, mcblock, conversion_table):
 #        print('\n***fromMCBlock: Starting New Block***')
 
+        self.timers = []
         self.pos = (mcblock.pos[0], mcblock.pos[1]-4, mcblock.pos[2])
         content = self.content
         mcblockidentifier = self.mcblockidentifier
@@ -223,7 +232,63 @@ class MTBlock:
             content[i], param2[i] = conversion_table[blocks[i]][data[i]]
             param1[i] = max(blocklight[i], skylight[i])|(blocklight[i]<<4)
             mcblockidentifier[i] = str(blocks[i]) + ':' + str(data[i])
-            if content[i]==0 and param2[i]==0 and not (blocks[i]==0):
+
+            def isdoor(b):
+                return b == 64 or b == 71 or (b >= 193 and b <= 197)
+
+            # water
+            if (blocks[i] == 9 or blocks[i] == 11) and (data[i] == 0):
+                content[i], param2[i] = conversion_table[blocks[i]][data[i]]
+            elif blocks[i] >= 8 and blocks[i] <= 11:
+                # nop, exit case
+                pass
+            # pressure plates - append mesecons node timer
+            elif blocks[i] == 70 or blocks[i] == 72:
+                self.timers.append(((i&0xf)|((i>>4)&0xf)<<8|((i>>8)&0xf)<<4, 100, 0))
+            # rotate lily pads randomly
+            elif blocks[i] == 111:
+                param2[i] = random.randint(0,3)
+            # melon/pumpkin blocks
+            elif blocks[i] == 86 or blocks[i] == 103:
+                param2[i] = random.randint(0,23)
+            # grass of varying length randomly
+            elif blocks[i] == 31 and data[i] == 1:
+                content[i], param2[i] = conversion_table[931][random.randint(0,4)]
+            # fix doors based on top/bottom bits
+            elif isdoor(blocks[i]) and data[i] < 8:
+                above = i + 256
+                if (above >= 4096):
+                    print('Unable to fix door - top part is across block boundary!')
+                elif isdoor(blocks[above]) and data[above] < 7:
+                    print('Unable to fix door - bottom part on top of bottom part!')
+                else:
+                    d_right = data[above] & 1  # 0 - left, 1 - right
+                    d_open = data[i] & 4       # 0 - closed, 1 - open
+                    d_face = data[i] & 3       # n,e,s,w orientation
+                    alt = 964
+                    if blocks[i] == 71:
+                        alt = 966
+                    content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
+                    if d_right == 1:
+                        self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
+            elif isdoor(blocks[i]) and data[i] >= 8:
+                below = i - 256
+                if (below < 0):
+                    print('Unable to fix door - bottom part is across block boundary!')
+                elif isdoor(blocks[below]) and data[below] >= 8:
+                    print('Unable to fix door - top part below top part!')
+                else:
+                    d_right = data[i] & 1      # 0 - left, 1 - right
+                    d_open = data[below] & 4   # 0 - closed, 1 - open
+                    d_face = data[below] & 3   # n,e,s,w orientation
+                    alt = 965
+                    if blocks[i] == 71:
+                        alt = 967
+                    content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
+                    if d_right == 1:
+                        self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
+
+            elif content[i]==0 and param2[i]==0 and not (blocks[i]==0):
                 print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 
         for te in mcblock.tile_entities:
@@ -241,7 +306,23 @@ class MTBlock:
             if p2 != None:
                 param2[index] = p2
             if meta != None:
-                self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
+                try:
+                    p = meta[0]["_plant"]
+                    above = ((((y)&0xf)<<8)|((z&0xf)<<4)|(x&0xf)) + 256
+                    if above < 4096 and blocks[above] == 0:
+                        if p > 15:
+                            content[above], param2[above] = conversion_table[941][p&0xf]
+                        else:
+                            content[above], param2[above] = conversion_table[940][p]
+                    else:
+                        print("can't pot plant in pot across block border, or not air")
+                except:
+                    self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
+
+        for e in mcblock.entities:
+            id = e["id"]
+            f = e_convert.get(id.lower(), lambda arg: (None, None, None)) # Do nothing if not found
+            block, p2, meta = f(e)
 
     def save(self):
         os = BytesIO()
@@ -332,7 +413,13 @@ class MTBlock:
 
         # Node timer
         writeU8(os, 2+4+4) # Timer data len
-        writeU16(os, 0) # Number of timers
+        writeU16(os, len(self.timers)) # Number of timers
+        if len(self.timers) > 0:
+            print('wrote ' + str(len(self.timers)) + ' node timers')
+        for i in range(len(self.timers)):
+            writeU16(os, self.timers[i][0])
+            writeU32(os, self.timers[i][1])
+            writeU32(os, self.timers[i][2])
 
         return os.getvalue()
 
@@ -364,7 +451,7 @@ class MTMap:
 
         num_saved = 0
         for block in self.blocks:
-            if num_saved%50 == 0:
+            if num_saved%100 == 0:
                 print("Saved", num_saved, "blocks")
                 conn.commit()
             num_saved += 1

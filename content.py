@@ -7,8 +7,8 @@ def preprocess(lines, flags):
         if line == "":
             continue
         if line[0] == "#":
-            if line.startswith("#if"):
-                cond = line[4:].strip()
+            if line.startswith("#ifdef"):
+                cond = line[7:].strip()
                 if skip_level > 0 or cond not in flags:
                     skip_level += 1
             elif line.startswith("#else"):
@@ -39,8 +39,8 @@ def read_content(flags):
 
     lines = preprocess(lines, flags)
     # if you map to air, then unknown blocks will be ignored
-#    name_id_mapping = ["air"]
-    name_id_mapping = ["mcblock:unknown"]
+    name_id_mapping = ["air"]
+    # name_id_mapping = ["mcblock:unknown"]
     bd = {}         # bd is block data, and keeps a list of the node names in the block
     # iterate through all the lines in the map_content.txt file
     for line in lines:
