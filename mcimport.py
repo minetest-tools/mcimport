@@ -34,6 +34,8 @@ if not os.path.exists(sys.argv[2]+"/worldmods/mcimport/init.lua"):
     sn = open(sys.argv[2]+"/worldmods/mcimport/init.lua", "w")
     sn.write("-- map conversion requires a special water level\n")
     sn.write("minetest.set_mapgen_params({water_level = -2})\n\n")
+    sn.write("-- prevent overgeneration in incomplete chunks, and allow lbms to work\n")
+    sn.write("minetest.set_mapgen_params({chunksize = 1})\n\n")
     sn.write("-- comment the line below if you want to enable mapgen (will destroy things!)\n")
     sn.write("minetest.set_mapgen_params({mgname = \"singlenode\"})\n\n")
     sn.write("-- below lines will recalculate lighting on map block load\n")
