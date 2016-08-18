@@ -1,7 +1,9 @@
 import os
+import sys
 import zlib
 import nbt
 import random
+import time
 from io import BytesIO
 import sqlite3
 from serialize import *
@@ -36,16 +38,29 @@ class MCMap:
                         if bytesToInt(f.read(3)) != 0:
                             self.chunk_pos.append((chkx, chkz))
                             chunkCountb += 1
-#        print('Total Chunks: ' + str(len(self.chunk_pos)))
 
     def getChunk(self, chkx, chkz):
         return MCChunk(chkx, chkz, self.world_path, self.ext)
 
     def getBlocksIterator(self):
+        num_chunks = len(self.chunk_pos)
+        chunk_ix = 0
+        t0 = time.time()
         for chkx, chkz in self.chunk_pos:
+            if chunk_ix%10 == 0:
+                if chunk_ix > 0:
+                    td = time.time() - t0                     # wall clock time spent
+                    tr = ((num_chunks * td) / chunk_ix) - td  # time remaining
+                    eta = time.strftime("%H:%M:%S", time.gmtime(tr))
+                else:
+                    eta = "??:??:??"
+                print('Processed %d / %d chunks, ETA %s h:m:s' % (chunk_ix, num_chunks, eta), end='\r')
+                sys.stdout.flush()
+            chunk_ix += 1
             blocks = self.getChunk(chkx, chkz).blocks
             for block in blocks:
                 yield block
+        print()
 
 class MCChunk:
     """A 16x16 column of nodes"""
@@ -414,8 +429,8 @@ class MTBlock:
         # Node timer
         writeU8(os, 2+4+4) # Timer data len
         writeU16(os, len(self.timers)) # Number of timers
-        if len(self.timers) > 0:
-            print('wrote ' + str(len(self.timers)) + ' node timers')
+        #if len(self.timers) > 0:
+        #    print('wrote ' + str(len(self.timers)) + ' node timers')
         for i in range(len(self.timers)):
             writeU16(os, self.timers[i][0])
             writeU32(os, self.timers[i][1])
@@ -452,7 +467,7 @@ class MTMap:
         num_saved = 0
         for block in self.blocks:
             if num_saved%100 == 0:
-                print("Saved", num_saved, "blocks")
+                #print("Saved", num_saved, "blocks")
                 conn.commit()
             num_saved += 1
             cur.execute("INSERT INTO blocks VALUES (?,?)",
