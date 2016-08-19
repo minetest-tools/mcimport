@@ -2,8 +2,11 @@
 
 import os
 import sys
+import logging
 from block import *
 import content
+
+logging.basicConfig(level=logging.INFO)
 
 if (sys.version_info < (3, 0)):
     print("This script does not work with Python < 3.0, sorry.")

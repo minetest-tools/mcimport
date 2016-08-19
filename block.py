@@ -1,7 +1,10 @@
 import os
+import sys
 import zlib
 import nbt
 import random
+import time
+import logging
 from io import BytesIO
 import sqlite3
 from serialize import *
@@ -9,6 +12,7 @@ from itemstack import *
 from tile_entities import te_convert
 from entities import e_convert
 
+logger = logging.getLogger('block')
 
 class MCMap:
     """A MC map"""
@@ -36,16 +40,29 @@ class MCMap:
                         if bytesToInt(f.read(3)) != 0:
                             self.chunk_pos.append((chkx, chkz))
                             chunkCountb += 1
-#        print('Total Chunks: ' + str(len(self.chunk_pos)))
 
     def getChunk(self, chkx, chkz):
         return MCChunk(chkx, chkz, self.world_path, self.ext)
 
     def getBlocksIterator(self):
+        num_chunks = len(self.chunk_pos)
+        chunk_ix = 0
+        t0 = time.time()
         for chkx, chkz in self.chunk_pos:
+            if chunk_ix%10 == 0:
+                if chunk_ix > 0:
+                    td = time.time() - t0                     # wall clock time spent
+                    tr = ((num_chunks * td) / chunk_ix) - td  # time remaining
+                    eta = time.strftime("%H:%M:%S", time.gmtime(tr))
+                else:
+                    eta = "??:??:??"
+                print('Processed %d / %d chunks, ETA %s h:m:s' % (chunk_ix, num_chunks, eta), end='\r')
+                sys.stdout.flush()
+            chunk_ix += 1
             blocks = self.getChunk(chkx, chkz).blocks
             for block in blocks:
                 yield block
+        print()
 
 class MCChunk:
     """A 16x16 column of nodes"""
@@ -214,7 +231,7 @@ class MTBlock:
         self.pos = (0, 0, 0)
 
     def fromMCBlock(self, mcblock, conversion_table):
-#        print('\n***fromMCBlock: Starting New Block***')
+        logger.debug('***fromMCBlock: Starting New Block***')
 
         self.timers = []
         self.pos = (mcblock.pos[0], mcblock.pos[1]-4, mcblock.pos[2])
@@ -258,9 +275,9 @@ class MTBlock:
             elif isdoor(blocks[i]) and data[i] < 8:
                 above = i + 256
                 if (above >= 4096):
-                    print('Unable to fix door - top part is across block boundary!')
+                    logger.warning('Unable to fix door - top part is across block boundary! (%d >= 4096)' % above)
                 elif isdoor(blocks[above]) and data[above] < 7:
-                    print('Unable to fix door - bottom part on top of bottom part!')
+                    logger.warning('Unable to fix door - bottom part on top of bottom part!')
                 else:
                     d_right = data[above] & 1  # 0 - left, 1 - right
                     d_open = data[i] & 4       # 0 - closed, 1 - open
@@ -274,9 +291,9 @@ class MTBlock:
             elif isdoor(blocks[i]) and data[i] >= 8:
                 below = i - 256
                 if (below < 0):
-                    print('Unable to fix door - bottom part is across block boundary!')
+                    logger.warning('Unable to fix door - bottom part is across block boundary! (%d < 0)' % below)
                 elif isdoor(blocks[below]) and data[below] >= 8:
-                    print('Unable to fix door - top part below top part!')
+                    logger.warning('Unable to fix door - top part below top part!')
                 else:
                     d_right = data[i] & 1      # 0 - left, 1 - right
                     d_open = data[below] & 4   # 0 - closed, 1 - open
@@ -289,7 +306,7 @@ class MTBlock:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
 
             elif content[i]==0 and param2[i]==0 and not (blocks[i]==0):
-                print('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
+                logger.warning('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 
         for te in mcblock.tile_entities:
             id = te["id"]
@@ -297,8 +314,8 @@ class MTBlock:
             index = ((y&0xf)<<8)|((z&0xf)<<4)|(x&0xf)
             f = te_convert.get(id.lower(), lambda arg: (None, None, None)) # Do nothing if not found
             block, p2, meta = f(te)
-#            print('\nEntityInfoPre: ' +str(te))                                                         # EntityInfo: if you want to print pre-conversion entity information then uncomment this line
-#            print('EntityInfoPost: ' +' y='+str(y)+' z='+str(z)+' x='+str(x)+' Meta:'+str(meta))        # EntityInfo: if you want to print post-conversion entity information then uncomment this line
+            logger.debug('EntityInfoPre: ' +str(te))
+            logger.debug('EntityInfoPost: ' +' y='+str(y)+' z='+str(z)+' x='+str(x)+' Meta:'+str(meta))
             # NB block and p2 never seems to be returned, but if this is important, then just change the above 'meta' to 'f(te)'
 
             if block != None:
@@ -315,7 +332,7 @@ class MTBlock:
                         else:
                             content[above], param2[above] = conversion_table[940][p]
                     else:
-                        print("can't pot plant in pot across block border, or not air")
+                        logger.warning("can't pot plant in pot across block border, or not air")
                 except:
                     self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
 
@@ -415,7 +432,7 @@ class MTBlock:
         writeU8(os, 2+4+4) # Timer data len
         writeU16(os, len(self.timers)) # Number of timers
         if len(self.timers) > 0:
-            print('wrote ' + str(len(self.timers)) + ' node timers')
+            logger.info('wrote ' + str(len(self.timers)) + ' node timers')
         for i in range(len(self.timers)):
             writeU16(os, self.timers[i][0])
             writeU32(os, self.timers[i][1])
@@ -452,7 +469,7 @@ class MTMap:
         num_saved = 0
         for block in self.blocks:
             if num_saved%100 == 0:
-                print("Saved", num_saved, "blocks")
+                #print("Saved", num_saved, "blocks")
                 conn.commit()
             num_saved += 1
             cur.execute("INSERT INTO blocks VALUES (?,?)",

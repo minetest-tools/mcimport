@@ -1,6 +1,9 @@
+import logging
 from itemstack import *
 #If you wish to add more entities, then...
 # To print out pre and post-conversion entity information uncomment line 237 (ish) in blocks.py (search for 'EntityInfo' to locate it)
+
+logger = logging.getLogger('tile_entities')
 
 def convert_chest(te):
     formspec = "size[8,9]"+\
@@ -101,7 +104,7 @@ def convert_pot(te):
         fields = { "_plant": t[c] }
         return None, None, (fields, {})
     except:
-        print('Unknown flower pot type: '+c)
+        logger.warning('Unknown flower pot type: ' + c)
         return None, None, None
 
 def convert_cmdblock(te):
