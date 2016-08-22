@@ -262,6 +262,8 @@
 
 45	default:brick
 
+46	tnt:tnt
+
 47	default:bookshelf			// FIXME: MC's node is same-faced every way, can't rotate smartly
 
 48	default:mossycobble
@@ -287,6 +289,7 @@
 53 6	stairs:stair_wood 20
 53 7	stairs:stair_wood 22
 
+54 0	default:chest 0				// map to default orientation == 2
 54 2	default:chest 0				// TODO: contents
 54 3	default:chest 2
 54 4	default:chest 1
@@ -507,6 +510,15 @@
 106 14	vines:side_middle 2
 106 15	vines:side_middle 3
 
+107 0	doors:gate_wood_closed 0
+107 1	doors:gate_wood_closed 2
+107 2	doors:gate_wood_closed 3
+107 3	doors:gate_wood_closed 1
+107 4	doors:gate_wood_open 0
+107 5	doors:gate_wood_open 2
+107 6	doors:gate_wood_open 3
+107 7	doors:gate_wood_open 1
+
 108 0	stairs:stair_brick 3
 108 1	stairs:stair_brick 1
 108 2	stairs:stair_brick 0
@@ -703,7 +715,7 @@
 	155 2	quartz:pillar
 	155 3	quartz:pillar 4				// TODO: check that
 	155 4	quartz:pillar 8				// TODO: check that
-	
+
 	156 0	stairs:stair_quartzblock 3
 	156 1	stairs:stair_quartzblock 1
 	156 2	stairs:stair_quartzblock 0
