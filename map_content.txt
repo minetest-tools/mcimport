@@ -131,7 +131,8 @@
 
 19	default:nyancat_rainbow			// Sponge
 20	default:glass
-21	default:stone				// FIXME: Lapis Lazuli
+21	lapis:stone_with_lapis
+22	lapis:lapis
 24	default:sandstone			// TODO: Sandstone type
 
 25	mesecons_noteblock:noteblock		// FIXME: get pitch from entity data
