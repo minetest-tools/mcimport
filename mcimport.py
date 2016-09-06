@@ -28,7 +28,7 @@ if not os.path.exists(sys.argv[2] + "/world.mt"):
     with open(sys.argv[2] + "/world.mt", "w") as wo:
         wo.write("backend = sqlite3\n")
         wo.write("gameid = minetest\n")
-    
+
 if not os.path.exists(sys.argv[2] + "/worldmods"):
     os.makedirs(sys.argv[2]+"/worldmods")
 if not os.path.exists(sys.argv[2] + "/worldmods/mcimport"):
@@ -56,7 +56,7 @@ if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
         md.write("#!/bin/sh\n")
         md.write("# run this script to automatically get all the required mods\n")
         md.write("cd worldmods\n")
-        md.write("for mod in LNJ2/carpet minetest-mods/signs_lib kilbith/xdecor minetest-mods/plantlife_modpack minetest-mods/homedecor_modpack Jeija/minetest-mod-mesecons minetest-mods/moreblocks pilzadam/nether minetest-mods/crops minetest-mods/quartz minetest-mods/biome_lib oOChainLynxOo/hardenedclay; do\n")
+        md.write("for mod in LNJ2/carpet minetest-mods/signs_lib minetest-mods/xdecor minetest-mods/plantlife_modpack minetest-mods/homedecor_modpack Jeija/minetest-mod-mesecons minetest-mods/moreblocks pilzadam/nether minetest-mods/crops minetest-mods/quartz minetest-mods/biome_lib oOChainLynxOo/hardenedclay minetest-mods/lapis; do\n")
         md.write("    echo \"Fetching: $mod\"\n")
         md.write("    s=`basename $mod`\n")
         md.write("    curl -q -L -o master.zip https://codeload.github.com/$mod/zip/master\n")

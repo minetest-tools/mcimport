@@ -1,4 +1,5 @@
 import logging
+import re
 from itemstack import *
 #If you wish to add more entities, then...
 # To print out pre and post-conversion entity information uncomment line 237 (ish) in blocks.py (search for 'EntityInfo' to locate it)
@@ -113,6 +114,13 @@ def convert_cmdblock(te):
     c = c.replace("/tell ", "tell ")
     c = c.replace(" @p ", " @nearest ")
     c = c.replace(" @r ", " @random ")
+    m = re.search('\/time set (\d+)', c)
+    if m:
+        t = (int(m.group(1)) + 6000) % 24000
+        c = c.replace(m.group(0), "time %d" % t)
+        logger.info("replacing command: '%s' by '%s'", m.group(0), ("time %d" % t))
+    logger.info("command block: '%s'", c)
+
     fields = {"infotext" : "Command block, commands: \""+c+"\"",
               "commands": c,
               "owner": "no owner",
