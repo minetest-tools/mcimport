@@ -272,12 +272,12 @@ class MTBlock:
             elif blocks[i] == 31 and data[i] == 1:
                 content[i], param2[i] = conversion_table[931][random.randint(0,4)]
             # fix doors based on top/bottom bits
-            elif isdoor(blocks[i]) and data[i] < 8:
+            elif isdoor(blocks[i]) and data[i] < 8:  # bottom part
                 above = i + 256
                 if (above >= 4096):
                     logger.warning('Unable to fix door - top part is across block boundary! (%d >= 4096)' % above)
-                elif isdoor(blocks[above]) and data[above] < 7:
-                    logger.warning('Unable to fix door - bottom part on top of bottom part!')
+                elif isdoor(blocks[above]) and data[above] < 8:
+                    logger.warning('Unable to fix door - bottom part 0x%x on top of bottom part 0x%x!', data[i], data[above])
                 else:
                     d_right = data[above] & 1  # 0 - left, 1 - right
                     d_open = data[i] & 4       # 0 - closed, 1 - open
@@ -288,12 +288,12 @@ class MTBlock:
                     content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
-            elif isdoor(blocks[i]) and data[i] >= 8:
+            elif isdoor(blocks[i]) and data[i] >= 8:  # top part
                 below = i - 256
                 if (below < 0):
                     logger.warning('Unable to fix door - bottom part is across block boundary! (%d < 0)' % below)
                 elif isdoor(blocks[below]) and data[below] >= 8:
-                    logger.warning('Unable to fix door - top part below top part!')
+                    logger.warning('Unable to fix door - top part 0x%x below top part 0x%x!', data[i], data[below])
                 else:
                     d_right = data[i] & 1      # 0 - left, 1 - right
                     d_open = data[below] & 4   # 0 - closed, 1 - open
@@ -325,7 +325,7 @@ class MTBlock:
             if meta != None:
                 try:
                     p = meta[0]["_plant"]
-                    above = ((((y)&0xf)<<8)|((z&0xf)<<4)|(x&0xf)) + 256
+                    above = index + 256
                     if above < 4096 and blocks[above] == 0:
                         if p > 15:
                             content[above], param2[above] = conversion_table[941][p&0xf]
