@@ -146,8 +146,8 @@
 26 10	beds:bed_top 2
 26 11	beds:bed_top 3
 
-27	default:rail				// Powered rail
-28	default:rail				// Detector rail
+27	carts:powerrail				// Powered rail
+28	carts:rail				// Detector rail
 
 29 0	mesecons_pistons:piston_down_sticky_off
 29 1	mesecons_pistons:piston_up_sticky_off
@@ -347,7 +347,7 @@
 65 4	default:ladder 3
 65 5	default:ladder 2
 
-66	default:rail
+66	carts:rail
 
 67 0	stairs:stair_cobble 3
 67 1	stairs:stair_cobble 1
@@ -731,7 +731,7 @@
 	156 7	stairs:stair_quartzblock 22
 #endif
 
-157	default:rail					// activator rail
+157	carts:rail					// activator rail
 
 159 0	hardenedclay:hardened_clay_white
 159 1	hardenedclay:hardened_clay_orange
