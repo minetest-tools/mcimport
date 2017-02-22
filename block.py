@@ -137,12 +137,14 @@ class MCBlock:
 
         l3=[]
         for y in range(0,2047,128):
-            for z in range(0,127,8):
+            for z in range(120,-1,-8):
+            #for z in range(0,127,8):
                 locSt=y+z
                 l2 = l[locSt:locSt+8]
-                for i in reversed(l2):
-                    l3.append((i>>4)&0xf)
+                #for i in reversed(l2):
+                for i in l2:
                     l3.append(i&0xf)
+                    l3.append((i>>4)&0xf)
         return l3
 
 
@@ -154,12 +156,15 @@ class MCBlock:
         # NB data, skylight and blocklight are only 4bits of data
 
         # To convert minecraft to minetest coordinates you must invert the x order while leaving y and z the same
+        # 2017/02/14 : In order to have north on the good side, we'll rather invert Z axis
         l3=[]
         for y in range(0,4095,256):
-            for z in range(0,255,16):
+            #for z in range(0,255,16):
+            for z in range(240,-1,-16):
                 locSt=y+z
                 l2 = l[locSt:locSt+16]
-                for i in reversed(l2):
+                #for i in reversed(l2):
+                for i in l2:
                     l3.append(i)
         return l3
 
@@ -474,7 +479,7 @@ class MTMap:
             num_saved += 1
             cur.execute("INSERT INTO blocks VALUES (?,?)",
 #                        (self.getBlockAsInteger((-block.pos[0],block.pos[1],block.pos[2])),
-                        (self.getBlockAsInteger((block.pos[0],block.pos[1],block.pos[2])),
+                        (self.getBlockAsInteger((-block.pos[0],block.pos[1],-block.pos[2])),
                         block.save()))
 
         conn.commit()
