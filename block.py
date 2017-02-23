@@ -315,7 +315,7 @@ class MTBlock:
 
         for te in mcblock.tile_entities:
             id = te["id"]
-            x, y, z = te["x"], te["y"], te["z"]
+            x, y, z = -te["x"] - 1, te["y"], -te["z"] - 1
             index = ((y&0xf)<<8)|((z&0xf)<<4)|(x&0xf)
             f = te_convert.get(id.lower(), lambda arg: (None, None, None)) # Do nothing if not found
             block, p2, meta = f(te)
@@ -330,14 +330,10 @@ class MTBlock:
             if meta != None:
                 try:
                     p = meta[0]["_plant"]
-                    above = index + 256
-                    if above < 4096 and blocks[above] == 0:
-                        if p > 15:
-                            content[above], param2[above] = conversion_table[941][p&0xf]
-                        else:
-                            content[above], param2[above] = conversion_table[940][p]
+                    if p > 15:
+                        content[index], param2[index] = conversion_table[941][p&0xf]
                     else:
-                        logger.warning("can't pot plant in pot across block border, or not air")
+                        content[index], param2[index] = conversion_table[940][p]
                 except:
                     self.metadata[(x&0xf, y&0xf, z&0xf)] = meta
 

@@ -78,7 +78,7 @@ def convert_pot(te):
     # translation table for flowers
     # highly approximate, based on color only
     t = {
-        ":0" : 0, # air
+        "minecraft:air:0" : 0,
         "minecraft:brown_mushroom:0" : 1,
         "minecraft:red_mushroom:0" : 2,
         "minecraft:cactus:0" : 3,
@@ -128,9 +128,9 @@ def convert_cmdblock(te):
     }
     return None, None, (fields, {})
 
-te_convert = {"chest": convert_chest,
-              "sign": convert_sign,
-              "furnace": convert_furnace,
-              "music": convert_nodeblock,
-              "flowerpot": convert_pot,
-              "control": convert_cmdblock}
+te_convert = {"minecraft:chest": convert_chest,
+              "minecraft:sign": convert_sign,
+              "minecraft:furnace": convert_furnace,
+              "minecraft:music": convert_nodeblock,
+              "minecraft:flower_pot": convert_pot,
+              "minecraft:command_block": convert_cmdblock}

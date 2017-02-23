@@ -679,7 +679,7 @@
 139 1	default:mossycobble			// FIXME: you may not want this
 139	default:cobble				// FIXME: you may not want this
 
-140	homedecor:flower_pot_terracotta		// code will plant flowers on top
+140	flowerpot:empty		// code will plant right flower
 
 143 0	mesecons_button:button_off 8
 143 1	mesecons_button:button_off 3
@@ -883,33 +883,33 @@
 931 4	default:grass_5
 
 // flower pot plants
-940 0	air
-940 1	flowers:mushroom_brown
-940 2	flowers:mushroom_red
-940 3	default:cactus
-940 4	default:dry_shrub
-940 5	flowers:rose
-940 6	flowers:geranium
-940 7	flowers:viola
-940 8	flowers:geranium
-940 9	flowers:rose
-940 10	flowers:tulip
-940 11	flowers:dandelion_white
-940 12	flowers:viola
-940 13	flowers:dandelion_white
-940 14	default:sapling
-940 15	default:pine_sapling
+940 0	flowerpot:empty
+940 1	flowerpot:flowers_mushroom_brown
+940 2	flowerpot:flowers_mushroom_red
+940 3	flowerpot:default_cactus
+940 4	flowerpot:default_dry_shrub
+940 5	flowerpot:flowers_rose
+940 6	flowerpot:flowers_geranium
+940 7	flowerpot:flowers_viola
+940 8	flowerpot:flowers_geranium
+940 9	flowerpot:flowers_rose
+940 10	flowerpot:flowers_tulip
+940 11	flowerpot:flowers_dandelion_white
+940 12	flowerpot:flowers_viola
+940 13	flowerpot:flowers_dandelion_white
+940 14	flowerpot:default_sapling
+940 15	flowerpot:default_pine_sapling
 // overflow
 #ifdef MORETREES
 	941 0	moretrees:birch_sapling
 #else
-	941 0	default:aspen_sapling
+	941 0	flowerpot:default_aspen_sapling
 #endif
-941 1	default:junglesapling
-941 2	default:acacia_sapling
-941 3	default:sapling
-941 4	ferns:tree_fern_leaves
-941 5	flowers:dandelion_white
+941 1	flowerpot:default_junglesapling
+941 2	flowerpot:default_acacia_sapling
+941 3	flowerpot:default_sapling
+941 4	flowerpot:ferns_tree_fern_leaves
+941 5	flowerpot:flowers_dandelion_white
 
 964 0	doors:door_wood_b_1 1
 964 1	doors:door_wood_b_1 2
