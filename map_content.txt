@@ -269,9 +269,9 @@
 48	default:mossycobble
 49	default:obsidian
 
-50 0	default:torch 2
-50 1	default:torch 1
-50 2	default:torch 3
+50 0	default:torch 1
+50 1	default:torch 3
+50 2	default:torch 2
 50 3	default:torch 4
 50 4	default:torch 5
 50 5	default:torch 1
