@@ -131,6 +131,6 @@ def convert_cmdblock(te):
 te_convert = {"minecraft:chest": convert_chest,
               "minecraft:sign": convert_sign,
               "minecraft:furnace": convert_furnace,
-              "minecraft:music": convert_nodeblock,
+              "minecraft:noteblock": convert_nodeblock,
               "minecraft:flower_pot": convert_pot,
               "minecraft:command_block": convert_cmdblock}
