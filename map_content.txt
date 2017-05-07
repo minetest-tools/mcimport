@@ -1,4 +1,11 @@
-1	default:stone				// TODO: Stone type
+1 0	default:stone				// TODO: Stone type
+1 1	default:stone				// TODO: Stone type
+1 2	xdecor:desertstone_tile
+1 3	default:stone				// TODO: Stone type
+1 4	xdecor:hard_clay
+1 5	default:stone				// TODO: Stone type
+1 6	xdecor:stone_tile
+
 2	default:dirt_with_grass
 3	default:dirt
 4	default:cobble
@@ -132,7 +139,7 @@
 19	default:nyancat_rainbow			// Sponge
 20	default:glass
 21	lapis:stone_with_lapis
-22	lapis:lapis
+22	lapis:lapisblock
 24	default:sandstone			// TODO: Sandstone type
 
 25	mesecons_noteblock:noteblock		// FIXME: get pitch from entity data
@@ -300,7 +307,7 @@
 56	default:stone_with_diamond
 57	default:diamondblock
 
-58 0	default:wood				// cosmetically fits best.
+58	xdecor:workbench			// not an exact match
 
 59 0	farming:wheat_1
 59 1	farming:wheat_2
@@ -486,7 +493,7 @@
 97 5	default:cobble
 
 98 0,1,2	default:stonebrick
-98 3	moreblocks:circle_stone_bricks
+98 3	xdecor:stone_rune
 
 101	xpanes:bar_15				// FIXME: rotation, shape
 102	xpanes:pane_15				// FIXME: rotation, shape
@@ -558,6 +565,8 @@
 	114 7	stairs:stair_nether_brick 20
 #endif
 
+116	xdecor:enchantment_table
+
 118 0	xdecor:cauldron_empty
 118 1	xdecor:cauldron_empty		// FIXME: should be 1/3 full
 118 2	xdecor:cauldron_empty		// FIXME: should be 2/3 full
@@ -618,6 +627,11 @@
 
 129	default:stone				// FIXME: emerald ore
 
+130 2	xdecor:enderchest 0
+130 3	xdecor:enderchest 2
+130 4	xdecor:enderchest 1
+130 5	xdecor:enderchest 3
+
 #ifdef MORETREES
 	134 0	moretrees:stair_spruce_planks 1
 	134 1	moretrees:stair_spruce_planks 3
@@ -676,8 +690,8 @@
 
 137	mesecons_commandblock:commandblock_off	// FIXME: formspec
 
-139 1	default:mossycobble			// FIXME: you may not want this
-139	default:cobble				// FIXME: you may not want this
+139 1	walls:mossycobble
+139	walls:cobble
 
 140	flowerpot:empty		// code will plant right flower
 
