@@ -299,8 +299,8 @@
 54 0	default:chest 2				// map to default orientation == 2
 54 2	default:chest 2				// TODO: contents
 54 3	default:chest 0
-54 4	default:chest 3
-54 5	default:chest 1
+54 4	default:chest 1
+54 5	default:chest 3
 
 55	mesecons:wire_11111111_off		// FIXME: manually fit wires based on neighbors
 
@@ -500,22 +500,12 @@
 
 103	crops:melon				// rotates randomly
 
-106 0	vines:side_middle 1			// flat lying vine
-106 1	vines:side_middle 3			// 1 - south
-106 2	vines:side_middle 1			// 2 - west
-106 3	vines:side_middle 1			// 4 - north
-106 4	vines:side_middle 4			// 8 - east
-106 5	vines:side_middle 4			// all other values are randomly
-106 6	vines:side_middle 3			// picked to distribute orientation
-106 7	vines:side_middle 4			// since we can't have vines occupy
-106 8	vines:side_middle 2			// multiple directions like in MC
-106 9	vines:side_middle 5
-106 10	vines:side_middle 3
-106 11	vines:side_middle 2
-106 12	vines:side_middle 4
-106 13	vines:side_middle 5
-106 14	vines:side_middle 3
-106 15	vines:side_middle 2
+
+106 1	vines:side_middle 5			//Ignore errors about other 106 #'s.
+106 2	vines:side_middle 3			//The bits are toggleable; meaning you don't need both.
+106 4	vines:side_middle 4			//These 4 will cover all bases(N,E,S,W).
+106 8	vines:side_middle 2			
+
 
 107 0	doors:gate_wood_closed 2
 107 1	doors:gate_wood_closed 0
@@ -993,3 +983,183 @@
 967 14	doors:door_steel_t_1 2
 967 15	doors:door_steel_t_1 3
 
+
+
+//spruce
+968 0	doors:door_wood_b_1 1
+968 1	doors:door_wood_b_1 2
+968 2	doors:door_wood_b_1 3
+968 3	doors:door_wood_b_1 0
+968 4	doors:door_wood_b_2 2
+968 5	doors:door_wood_b_2 3
+968 6	doors:door_wood_b_2 0
+968 7	doors:door_wood_b_2 1
+968 8	doors:door_wood_b_2 1
+968 9	doors:door_wood_b_2 2
+968 10	doors:door_wood_b_2 3
+968 11	doors:door_wood_b_2 0
+968 12	doors:door_wood_b_1 0
+968 13	doors:door_wood_b_1 1
+968 14	doors:door_wood_b_1 2
+968 15	doors:door_wood_b_1 3
+
+969 0	doors:door_wood_t_1 1
+969 1	doors:door_wood_t_1 2
+969 2	doors:door_wood_t_1 3
+969 3	doors:door_wood_t_1 0
+969 4	doors:door_wood_t_2 2
+969 5	doors:door_wood_t_2 3
+969 6	doors:door_wood_t_2 0
+969 7	doors:door_wood_t_2 1
+969 8	doors:door_wood_t_2 1
+969 9	doors:door_wood_t_2 2
+969 10	doors:door_wood_t_2 3
+969 11	doors:door_wood_t_2 0
+969 12	doors:door_wood_t_1 0
+969 13	doors:door_wood_t_1 1
+969 14	doors:door_wood_t_1 2
+969 15	doors:door_wood_t_1 3
+
+
+//birch
+970 0	doors:door_wood_b_1 1
+970 1	doors:door_wood_b_1 2
+970 2	doors:door_wood_b_1 3
+970 3	doors:door_wood_b_1 0
+970 4	doors:door_wood_b_2 2
+970 5	doors:door_wood_b_2 3
+970 6	doors:door_wood_b_2 0
+970 7	doors:door_wood_b_2 1
+970 8	doors:door_wood_b_2 1
+970 9	doors:door_wood_b_2 2
+970 10	doors:door_wood_b_2 3
+970 11	doors:door_wood_b_2 0
+970 12	doors:door_wood_b_1 0
+970 13	doors:door_wood_b_1 1
+970 14	doors:door_wood_b_1 2
+970 15	doors:door_wood_b_1 3
+
+971 0	doors:door_wood_t_1 1
+971 1	doors:door_wood_t_1 2
+971 2	doors:door_wood_t_1 3
+971 3	doors:door_wood_t_1 0
+971 4	doors:door_wood_t_2 2
+971 5	doors:door_wood_t_2 3
+971 6	doors:door_wood_t_2 0
+971 7	doors:door_wood_t_2 1
+971 8	doors:door_wood_t_2 1
+971 9	doors:door_wood_t_2 2
+971 10	doors:door_wood_t_2 3
+971 11	doors:door_wood_t_2 0
+971 12	doors:door_wood_t_1 0
+971 13	doors:door_wood_t_1 1
+971 14	doors:door_wood_t_1 2
+971 15	doors:door_wood_t_1 3
+
+
+//jungle
+972 0	doors:door_wood_b_1 1
+972 1	doors:door_wood_b_1 2
+972 2	doors:door_wood_b_1 3
+972 3	doors:door_wood_b_1 0
+972 4	doors:door_wood_b_2 2
+972 5	doors:door_wood_b_2 3
+972 6	doors:door_wood_b_2 0
+972 7	doors:door_wood_b_2 1
+972 8	doors:door_wood_b_2 1
+972 9	doors:door_wood_b_2 2
+972 10	doors:door_wood_b_2 3
+972 11	doors:door_wood_b_2 0
+972 12	doors:door_wood_b_1 0
+972 13	doors:door_wood_b_1 1
+972 14	doors:door_wood_b_1 2
+972 15	doors:door_wood_b_1 3
+
+973 0	doors:door_wood_t_1 1
+973 1	doors:door_wood_t_1 2
+973 2	doors:door_wood_t_1 3
+973 3	doors:door_wood_t_1 0
+973 4	doors:door_wood_t_2 2
+973 5	doors:door_wood_t_2 3
+973 6	doors:door_wood_t_2 0
+973 7	doors:door_wood_t_2 1
+973 8	doors:door_wood_t_2 1
+973 9	doors:door_wood_t_2 2
+973 10	doors:door_wood_t_2 3
+973 11	doors:door_wood_t_2 0
+973 12	doors:door_wood_t_1 0
+973 13	doors:door_wood_t_1 1
+973 14	doors:door_wood_t_1 2
+973 15	doors:door_wood_t_1 3
+
+
+//acacia
+974 0	doors:door_wood_b_1 1
+974 1	doors:door_wood_b_1 2
+974 2	doors:door_wood_b_1 3
+974 3	doors:door_wood_b_1 0
+974 4	doors:door_wood_b_2 2
+974 5	doors:door_wood_b_2 3
+974 6	doors:door_wood_b_2 0
+974 7	doors:door_wood_b_2 1
+974 8	doors:door_wood_b_2 1
+974 9	doors:door_wood_b_2 2
+974 10	doors:door_wood_b_2 3
+974 11	doors:door_wood_b_2 0
+974 12	doors:door_wood_b_1 0
+974 13	doors:door_wood_b_1 1
+974 14	doors:door_wood_b_1 2
+974 15	doors:door_wood_b_1 3
+
+975 0	doors:door_wood_t_1 1
+975 1	doors:door_wood_t_1 2
+975 2	doors:door_wood_t_1 3
+975 3	doors:door_wood_t_1 0
+975 4	doors:door_wood_t_2 2
+975 5	doors:door_wood_t_2 3
+975 6	doors:door_wood_t_2 0
+975 7	doors:door_wood_t_2 1
+975 8	doors:door_wood_t_2 1
+975 9	doors:door_wood_t_2 2
+975 10	doors:door_wood_t_2 3
+975 11	doors:door_wood_t_2 0
+975 12	doors:door_wood_t_1 0
+975 13	doors:door_wood_t_1 1
+975 14	doors:door_wood_t_1 2
+975 15	doors:door_wood_t_1 3
+
+
+//dark oak
+976 0	doors:door_wood_b_1 1
+976 1	doors:door_wood_b_1 2
+976 2	doors:door_wood_b_1 3
+976 3	doors:door_wood_b_1 0
+976 4	doors:door_wood_b_2 2
+976 5	doors:door_wood_b_2 3
+976 6	doors:door_wood_b_2 0
+976 7	doors:door_wood_b_2 1
+976 8	doors:door_wood_b_2 1
+976 9	doors:door_wood_b_2 2
+976 10	doors:door_wood_b_2 3
+976 11	doors:door_wood_b_2 0
+976 12	doors:door_wood_b_1 0
+976 13	doors:door_wood_b_1 1
+976 14	doors:door_wood_b_1 2
+976 15	doors:door_wood_b_1 3
+
+977 0	doors:door_wood_t_1 1
+977 1	doors:door_wood_t_1 2
+977 2	doors:door_wood_t_1 3
+977 3	doors:door_wood_t_1 0
+977 4	doors:door_wood_t_2 2
+977 5	doors:door_wood_t_2 3
+977 6	doors:door_wood_t_2 0
+977 7	doors:door_wood_t_2 1
+977 8	doors:door_wood_t_2 1
+977 9	doors:door_wood_t_2 2
+977 10	doors:door_wood_t_2 3
+977 11	doors:door_wood_t_2 0
+977 12	doors:door_wood_t_1 0
+977 13	doors:door_wood_t_1 1
+977 14	doors:door_wood_t_1 2
+977 15	doors:door_wood_t_1 3
