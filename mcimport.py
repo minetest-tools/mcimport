@@ -56,7 +56,7 @@ if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
         md.write("#!/bin/sh\n")
         md.write("# run this script to automatically get all the required mods\n")
         md.write("cd worldmods\n")
-        md.write("for mod in LNJ2/carpet minetest-mods/signs_lib minetest-mods/xdecor minetest-mods/plantlife_modpack Jeija/minetest-mod-mesecons pilzadam/nether minetest-mods/crops minetest-mods/quartz minetest-mods/biome_lib oOChainLynxOo/hardenedclay minetest-mods/lapis minetest-mods/flowerpot MysticTempest/doors; do\n")
+        md.write("for mod in LNJ2/carpet minetest-mods/signs_lib minetest-mods/xdecor minetest-mods/plantlife_modpack Jeija/minetest-mod-mesecons pilzadam/nether minetest-mods/crops minetest-mods/quartz minetest-mods/biome_lib oOChainLynxOo/hardenedclay minetest-mods/lapis minetest-mods/flowerpot; do\n")
         md.write("    echo \"Fetching: $mod\"\n")
         md.write("    s=`basename $mod`\n")
         md.write("    curl -q -L -o master.zip https://codeload.github.com/$mod/zip/master\n")

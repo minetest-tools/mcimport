@@ -290,16 +290,6 @@ class MTBlock:
                     alt = 964
                     if blocks[i] == 71:
                         alt = 966
-                    if blocks[i] == 193:
-                        alt = 968
-                    if blocks[i] == 194:
-                        alt = 970
-                    if blocks[i] == 195:
-                        alt = 972
-                    if blocks[i] == 196:
-                        alt = 974
-                    if blocks[i] == 197:
-                        alt = 976
                     content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
@@ -316,16 +306,6 @@ class MTBlock:
                     alt = 965
                     if blocks[i] == 71:
                         alt = 967
-                    if blocks[i] == 193:
-                        alt = 969
-                    if blocks[i] == 194:
-                        alt = 971
-                    if blocks[i] == 195:
-                        alt = 973
-                    if blocks[i] == 196:
-                        alt = 975
-                    if blocks[i] == 197:
-                        alt = 977
                     content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
