@@ -293,7 +293,7 @@ class MTBlock:
                     content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
-            
+
             elif content[i]==0 and param2[i]==0 and not (blocks[i]==0):
                 logger.warning('Unknown Minecraft Block:' + str(mcblockidentifier[i]))     # This is the minecraft ID#/data as listed in map_content.txt
 

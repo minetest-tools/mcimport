@@ -16,7 +16,7 @@
 
 //    ({tab})MCID({space}MCData1(,MCData2(...))){tab}MTnodename({space}param2){tab}<==Everything beyond this tab is ignored.
 //Tab characters at the beginning of the line are ignored.
-//It is critical that tabs and spaces not be mixed up or the line won't be recognised correctly, 
+//It is critical that tabs and spaces not be mixed up or the line won't be recognised correctly,
 //and the parsing may fail to progress beyond that point.
 
 // MCID and MCData must be separated by a space/s.
@@ -27,7 +27,7 @@
 // MTnodename and param2 are separated by a space/s.
 //If MCData1 is omitted, the line will match MCIDs with MCData values from 0-15 (and any subsequent entries will be ignored)
 // Any data following '//' is parsed and not processed
-// preprocessor commands #if {NAME}, #else and #endif are recognised and intervening lines will be parsed 
+// preprocessor commands #if {NAME}, #else and #endif are recognised and intervening lines will be parsed
 //       out or retained dependant on flags in the content.read_content call
 
 // Extra reference documentation:
@@ -37,26 +37,26 @@
 
 //===============================================================================
 // Minetest uses these values for Wall-Mounted nodes(eg. torches, vines, etc..).
-// Note that for Y values; it equates to which half of an air node it's in. 
+// Note that for Y values; it equates to which half of an air node it's in.
 // Example:
-// 	Ladders attached to the bottom of blocks are in the upper half of an air node. Hence are, 0.
-// 	Ladders attached to the top of blocks are in the lower half of an air node. Hence are, 1.
-//param2 	direction
-//0 		//U	+Y
-//1 		//D	-Y
-//4 		//N	+Z
-//2 		//E	+x
-//5 		//S	-Z
-//3 		//W	-X
+//	Ladders attached to the bottom of blocks are in the upper half of an air node. Hence are, 0.
+//	Ladders attached to the top of blocks are in the lower half of an air node. Hence are, 1.
+//param2	direction
+//0		//U	+Y
+//1		//D	-Y
+//4		//N	+Z
+//2		//E	+x
+//5		//S	-Z
+//3		//W	-X
 
 
 //--------------------------------------------------------------------------------
 // Minetest uses these values for nodebox face directions(eg. chests, Jack O'Lanterns, etc..).
 // Values range from 0-23, and involve multiple vectors/rotations.
-// A node's param2 value direction is dependent on a player's face direction. 
-// 	(ie. A player faces North, but a Jack O'Lantern faces South towards the player with a param2 value of '0'.)
+// A node's param2 value direction is dependent on a player's face direction.
+//	(ie. A player faces North, but a Jack O'Lantern faces South towards the player with a param2 value of '0'.)
 //Default values for a node; vector pointing upwards:
-//param2 	direction
+//param2	direction
 //0			//N
 //1			//E
 //2			//S
@@ -646,7 +646,7 @@
 98 0,1,2	default:stonebrick
 98 3	xdecor:stone_rune
 
-101	xpanes:bar				
+101	xpanes:bar
 102	xpanes:pane_15				// FIXME: rotation, shape
 
 103	crops:melon				// rotates randomly
@@ -654,7 +654,7 @@
 106 1	vines:side_middle 5			//Ignore errors about other 106 #'s.
 106 2	vines:side_middle 3			//The bits are toggleable; meaning you don't need both.
 106 4	vines:side_middle 4			//These 4 will cover all bases(N,E,S,W).
-106 8	vines:side_middle 2	
+106 8	vines:side_middle 2
 
 107 0	doors:gate_wood_closed 2
 107 1	doors:gate_wood_closed 3
@@ -1139,6 +1139,3 @@
 966 13	doors:door_steel_a 1
 966 14	doors:door_steel_a 2
 966 15	doors:door_steel_a 3
-
-
-
