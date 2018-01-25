@@ -182,10 +182,12 @@
 	6 13	default:sapling
 #endif
 
-7	default:stone				// Bedrock
+7	bedrock:bedrock		// Bedrock
 
 // blocks 8, 9, 10 and 11 (water and lava) are handled in code.
+8	default:water_source
 9	default:water_source
+10	default:lava_source
 11	default:lava_source
 
 12 0	default:sand
