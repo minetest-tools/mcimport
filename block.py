@@ -53,7 +53,7 @@ class MCMap:
                 if chunk_ix > 0:
                     td = time.time() - t0                     # wall clock time spent
                     tr = ((num_chunks * td) / chunk_ix) - td  # time remaining
-                    eta = time.strftime("%H:%M:%S", time.gmtime(tr))
+                    eta = "{:d}:{:02d}:{:02d}".format(int(tr/3600), int(tr/60) %60, int(tr) % 60)
                 else:
                     eta = "??:??:??"
                 print('Processed %d / %d chunks, ETA %s h:m:s' % (chunk_ix, num_chunks, eta), end='\r')
