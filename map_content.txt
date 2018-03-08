@@ -268,7 +268,7 @@
 
 #endif
 
-19	default:nyancat_rainbow			// Sponge
+//19	default:nyancat_rainbow			// was removed from mtg
 20	default:glass
 21	lapis:stone_with_lapis
 22	lapis:lapisblock
