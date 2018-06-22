@@ -63,6 +63,7 @@ if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
         md.write("    unzip -qq master.zip\n")
         md.write("    rm master.zip\n")
         md.write("    mv $s-master $s\n")
+        md.write("    mv minetest_bedrock bedrock\n")
         md.write("done\n")
         md.write("for ex in plantlife_modpack/dryplants plantlife_modpack/along_shore plantlife_modpack/molehills plantlife_modpack/woodsoils plantlife_modpack/bushes plantlife_modpack/bushes_classic plantlife_modpack/youngtrees plantlife_modpack/3dmushrooms plantlife_modpack/cavestuff plantlife_modpack/poisonivy plantlife_modpack/trunks; do\n");
         md.write("    echo \"Pruning: $ex\"\n")
