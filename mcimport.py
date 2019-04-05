@@ -53,22 +53,49 @@ if not os.path.exists(sys.argv[2]+"/worldmods/mcimport/init.lua"):
 if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
     path = sys.argv[2]+"/get-mods.sh"
     with open(path, "w") as md:
-        md.write("#!/bin/sh\n")
-        md.write("# run this script to automatically get all the required mods\n")
-        md.write("cd worldmods\n")
-        md.write("for mod in LNJ2/carpet minetest-mods/signs_lib minetest-mods/xdecor minetest-mods/plantlife_modpack Jeija/minetest-mod-mesecons pilzadam/nether minetest-mods/crops minetest-mods/quartz minetest-mods/biome_lib oOChainLynxOo/hardenedclay minetest-mods/lapis minetest-mods/flowerpot ShadowNinja/minetest_bedrock; do\n")
-        md.write("    echo \"Fetching: $mod\"\n")
-        md.write("    s=`basename $mod`\n")
-        md.write("    curl -q -L -o master.zip https://codeload.github.com/$mod/zip/master\n")
-        md.write("    unzip -qq master.zip\n")
-        md.write("    rm master.zip\n")
-        md.write("    mv $s-master $s\n")
-        md.write("    mv minetest_bedrock bedrock\n")
-        md.write("done\n")
-        md.write("for ex in plantlife_modpack/dryplants plantlife_modpack/along_shore plantlife_modpack/molehills plantlife_modpack/woodsoils plantlife_modpack/bushes plantlife_modpack/bushes_classic plantlife_modpack/youngtrees plantlife_modpack/3dmushrooms plantlife_modpack/cavestuff plantlife_modpack/poisonivy plantlife_modpack/trunks; do\n");
-        md.write("    echo \"Pruning: $ex\"\n")
-        md.write("    rm -rf $ex\n")
-        md.write("done\n")
+        md.write('''\
+#!/bin/sh
+
+# run this script to automatically get all the required mods
+
+mods=(
+    https://codeload.github.com/minetest-mods/mesecons/zip/master,mesecons
+    https://codeload.github.com/LNJ2/carpet/zip/master,carpet
+    https://codeload.github.com/minetest-mods/crops/zip/master,crops
+    https://codeload.github.com/minetest-mods/flowerpot/zip/master,flowerpot
+    https://codeload.github.com/minetest-mods/lapis/zip/master,lapis
+    https://codeload.github.com/minetest-mods/quartz/zip/master,quartz
+    https://codeload.github.com/minetest-mods/xdecor/zip/master,xdecor
+    https://codeload.github.com/oOChainLynxOo/hardenedclay/zip/master,hardenedclay
+    https://codeload.github.com/minetest-mods/nether/zip/master,nether
+    https://codeload.github.com/ShadowNinja/minetest_bedrock/zip/master,minetest_bedrock
+    https://gitlab.com/VanessaE/basic_materials/-/archive/master/basic_materials-master.zip,basic_materials
+    https://gitlab.com/VanessaE/biome_lib/-/archive/master/biome_lib-master.zip,biome_lib
+    https://gitlab.com/VanessaE/plantlife_modpack/-/archive/master/plantlife_modpack-master.zip,plantlife_modpack
+    https://gitlab.com/VanessaE/signs_lib/-/archive/master/signs_lib-master.zip,signs_lib
+)
+
+cd worldmods
+
+for item in ${mods[@]} ; do
+(
+    set -e
+    url=$(echo $item | cut -d, -f1)
+    mod=$(echo $item | cut -d, -f2)
+    echo "Fetching: $mod"
+    curl -q -L -o $mod.zip $url
+    unzip -qq $mod.zip
+    rm $mod.zip
+    mv $mod-master $mod
+)
+done
+
+# remove unneeded/unwanted submods
+for ex in plantlife_modpack/dryplants plantlife_modpack/along_shore plantlife_modpack/molehills plantlife_modpack/woodsoils plantlife_modpack/bushes plantlife_modpack/bushes_classic plantlife_modpack/youngtrees plantlife_modpack/3dmushrooms plantlife_modpack/cavestuff plantlife_modpack/poisonivy plantlife_modpack/trunks; do
+    echo "Pruning: $ex"
+    rm -rf $ex
+done
+''')
     st = os.stat(path)
     os.chmod(path, st.st_mode | stat.S_IXUSR)
 
