@@ -79,7 +79,6 @@ cd worldmods
 
 for item in ${mods[@]} ; do
 (
-    set -e
     url=$(echo $item | cut -d, -f1)
     mod=$(echo $item | cut -d, -f2)
     echo "Fetching: $mod"
@@ -87,6 +86,7 @@ for item in ${mods[@]} ; do
     unzip -qq $mod.zip
     rm $mod.zip
     mv $mod-master $mod
+    mv minetest_bedrock bedrock
 )
 done
 
