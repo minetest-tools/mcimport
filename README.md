@@ -48,8 +48,15 @@ not critical to users, and left out.
 - hoppers, dispensers, droppers
 - entities
 
+# Usage:
 
-License:
+You'll need to use a Linux system and have python installed. The
+easiest way to invoke the converter is to run the `mcimport.sh`
+script without any parameters. This takes you through a bunch of
+screens that you can use to select a world and configure a few
+settings.
+
+# License:
 
 Copyright (C) 2016 - Nore, dgm555, sofar and others
 
