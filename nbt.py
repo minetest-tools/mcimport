@@ -17,6 +17,11 @@ def _read_tag(bytes, index, tag):
         value = list(struct.unpack(">"+str(plen)+"i", bytes[index:index+4*plen]))
         index += 4*plen
         return value, index
+    elif tag == 12:
+        plen, index = _read_tag(bytes, index, 3)
+        value = list(struct.unpack(">"+str(plen)+"q", bytes[index:index+8*plen]))
+        index += 8*plen
+        return value, index
     elif tag == 8:
         plen, index = _read_tag(bytes, index, 2)
         value = bytes[index:index+plen].decode('utf-8')
@@ -33,6 +38,8 @@ def _read_tag(bytes, index, tag):
         return value, index
     elif tag == 10:
         return _read_named(bytes, index)
+    else:
+        raise Exception("Unknown tag: " + str(tag))
 
 def _read_named(bytes, index):
     d = {}
