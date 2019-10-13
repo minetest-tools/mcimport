@@ -1,143 +1,20 @@
-// Documentation originally derived from: https://github.com/dgm3333/mcblocks/blob/master/map_content.txt
-// Updated by MysticTempest
-//
-// The format of this file is:
-//MCID data	modname:blockname param2
-//17 0	mcblocks:Oak_Wood 4		//U
-
-// or with optional preprocessor commands
-//#if MORETREES
-//	18 4,12	default:leaves 1
-//#else
-//	17	default:tree	// TODO: Trunk orientation
-//#endif
-
-// !!!! WHITESPACE TYPE (space or tab) IS CRITICAL:- !!!!
-
-//    ({tab})MCID({space}MCData1(,MCData2(...))){tab}MTnodename({space}param2){tab}<==Everything beyond this tab is ignored.
-//Tab characters at the beginning of the line are ignored.
-//It is critical that tabs and spaces not be mixed up or the line won't be recognised correctly,
-//and the parsing may fail to progress beyond that point.
-
-// MCID and MCData must be separated by a space/s.
-// MCData1,2,etc must be separated by commas but no spaces.
-// There must also be no spaces before MCID or between MCData and the following tab.
-// MCData must not be >=16, or the remainder of the file will be totally ignored.
-// MCID/Data and MTnodename are separated by tabs.
-// MTnodename and param2 are separated by a space/s.
-//If MCData1 is omitted, the line will match MCIDs with MCData values from 0-15 (and any subsequent entries will be ignored)
-// Any data following '//' is parsed and not processed
-// preprocessor commands #if {NAME}, #else and #endif are recognised and intervening lines will be parsed
-//       out or retained dependant on flags in the content.read_content call
-
-// Extra reference documentation:
-//https://github.com/minetest/minetest/blob/2992b774fe65410a8acd3d06ae82dcd1eb260413/doc/lua_api.txt#L905
-//http://dev.minetest.net/minetest.dir_to_wallmounted
-//http://dev.minetest.net/minetest.dir_to_facedir
-
-//===============================================================================
-// Minetest uses these values for Wall-Mounted nodes(eg. torches, vines, etc..).
-// Note that for Y values; it equates to which half of an air node it's in.
-// Example:
-//	Ladders attached to the bottom of blocks are in the upper half of an air node. Hence are, 0.
-//	Ladders attached to the top of blocks are in the lower half of an air node. Hence are, 1.
-//param2	direction
-//0		//U	+Y
-//1		//D	-Y
-//4		//N	+Z
-//2		//E	+x
-//5		//S	-Z
-//3		//W	-X
-
-
-//--------------------------------------------------------------------------------
-// Minetest uses these values for nodebox face directions(eg. chests, Jack O'Lanterns, etc..).
-// Values range from 0-23, and involve multiple vectors/rotations.
-// A node's param2 value direction is dependent on a player's face direction.
-//	(ie. A player faces North, but a Jack O'Lantern faces South towards the player with a param2 value of '0'.)
-//Default values for a node; vector pointing upwards:
-//param2	direction
-//0			//N
-//1			//E
-//2			//S
-//3			//W
-
-//------------------------
-//Vectors:
-//------------------------
-//Vector points Up; rotation is around the North/South/East/West faces.
-//0,1,2,3
-//Vector points North; rotation is around the East/West/Up/Down faces.
-//4,5,6,7
-//Vector points South; rotation is around the East/West/Up/Down faces.
-//8,9,10,11
-//Vector points East; rotation is around the North/South/Up/Down faces.
-//12,13,14,15
-//Vector points West; rotation is around the North/South/Up/Down faces.
-//16,17,18,19
-//Vector points Down; rotation is around the North/South/East/West faces.
-//20,21,22,23
-//------------------------
-//Faces:
-//------------------------
-//Player faces Down, node(eg. Jack O'Lantern) faces Upwards.
-//0 degree: 4
-//90 degree: 13
-//180 degree: 10
-//270 degree: 19
-
-//Player faces Up, Jack O'Lantern faces Downwards.
-//0 degree: 8
-//90 degree: 15
-//180 degree: 6
-//270 degree: 17
-
-//Player faces North, Jack O'Lantern faces South.
-//0 degree: 0
-//90 degree: 12
-//180 degree: 20
-//270 degree: 16
-
-//Player faces East, Jack O'Lantern faces West.
-//0 degree: 1
-//90 degree: 9
-//180 degree: 23
-//270 degree: 5
-
-//Player faces South, Jack O'Lantern faces North.
-//0 degree: 2
-//90 degree: 18
-//180 degree: 22
-//270 degree: 14
-
-//Player faces West, Jack O'Lantern faces East.
-//0 degree: 3
-//90 degree: 7
-//180 degree: 21
-//270 degree: 11
-
-
-//--------------------------------------------------------------------------------
-//Lastly, it appears some Minecraft Blockstates can be converted to data values.
-//At least blockstates for axes(eg. Purpur Pillar, Bone Block, etc..).
-//Example:
-//Purpur pillar; default & on its side facing N,E,S,W; blockstate translation for X,Y,Z axes.
-//202 0	mcl_end:purpur_pillar    //Default, vector pointing upward, with a MC blockstate for Y
-//202 4	mcl_end:purpur_pillar 12 //East,West pointing vectors with a MC blockstate for X
-//202 8	mcl_end:purpur_pillar 6  //North,South pointing vectors with a MC blockstate for Z
-
+// For documentation see - Map_Content_Documentation.txt
 //=====================================================================================
 
-1 0	default:stone				// TODO: Stone type
-1 1	default:stone				// TODO: Stone type
-1 2	xdecor:desertstone_tile
-1 3	default:stone				// TODO: Stone type
-1 4	xdecor:hard_clay
-1 5	default:stone				// TODO: Stone type
-1 6	xdecor:stone_tile
+
+
+1 0	default:stone				
+1 1	default:stone				// granite
+1 2	xdecor:desertstone_tile		// polished granite
+1 3	default:stone				// diorite
+1 4	xdecor:hard_clay			// polished diorite
+1 5	default:stone				// andesite
+1 6	xdecor:stone_tile			// polished andesite
 
 2	default:dirt_with_grass
 3	default:dirt
+//3 1	coarse dirt
+//3 2	podzol
 4	default:cobble
 
 #ifdef MORETREES
@@ -268,11 +145,16 @@
 
 #endif
 
-//19	default:nyancat_rainbow			// was removed from mtg
+//19 0	sponge
+//19 1	wet sponge
 20	default:glass
 21	lapis:stone_with_lapis
 22	lapis:lapisblock
-24	default:sandstone			// TODO: Sandstone type
+//23 0-13	dispenser
+
+24	default:sandstone			
+//24 1	carved sandstone
+//24 2	smooth sandstone
 
 25	mesecons_noteblock:noteblock		// FIXME: get pitch from entity data
 
@@ -285,8 +167,8 @@
 26 10	beds:bed_top 0
 26 11	beds:bed_top 1
 
-27	carts:powerrail				// Powered rail
-28	carts:rail				// Detector rail
+27	carts:powerrail				// Powered rail 0-13
+28	carts:rail				// Detector rail 0-13
 
 //sticky piston
 29 0	mesecons_pistons:piston_sticky_off 8
@@ -303,10 +185,11 @@
 29 13	mesecons_pistons:piston_sticky_on 3
 
 30	xdecor:cobweb
+
 31 0	default:dry_shrub
 31 2	ferns:tree_fern_leaves
-
 31 1	default:grass_5				// code randomly changes height
+
 32	default:dry_shrub
 
 //normal piston
@@ -467,7 +350,7 @@
 59 7	farming:wheat_8
 
 60 0	farming:soil
-60	farming:soil_wet
+60	farming:soil_wet		// 1-7
 
 61 2	default:furnace 2			// TODO: contents
 61 3	default:furnace 0
@@ -542,7 +425,7 @@
 72	mesecons_pressureplates:pressure_plate_wood_off
 
 73	default:stone_with_mese			// Redstone ore
-74	default:stone_with_mese
+74	default:stone_with_mese			// Redstone ore lit
 
 75 1	mesecons_torch:mesecon_torch_off 3
 75 2	mesecons_torch:mesecon_torch_off 2
@@ -563,14 +446,14 @@
 77 4	mesecons_button:button_off 2
 77 5	mesecons_button:button_off 10
 
-78	default:snow				// TODO: snow height
+78	default:snow				// TODO: snow height 0-7
 
 79	default:ice
 80	default:snowblock
 81	default:cactus
 82	default:clay
 83	default:papyrus
-
+//84 jukebox
 85	default:fence_wood
 
 86	crops:pumpkin				// rotates randomly
@@ -584,6 +467,8 @@
 	90 1	nether:portal 12
 	90 2	nether:portal 1
 #endif
+
+//92 cake 0-6
 
 93 0	mesecons_delayer:delayer_off_1 3
 93 1	mesecons_delayer:delayer_off_1 0
@@ -619,6 +504,8 @@
 94 14	mesecons_delayer:delayer_on_4 1
 94 15	mesecons_delayer:delayer_on_4 2
 
+//95 Stained Glass 0-15
+
 96 0	doors:trapdoor 2
 96 1	doors:trapdoor 0
 96 2	doors:trapdoor 1
@@ -636,20 +523,27 @@
 96 14	doors:trapdoor_open 23
 96 15	doors:trapdoor_open 21
 
-97 0	default:stone				// Silverfish
+// Silverfish
+97 0	default:stone				
 97 1	default:cobble
 97 2	default:stonebrick
-97 3	default:cobble
-97 4	default:cobble
-97 5	default:cobble
+97 3	default:cobble				//mossy stonebrick
+97 4	default:cobble				//cracked stonebrick
+97 5	xdecor:stone_rune			//carved stonebrick
 
 98 0,1,2	default:stonebrick
 98 3	xdecor:stone_rune
+
+//99 0-15 giant brown mushroom
+//100 0-15 giant red mushroom
 
 101	xpanes:bar
 102	xpanes:pane_15				// FIXME: rotation, shape
 
 103	crops:melon				// rotates randomly
+
+//104 0-7 pumpkin stem stages
+//105 0-7 melon stem stages
 
 106 1	vines:side_middle 5			//Ignore errors about other 106 #'s.
 106 2	vines:side_middle 3			//The bits are toggleable; meaning you don't need both.
@@ -704,12 +598,20 @@
 	114 7	stairs:stair_nether_brick 20
 #endif
 
+//115 0-3 nether wart
+
 116	xdecor:enchantment_table
+//117 0	brewing stand
 
 118 0	xdecor:cauldron_empty
 118 1	xdecor:cauldron_empty		// FIXME: should be 1/3 full
 118 2	xdecor:cauldron_empty		// FIXME: should be 2/3 full
 118 3	xdecor:cauldron_empty		// FIXME: should be full
+
+//119 0	end portal
+//120 0-7 end portal frame block
+//121 0	end stone
+//122 0	dragon egg
 
 123	mesecons_lightstone:lightstone_gray_off
 124	mesecons_lightstone:lightstone_gray_on
@@ -755,6 +657,8 @@
 	126 13	stairs:slab_wood 22
 #endif
 
+//127 cocoa pod
+
 128 0	stairs:stair_sandstone 1
 128 1	stairs:stair_sandstone 3
 128 2	stairs:stair_sandstone 2
@@ -770,6 +674,10 @@
 130 3	xdecor:enderchest 0
 130 4	xdecor:enderchest 1
 130 5	xdecor:enderchest 3
+
+//131 tripwire hook
+//132 tripwire
+//133 0	emerald block
 
 #ifdef MORETREES
 	134 0	moretrees:stair_spruce_planks 1
@@ -829,10 +737,15 @@
 
 137	mesecons_commandblock:commandblock_off	// FIXME: formspec
 
+//138 beacon
+
 139 1	walls:mossycobble
 139	walls:cobble
 
 140	flowerpot:empty		// code will plant right flower
+
+//141 0-7 carrot growth stages
+//142 0-7 potato growth stages
 
 143 0	mesecons_button:button_off 8
 143 1	mesecons_button:button_off 3
@@ -841,10 +754,17 @@
 143 4	mesecons_button:button_off 2
 143 5	mesecons_button:button_off 10
 
+//144 mob heads
+//145 0-11 anvils
+
 146 2	default:chest 2				// Trapped chest
 146 3	default:chest 0
 146 4	default:chest 1
 146 5	default:chest 3
+
+//147 0	 weighted pressure plate (light)
+//148 0  weighted pressure plate (heavy)
+//149 0-15 comparator
 
 151 0	mesecons_solarpanel:solar_panel_off 1
 151 1	mesecons_solarpanel:solar_panel_on 1
@@ -864,6 +784,7 @@
 151 15	mesecons_solarpanel:solar_panel_on 1
 
 152	default:mese
+//154 hoppers
 
 #ifdef QUARTZ
 	153	quartz:quartz_ore
@@ -885,6 +806,7 @@
 #endif
 
 157	carts:rail					// activator rail
+//158 0-13 droppers
 
 159 0	hardenedclay:hardened_clay_white
 159 1	hardenedclay:hardened_clay_orange
@@ -903,7 +825,7 @@
 159 14	hardenedclay:hardened_clay_red
 159 15	hardenedclay:hardened_clay_black
 
-160	xpanes:pane					// no colors here sadly
+160	xpanes:pane					// 0-15 stained glass panes - no colors here sadly
 
 163 0	stairs:stair_acacia_wood 1
 163 1	stairs:stair_acacia_wood 3
@@ -934,6 +856,9 @@
 	164 7	stairs:stair_wood 20
 #endif
 
+//165 slimeblock
+//166 barrier
+
 167 0	doors:trapdoor_steel 2
 167 1	doors:trapdoor_steel 0
 167 2	doors:trapdoor_steel 1
@@ -950,6 +875,11 @@
 167 13	doors:trapdoor_steel_open 20
 167 14	doors:trapdoor_steel_open 23
 167 15	doors:trapdoor_steel_open 21
+
+//168 0	prismarine
+//168 1	prismarine brick
+//168 2	dark prismarine
+//169 0	sea_lantern
 
 170	farming:straw
 
@@ -970,19 +900,28 @@
 171 14	carpet:red
 171 15	carpet:black
 
+//172 hardened clay
 173	default:coalblock
-174	default:ice					// approx
+174	default:ice					// packed ice
 
+//double plants 0-5 = bottom halves
 175 0	flowers:sunflower
-
+//175 1	lilac
 175 2	default:junglegrass
+//175 3	double_fern
+//175 4	rose_bush
+//175 5	peony
+//175 8-13 double plant top halves - Bug in minecraft maps all top halves to "175 10"; need to fix elsewhere in code.
+
+//176 standing banners
+//177 hanging banners
 
 // 178 is an inverted daylight sensor, cannot convert!
 
-179 1	default:desert_stone			// approx
-179 2	default:desert_stone			// approx
+//red sandstone
+179 1	default:desert_stone			// carved red sandstone
+179 2	default:desert_stone			// smooth red sandstone
 179	default:desert_stone
-
 180 0	stairs:stair_desert_stone 1
 180 1	stairs:stair_desert_stone 3
 180 2	stairs:stair_desert_stone 2
@@ -991,9 +930,7 @@
 180 5	stairs:stair_desert_stone 21
 180 6	stairs:stair_desert_stone 22
 180 7	stairs:stair_desert_stone 20
-
 181	default:desert_stone
-
 182 8	stairs:slab_desert_stone 22
 182	stairs:slab_desert_stone
 
@@ -1056,6 +993,145 @@
 195	air					// door parts get fixed up in code
 196	air					// door parts get fixed up in code
 197	air					// door parts get fixed up in code
+
+//198 0-5	end rod
+//199 0	chorus plant
+//200 0-5	chorus flower
+//201 0	purpur block
+//202 0	purpur pillar
+//203 0-7 purpur stairs
+//204 purpur block
+//205 purpur slabs
+//206 0	end bricks
+//207 0-3 beetroot growth stages
+//208 0	grass_path
+//209 end gateway
+//210 repeating command block
+//211 0,5 chain command block
+//212 0-3 frosted ice
+//213 0	magma block
+//214 0	nether_wart_block
+//215 0	red_nether_brick
+//216 bone block
+//218 0-5 observer
+
+//219 1	white shulker box
+//220 1	orange shulker box
+//221 1	magenta shulker box
+//222 1	lightblue shulker box
+//223 1	yellow shulker box
+//224 1	green shulker box
+//225 1	pink shulker box
+//226 1	dark grey shulker box
+//227 1	grey shulker box
+//228 1	cyan shulker box
+//229 1	violet shulker box
+//230 1	blue shulker box
+//231 1	brown shulker box
+//232 1	dark green shulker box
+//233 1	red shulker box
+//234 1	black shulker box
+
+// Glazed Terracottas and their rotations.
+//235 0	 glazed terracotta white 0
+//236 0	 glazed terracotta orange 0
+//237 0	 glazed terracotta magenta 0
+//238 0	 glazed terracotta light blue 0
+//239 0	 glazed terracotta yellow 0
+//240 0	 glazed terracotta lime 0
+//241 0	 glazed terracotta pink 0
+//242 0	 glazed terracotta grey 0
+//243 0	 glazed terracotta silver 0
+//244 0	 glazed terracotta cyan 0
+//245 0	 glazed terracotta purple 0
+//246 0	 glazed terracotta blue 0
+//247 0	 glazed terracotta brown 0
+//248 0	 glazed terracotta green 0
+//249 0	 glazed terracotta red 0
+//250 0	 glazed terracotta black 0
+//235 1	 glazed terracotta white 1
+//236 1	 glazed terracotta orange 1
+//237 1	 glazed terracotta magenta 1
+//238 1	 glazed terracotta light blue 1
+//239 1	 glazed terracotta yellow 1
+//240 1	 glazed terracotta lime 1
+//241 1	 glazed terracotta pink 1
+//242 1	 glazed terracotta grey 1
+//243 1	 glazed terracotta silver 1
+//244 1	 glazed terracotta cyan 1
+//245 1	 glazed terracotta purple 1
+//246 1	 glazed terracotta blue 1
+//247 1	 glazed terracotta brown 1
+//248 1	 glazed terracotta green 1
+//249 1	 glazed terracotta red 1
+//250 1	 glazed terracotta black 1
+//235 2	 glazed terracotta white 5
+//236 2	 glazed terracotta orange 5
+//237 2	 glazed terracotta magenta 5
+//238 2	 glazed terracotta light blue 5
+//239 2	 glazed terracotta yellow 5
+//240 2	 glazed terracotta lime 5
+//241 2	 glazed terracotta pink 5
+//242 2	 glazed terracotta grey 5
+//243 2	 glazed terracotta silver 5
+//244 2	 glazed terracotta cyan 5
+//245 2	 glazed terracotta purple 5
+//246 2	 glazed terracotta blue 5
+//247 2	 glazed terracotta brown 5
+//248 2	 glazed terracotta green 5
+//249 2	 glazed terracotta red 5
+//250 2	 glazed terracotta black 5
+//235 3	 glazed terracotta white 3
+//236 3	 glazed terracotta orange 3
+//237 3	 glazed terracotta magenta 3
+//238 3	 glazed terracotta light blue 3
+//239 3	 glazed terracotta yellow 3
+//240 3	 glazed terracotta lime 3
+//241 3	 glazed terracotta pink 3
+//242 3	 glazed terracotta grey 3
+//243 3	 glazed terracotta silver 3
+//244 3	 glazed terracotta cyan 3
+//245 3	 glazed terracotta purple 3
+//246 3	 glazed terracotta blue 3
+//247 3	 glazed terracotta brown 3
+//248 3	 glazed terracotta green 3
+//249 3	 glazed terracotta red 3
+//250 3	 glazed terracotta black 3
+
+//251 0	concrete white
+//251 1	concrete orange
+//251 2	concrete magenta
+//251 3	concrete light blue
+//251 4	concrete yellow
+//251 5	concrete lime
+//251 6	concrete pink
+//251 7	concrete grey
+//251 8	concrete silver
+//251 9	concrete cyan
+//251 10	concrete purple
+//251 11	concrete blue
+//251 12	concrete brown
+//251 13	concrete green
+//251 14	concrete red
+//251 15	concrete black
+
+//252 0	concrete powder white
+//252 1	concrete powder orange
+//252 2	concrete powder magenta
+//252 3	concrete powder light blue
+//252 4	concrete powder yellow
+//252 5	concrete powder lime
+//252 6	concrete powder pink
+//252 7	concrete powder grey
+//252 8	concrete powder silver
+//252 9	concrete powder cyan
+//252 10	concrete powder purple
+//252 11	concrete powder blue
+//252 12	concrete powder brown
+//252 13	concrete powder green
+//252 14	concrete powder red
+//252 15	concrete powder black
+
 
 324 0,4	doors:door_wood_b_1 2
 324 1,5	doors:door_wood_b_1 3
@@ -1139,3 +1215,98 @@
 966 13	doors:door_steel_a 1
 966 14	doors:door_steel_a 2
 966 15	doors:door_steel_a 3
+
+
+//spruce wood door
+968 0	doors:door_wood_a 1
+968 1	doors:door_wood_a 2
+968 2	doors:door_wood_a 3
+968 3	doors:door_wood_a 0
+968 4	doors:door_wood_b 2
+968 5	doors:door_wood_b 3
+968 6	doors:door_wood_b 0
+968 7	doors:door_wood_b 1
+968 8	doors:door_wood_b 1
+968 9	doors:door_wood_b 2
+968 10	doors:door_wood_b 3
+968 11	doors:door_wood_b 0
+968 12	doors:door_wood_a 0
+968 13	doors:door_wood_a 1
+968 14	doors:door_wood_a 2
+968 15	doors:door_wood_a 3
+
+
+//birch wood door
+970 0	doors:door_wood_a 1
+970 1	doors:door_wood_a 2
+970 2	doors:door_wood_a 3
+970 3	doors:door_wood_a 0
+970 4	doors:door_wood_b 2
+970 5	doors:door_wood_b 3
+970 6	doors:door_wood_b 0
+970 7	doors:door_wood_b 1
+970 8	doors:door_wood_b 1
+970 9	doors:door_wood_b 2
+970 10	doors:door_wood_b 3
+970 11	doors:door_wood_b 0
+970 12	doors:door_wood_a 0
+970 13	doors:door_wood_a 1
+970 14	doors:door_wood_a 2
+970 15	doors:door_wood_a 3
+
+
+//jungle wood door
+972 0	doors:door_wood_a 1
+972 1	doors:door_wood_a 2
+972 2	doors:door_wood_a 3
+972 3	doors:door_wood_a 0
+972 4	doors:door_wood_b 2
+972 5	doors:door_wood_b 3
+972 6	doors:door_wood_b 0
+972 7	doors:door_wood_b 1
+972 8	doors:door_wood_b 1
+972 9	doors:door_wood_b 2
+972 10	doors:door_wood_b 3
+972 11	doors:door_wood_b 0
+972 12	doors:door_wood_a 0
+972 13	doors:door_wood_a 1
+972 14	doors:door_wood_a 2
+972 15	doors:door_wood_a 3
+
+
+//acacia wood door
+974 0	doors:door_wood_a 1
+974 1	doors:door_wood_a 2
+974 2	doors:door_wood_a 3
+974 3	doors:door_wood_a 0
+974 4	doors:door_wood_b 2
+974 5	doors:door_wood_b 3
+974 6	doors:door_wood_b 0
+974 7	doors:door_wood_b 1
+974 8	doors:door_wood_b 1
+974 9	doors:door_wood_b 2
+974 10	doors:door_wood_b 3
+974 11	doors:door_wood_b 0
+974 12	doors:door_wood_a 0
+974 13	doors:door_wood_a 1
+974 14	doors:door_wood_a 2
+974 15	doors:door_wood_a 3
+
+
+//dark oak wood door
+976 0	doors:door_wood_a 1
+976 1	doors:door_wood_a 2
+976 2	doors:door_wood_a 3
+976 3	doors:door_wood_a 0
+976 4	doors:door_wood_b 2
+976 5	doors:door_wood_b 3
+976 6	doors:door_wood_b 0
+976 7	doors:door_wood_b 1
+976 8	doors:door_wood_b 1
+976 9	doors:door_wood_b 2
+976 10	doors:door_wood_b 3
+976 11	doors:door_wood_b 0
+976 12	doors:door_wood_a 0
+976 13	doors:door_wood_a 1
+976 14	doors:door_wood_a 2
+976 15	doors:door_wood_a 3

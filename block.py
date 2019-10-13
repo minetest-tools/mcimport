@@ -270,9 +270,6 @@ class MTBlock:
             # rotate lily pads randomly
             elif blocks[i] == 111:
                 param2[i] = random.randint(0,3)
-            # melon/pumpkin blocks
-            elif blocks[i] == 86 or blocks[i] == 103:
-                param2[i] = random.randint(0,23)
             # grass of varying length randomly
             elif blocks[i] == 31 and data[i] == 1:
                 content[i], param2[i] = conversion_table[931][random.randint(0,4)]
@@ -290,6 +287,43 @@ class MTBlock:
                     alt = 964
                     if blocks[i] == 71:
                         alt = 966
+                    if blocks[i] == 193:
+                        alt = 968
+                    if blocks[i] == 194:
+                        alt = 970
+                    if blocks[i] == 195:
+                        alt = 972
+                    if blocks[i] == 196:
+                        alt = 974
+                    if blocks[i] == 197:
+                        alt = 976
+                    content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
+                    if d_right == 1:
+                        self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
+            # re-add code for converting top part of door for MineClone2, ignored for Minetest Game
+            elif isdoor(blocks[i]) and data[i] >= 8:  # top part
+                below = i - 256
+                if (below < 0):
+                    logger.warning('Unable to fix door - bottom part is across block boundary! (%d < 0)' % below)
+                elif isdoor(blocks[below]) and data[below] >= 8:
+                    logger.warning('Unable to fix door - top part 0x%x below top part 0x%x!', data[i], data[below])
+                else:
+                    d_right = data[i] & 1      # 0 - left, 1 - right
+                    d_open = data[below] & 4   # 0 - closed, 1 - open
+                    d_face = data[below] & 3   # n,e,s,w orientation
+                    alt = 965
+                    if blocks[i] == 71:
+                        alt = 967
+                    if blocks[i] == 193:
+                        alt = 969
+                    if blocks[i] == 194:
+                        alt = 971
+                    if blocks[i] == 195:
+                        alt = 973
+                    if blocks[i] == 196:
+                        alt = 975
+                    if blocks[i] == 197:
+                        alt = 977
                     content[i], param2[i] = conversion_table[alt][d_face|d_open|(d_right<<3)]
                     if d_right == 1:
                         self.metadata[(i & 0xf, (i>>8) & 0xf, (i>>4) & 0xf)] = ({ "right": "1" }, {})
