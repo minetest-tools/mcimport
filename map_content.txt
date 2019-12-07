@@ -951,6 +951,8 @@
 167 14	doors:trapdoor_steel_open 23
 167 15	doors:trapdoor_steel_open 21
 
+169	default:meselamp			// approx
+
 170	farming:straw
 
 171 0	carpet:white
