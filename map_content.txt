@@ -951,6 +951,8 @@
 167 14	doors:trapdoor_steel_open 23
 167 15	doors:trapdoor_steel_open 21
 
+169	default:meselamp			// approx
+
 170	farming:straw
 
 171 0	carpet:white
@@ -974,8 +976,11 @@
 174	default:ice					// approx
 
 175 0	flowers:sunflower
-
+175 1	flowers:junglegrass			// approx
 175 2	default:junglegrass
+175 3	default:junglegrass			// approx
+175 4	flowers:flower_rose
+175 5	flowers:flower_rose			// approx
 
 // 178 is an inverted daylight sensor, cannot convert!
 
