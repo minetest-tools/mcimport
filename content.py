@@ -1,3 +1,7 @@
+#!/bin/env python
+
+import os
+
 
 def preprocess(lines, flags):
     output = []
@@ -33,8 +37,13 @@ def get_id(name_id_mapping, name):
         name_id_mapping.append(name)
         return len(name_id_mapping)-1
 
+if os.environ["GAME_ID"] == "MTG":
+    map_content_gameID = "map_content.txt"
+elif os.environ["GAME_ID"] == "MCL2":
+    map_content_gameID = "mcl2_map_content.txt"
+
 def read_content(flags):
-    with open("map_content.txt", "r") as f:
+    with open(map_content_gameID, "r") as f:
         lines = f.readlines()
 
     lines = preprocess(lines, flags)

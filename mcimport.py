@@ -24,10 +24,16 @@ if os.path.exists(sys.argv[2] + "map.sqlite"):
     print("A minetest world already exists - refusing to overwrite it.")
     exit(1)
 
-if not os.path.exists(sys.argv[2] + "/world.mt"):
-    with open(sys.argv[2] + "/world.mt", "w") as wo:
-        wo.write("backend = sqlite3\n")
-        wo.write("gameid = minetest\n")
+if os.environ["GAME_ID"] == "MTG":
+    if not os.path.exists(sys.argv[2] + "/world.mt"):
+        with open(sys.argv[2] + "/world.mt", "w") as wo:
+            wo.write("backend = sqlite3\n")
+            wo.write("gameid = minetest\n")
+elif os.environ["GAME_ID"] == "MCL2":
+    if not os.path.exists(sys.argv[2] + "/world.mt"):
+        with open(sys.argv[2] + "/world.mt", "w") as wo:
+            wo.write("backend = sqlite3\n")
+            wo.write("gameid = mineclone2\n")
 
 if not os.path.exists(sys.argv[2] + "/worldmods"):
     os.makedirs(sys.argv[2]+"/worldmods")
@@ -41,19 +47,21 @@ if not os.path.exists(sys.argv[2]+"/worldmods/mcimport/init.lua"):
         sn.write("minetest.set_mapgen_params({chunksize = 1})\n\n")
         sn.write("-- comment the line below if you want to enable mapgen (will destroy things!)\n")
         sn.write("minetest.set_mapgen_params({mgname = \"singlenode\"})\n\n")
+        sn.write("-- Comment out set_lighting fix. Not necessary, and causes error spam in Minetest v5.x\n")
         sn.write("-- below lines will recalculate lighting on map block load\n")
         sn.write("minetest.register_on_generated(function(minp, maxp, seed)\n")
         sn.write("        local vm = minetest.get_voxel_manip(minp, maxp)\n")
-        sn.write("        vm:set_lighting({day = 15, night = 0}, minp, maxp)\n")
+        sn.write("--      vm:set_lighting({day = 15, night = 0}, minp, maxp)\n")
         sn.write("        vm:update_liquids()\n")
         sn.write("        vm:write_to_map()\n")
         sn.write("        vm:update_map()\n")
         sn.write("end)\n\n")
 
-if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
-    path = sys.argv[2]+"/get-mods.sh"
-    with open(path, "w") as md:
-        md.write('''\
+if os.environ["GAME_ID"] == "MTG":
+    if not os.path.exists(sys.argv[2]+"/get-mods.sh"):
+        path = sys.argv[2]+"/get-mods.sh"
+        with open(path, "w") as md:
+                    md.write('''\
 #!/bin/sh
 
 # run this script to automatically get all the required mods
@@ -99,6 +107,7 @@ done
     st = os.stat(path)
     os.chmod(path, st.st_mode | stat.S_IXUSR)
 
+
 mcmap = MCMap(sys.argv[1])
 mtmap = MTMap(sys.argv[2])
 
@@ -107,4 +116,5 @@ mtmap.fromMCMap(mcmap, nimap, ct)
 mtmap.save()
 
 print("Conversion finished!\n")
-print("Run \"sh get-mods.sh\" in the new world folder to automatically download all required mods.")
+if os.environ["GAME_ID"] == "MTG":
+    print("Run \"sh get-mods.sh\" in the new world folder to automatically download all required mods.")

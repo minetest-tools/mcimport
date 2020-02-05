@@ -1,0 +1,132 @@
+===================================================================
+Documentation for "map_content.txt" and "mcl2_map_content.txt":
+===================================================================
+
+ Documentation originally derived from: https://github.com/dgm3333/mcblocks/blob/master/map_content.txt
+ Updated by MysticTempest
+--------------------------------------
+ The format of this file is:
+MCID data	modname:blockname param2
+17 0	mcblocks:Oak_Wood 4		//U
+
+ or with optional preprocessor commands
+#if MORETREES
+	18 4,12	default:leaves 1
+#else
+	17	default:tree	// TODO: Trunk orientation
+#endif
+
+ !!!! WHITESPACE TYPE (space or tab) IS CRITICAL:- !!!!
+
+    ({tab})MCID({space}MCData1(,MCData2(...))){tab}MTnodename({space}param2){tab}<==Everything beyond this tab is ignored.
+Tab characters at the beginning of the line are ignored.
+It is critical that tabs and spaces not be mixed up or the line won't be recognised correctly,
+and the parsing may fail to progress beyond that point.
+
+ MCID and MCData must be separated by a space/s.
+ MCData1,2,etc must be separated by commas but no spaces.
+ There must also be no spaces before MCID or between MCData and the following tab.
+ MCData must not be >=16, or the remainder of the file will be totally ignored.
+ MCID/Data and MTnodename are separated by tabs.
+ MTnodename and param2 are separated by a space/s.
+If MCData1 is omitted, the line will match MCIDs with MCData values from 0-15 (and any subsequent entries will be ignored)
+ Any data following '//' is parsed and not processed
+ preprocessor commands #if {NAME}, #else and #endif are recognised and intervening lines will be parsed
+       out or retained dependant on flags in the content.read_content call
+
+ Extra reference documentation:
+https://github.com/minetest/minetest/blob/2992b774fe65410a8acd3d06ae82dcd1eb260413/doc/lua_api.txt#L905
+http://dev.minetest.net/minetest.dir_to_wallmounted
+http://dev.minetest.net/minetest.dir_to_facedir
+===============================================================================
+ Minetest uses these values for Wall-Mounted nodes(eg. torches, vines, etc..).
+ Note that for Y values; it equates to which half of an air node it's in.
+ Example:
+	Ladders attached to the bottom of blocks are in the upper half of an air node. Hence are, 0.
+	Ladders attached to the top of blocks are in the lower half of an air node. Hence are, 1.
+param2	direction
+0		//U	+Y
+1		//D	-Y
+4		//N	+Z
+2		//E	+x
+5		//S	-Z
+3		//W	-X
+
+
+--------------------------------------------------------------------------------
+ Minetest uses these values for nodebox face directions(eg. chests, Jack O'Lanterns, etc..).
+ Values range from 0-23, and involve multiple vectors/rotations.
+ A node's param2 value direction is dependent on a player's face direction.
+	(ie. A player faces North, but a Jack O'Lantern faces South towards the player with a param2 value of '0'.)
+Default values for a node; vector pointing upwards:
+param2	direction
+0			//N
+1			//E
+2			//S
+3			//W
+
+------------------------
+Vectors:
+------------------------
+Vector points Up; rotation is around the North/South/East/West faces.
+0,1,2,3
+Vector points North; rotation is around the East/West/Up/Down faces.
+4,5,6,7
+Vector points South; rotation is around the East/West/Up/Down faces.
+8,9,10,11
+Vector points East; rotation is around the North/South/Up/Down faces.
+12,13,14,15
+Vector points West; rotation is around the North/South/Up/Down faces.
+16,17,18,19
+Vector points Down; rotation is around the North/South/East/West faces.
+20,21,22,23
+------------------------
+Faces:
+------------------------
+Player faces Down, node(eg. Jack O'Lantern) faces Upwards.
+0 degree: 4
+90 degree: 13
+180 degree: 10
+270 degree: 19
+
+Player faces Up, Jack O'Lantern faces Downwards.
+0 degree: 8
+90 degree: 15
+180 degree: 6
+270 degree: 17
+
+Player faces North, Jack O'Lantern faces South.
+0 degree: 0
+90 degree: 12
+180 degree: 20
+270 degree: 16
+
+Player faces East, Jack O'Lantern faces West.
+0 degree: 1
+90 degree: 9
+180 degree: 23
+270 degree: 5
+
+Player faces South, Jack O'Lantern faces North.
+0 degree: 2
+90 degree: 18
+180 degree: 22
+270 degree: 14
+
+Player faces West, Jack O'Lantern faces East.
+0 degree: 3
+90 degree: 7
+180 degree: 21
+270 degree: 11
+
+
+--------------------------------------------------------------------------------
+Lastly, it appears some Minecraft Blockstates can be converted to data values.
+At least blockstates for axes(eg. Purpur Pillar, Bone Block, etc..).
+Example:
+Purpur pillar; default & on its side facing N,E,S,W; blockstate translation for X,Y,Z axes.
+202 0	mcl_end:purpur_pillar    //Default, vector pointing upward, with a MC blockstate for Y
+202 4	mcl_end:purpur_pillar 12 //East,West pointing vectors with a MC blockstate for X
+202 8	mcl_end:purpur_pillar 6  //North,South pointing vectors with a MC blockstate for Z
+
+=====================================================================================
