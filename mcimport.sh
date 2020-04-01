@@ -42,7 +42,7 @@ if [ $? == 0 ]; then
 	fi
 	cd "${HOME}/.minetest/worlds/$OUT"
 	(
-		bash get-mods.sh
+		python3 get_mods.py
 		echo "====================="
 		echo "Finished! You can now close this window!"
 	) | zenity --text-info --width=800 --height=600 --title='Downloading required mods.' --text='Downloading...'
