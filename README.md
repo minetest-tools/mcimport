@@ -55,7 +55,23 @@ easiest way to invoke the converter is to run the `mcimport.sh`
 script without any parameters. This takes you through a bunch of
 screens that you can use to select a world and configure a few
 settings.
+#
+# win10
+[Example](https://github.com/minetest-tools/mcimport/issues/34) 
+* cmd Enter the path `mcimport-master`
+* Python Mcimport.py `minecraft Map path` Space `minetest Map path`
+* Currently; you need to find the minecraft coordinates, and convert them before teleporting to the minetest ones.
+```
+Coordinate Conversion from Minecraft to Minetest:
 
+X = Approximately +16 nodes
+Y = Approximately -64 nodes
+Z = The number is approximately inverted. -16 nodes
+```
+* You'll need to teleport/fly to the coordinates
+* you need to install the module
+* Open map File folder use `Notepads` open `get-mods.sh` Browser download mods
+#
 # License:
 
 Copyright (C) 2016 - Nore, dgm555, sofar and others
