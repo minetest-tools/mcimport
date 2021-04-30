@@ -70,7 +70,7 @@ Z = The number is approximately inverted. -16 nodes
 ```
 * You'll need to teleport/fly to the coordinates
 * you need to install the module
-* Open map File folder use `Notepads` open `get-mods.sh` Browser download mods
+* Open map File folder. use `Notepads` open `get-mods.sh` Browser download mods
 #
 # License:
 
