@@ -1,4 +1,5 @@
 # mcimport
+# mcimport can't let you in Minetest. Complete rebuilding the world
 
 This mod converts a minecraft world into minetest.
 
