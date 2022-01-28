@@ -55,7 +55,7 @@ screens that you can use to select a world and configure a few
 settings.
 #
 # win10
-* python Installation, Add Python to PATH
+* [python](https://www.python.org/downloads/windows/) Installation, Add Python to PATH
 * Copy the map to the `mcimport-master` folder
 * `Command Prompt`to`mcimport-master` location, Key in  ```python mcimport.py Enter out```  `Enter` Replace with your map name，`out` is your name after Convert.
 * you need Download [Map](https://github.com/Pantyhose-X/AISS_mcimport/releases) Or go to the map after you Convert . Open the `get-mods.sh`  with Notepad to download the mods link. `Copy mod to minetest\mods,Copy map to minetest\worlds`
@@ -67,14 +67,17 @@ X = Approximately +16 nodes
 Y = Approximately -64 nodes
 Z = The number is approximately inverted. -16 nodes
 ```
-#
 A general [Example](https://github.com/minetest-tools/mcimport/issues/34) of converted coordinates:
-- Minecraft: 100, 1, -100 
-- Minetest: 116, -63, 84
+````
+ Minecraft: 100, 1, -100 
+ Minetest: 116, -63, 84
+ ````
 #
 I took a quick look at that map's coordinates in minecraft. You'll need to teleport/fly to the following coordinates in your converted world.
-- `/grantme all`
-- `/teleport 116,-63,-100`
+`````
+/grantme all
+/teleport 116,-63,-100
+`````
 #
 # License:
 
