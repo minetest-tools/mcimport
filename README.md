@@ -1,6 +1,5 @@
 # mcimport
-
-This mod converts a minecraft world into minetest.
+Convert Minecraft maps to Minetest worlds
 
 The process is offline. Minecraft should not be running on the world
 that is to be converted. The output should be an empty folder, and
@@ -55,7 +54,32 @@ easiest way to invoke the converter is to run the `mcimport.sh`
 script without any parameters. This takes you through a bunch of
 screens that you can use to select a world and configure a few
 settings.
+#
+# win10
+* [python](https://www.python.org/downloads/windows/) Installation, Add Python to PATH
+* Copy the map to the `mcimport-master` folder
+* `Command Prompt`to`mcimport-master` location, Key in  ```python mcimport.py Enter out```  `Enter` Replace with your map name，`out` is your name after Convert.
+* you need Download [Map](https://github.com/Pantyhose-X/AISS_mcimport/releases) Or go to the map after you Convert . Open the `get-mods.sh`  with Notepad to download the mods link. `Copy mod to minetest\mods,Copy map to minetest\worlds`
+* Currently; you need to find the minecraft coordinates, and convert them before teleporting to the minetest ones.
+```
+Coordinate Conversion from Minecraft to Minetest:
 
+X = Approximately +16 nodes
+Y = Approximately -64 nodes
+Z = The number is approximately inverted. -16 nodes
+```
+A general [Example](https://github.com/minetest-tools/mcimport/issues/34) of converted coordinates:
+````
+ Minecraft: 100, 1, -100 
+ Minetest: 116, -63, 84
+ ````
+#
+I took a quick look at that map's coordinates in minecraft. You'll need to teleport/fly to the following coordinates in your converted world.
+`````
+/grantme all
+/teleport 116,-63,-100
+`````
+#
 # License:
 
 Copyright (C) 2016 - Nore, dgm555, sofar and others
@@ -83,4 +107,3 @@ Except as contained in this notice, the name of the authors shall
 not be used in advertising or otherwise to promote the sale, use or
 other dealings in this Software without prior written authorization
 from the authors.
-
