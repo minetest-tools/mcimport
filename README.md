@@ -59,7 +59,7 @@ settings.
 * [python](https://www.python.org/downloads/windows/) Installation, Add Python to PATH
 * Copy the map to the `mcimport-master` folder
 * `Command Prompt`to`mcimport-master` location, Key in  ```python mcimport.py Enter out```  `Enter` Replace with your map name，`out` is your name after Convert.
-* you need Download [Map](https://github.com/Pantyhose-X/AISS_mcimport/releases) Or go to the map after you Convert . Open the `get-mods.sh`  with Notepad to download the mods link. `Copy mod to minetest\mods,Copy map to minetest\worlds`
+* you need Download [Mod](https://github.com/Pantyhose-X/AISS_mcimport/releases) Or go to the map after you Convert . Open the `get-mods.sh`  with Notepad to download the mods link. `Copy mod to minetest\mods,Copy map to minetest\worlds`
 * Currently; you need to find the minecraft coordinates, and convert them before teleporting to the minetest ones.
 ```
 Coordinate Conversion from Minecraft to Minetest:
