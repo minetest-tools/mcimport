@@ -1,17 +1,32 @@
 # mcimport
-Convert Minecraft maps to Minetest worlds
+Convert Minecraft maps to Minetest worlds!
 
 The process is offline. Minecraft should not be running on the world
 that is to be converted. The output should be an empty folder, and
 no map.sqlite should be present in the empty folder.
 
 The output is a world folder that is playable, permitted that the
-required minetest mods are installed. If mods are missing, you will
-encounter "Unknown" blocks in the minetest world.
+following Minetest mods are installed. If mods are missing, you will
+encounter "Unknown" blocks in the Minetest world.
+
+* [mesecons](https://codeload.github.com/minetest-mods/mesecons/zip/master)
+* [carpet](https://codeload.github.com/LNJ2/carpet/zip/master)
+* [crops](https://codeload.github.com/minetest-mods/crops/zip/master)
+* [flowerpot](https://codeload.github.com/minetest-mods/flowerpot/zip/master)
+* [lapis](https://codeload.github.com/minetest-mods/lapis/zip/master)
+* [quartz](https://codeload.github.com/minetest-mods/quartz/zip/master)
+* [xdecor](https://codeload.github.com/minetest-mods/xdecor/zip/master)
+* [hardenedclay](https://codeload.github.com/oOChainLynxOo/hardenedclay/zip/master)
+* [nether](https://codeload.github.com/minetest-mods/nether/zip/master)
+* [minetest_bedrock](https://codeload.github.com/ShadowNinja/minetest_bedrock/zip/master)
+* [basic_materials](https://gitlab.com/VanessaE/basic_materials/-/archive/master/basic_materials-master.zip)
+* [biome_lib](https://gitlab.com/VanessaE/biome_lib/-/archive/master/biome_lib-master.zip)
+* [plantlife_modpack](https://gitlab.com/VanessaE/plantlife_modpack/-/archive/master/plantlife_modpack-master.zip)
+* [signs_lib](https://gitlab.com/VanessaE/signs_lib/-/archive/master/signs_lib-master.zip)
 
 This mcimport fork was created to improve on the existing mcimport
-project, with one significant change: This form aims to create
-*playable* minetest worlds where stuff works:
+project, with one significant change: this form aims to create
+*playable* Minetest worlds where stuff works.
 
 - chests can be used to put stuff in
 - doors open and close
@@ -40,7 +55,7 @@ that is friendly for users performing a one-time conversion.
 There are a large number of things that are just never going to
 be convertable, and so the following will likely never work and
 are therefore converted to air blocks. Entities are readily
-spawned by several mob mods in minetest, so conversion is likely
+spawned by several mob mods in Minetest, so conversion is likely
 not critical to users, and left out.
 
 - crafting table
@@ -59,8 +74,8 @@ settings.
 * [python](https://www.python.org/downloads/windows/) Installation, Add Python to PATH
 * Copy the map to the `mcimport-master` folder
 * `Command Prompt`to`mcimport-master` location, Key in  ```python mcimport.py Enter out```  `Enter` Replace with your map name，`out` is your name after Convert.
-* you need Download [Map](https://github.com/Pantyhose-X/AISS_mcimport/releases) Or go to the map after you Convert . Open the `get-mods.sh`  with Notepad to download the mods link. `Copy mod to minetest\mods,Copy map to minetest\worlds`
-* Currently; you need to find the minecraft coordinates, and convert them before teleporting to the minetest ones.
+* you need Download [Map](https://github.com/Pantyhose-X/AISS_mcimport/releases) Or go to the map after you Convert . Open the `get-mods.sh`  with Notepad to download the mods link. `Copy mod to Minetest\mods,Copy map to Minetest\worlds`
+* Currently; you need to find the minecraft coordinates, and convert them before teleporting to the Minetest ones.
 ```
 Coordinate Conversion from Minecraft to Minetest:
 
@@ -68,7 +83,7 @@ X = Approximately +16 nodes
 Y = Approximately -64 nodes
 Z = The number is approximately inverted. -16 nodes
 ```
-A general [Example](https://github.com/minetest-tools/mcimport/issues/34) of converted coordinates:
+A general [Example](https://github.com/Minetest-tools/mcimport/issues/34) of converted coordinates:
 ````
  Minecraft: 100, 1, -100 
  Minetest: 116, -63, 84
